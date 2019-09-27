@@ -35,7 +35,7 @@ Loading  . . .
 ## Contributing
 >  Feel free to contribute and kindly ensure to go through the Pull Request guide, and contributing.md file
 
->  👯 Clone the repository using https://github.com/Oluwasegun-AA/MultiClip.git
+>  👯 Clone the repository using https://github.com/Oluwasegun-AA/md-generator.git
 
 > Make Contributions
 
