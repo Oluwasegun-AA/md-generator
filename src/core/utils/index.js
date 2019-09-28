@@ -1,27 +1,40 @@
 import program from 'commander';
 import boxen from 'boxen';
+import { log } from '../../utils/index';
+
+const showHelp = text => {
+  log(text);
+  program.help();
+  process.exit(1);
+};
 
 const showHelpOnError = () => {
   const NO_COMMAND_SPECIFIED = Object.keys(program.opts()).every(
     key => program.opts()[`${key}`] === undefined || key === 'version'
   );
   if (NO_COMMAND_SPECIFIED) {
-    console.log('Invalid command');
-    return program.help();
+    showHelp('Invalid Command');
   }
 };
 
+const invalidArgs = args =>
+  args.length > 2 ||
+  !(
+    (args.length === 2 && args.includes('all', 'empty')) ||
+    args.includes('file', 'empty')
+  );
+
 const filterCurrentRequest = () => {
   const request = program.opts();
-  const filteredRequest = Object.keys(request).filter(
-    item => item !== 'version'
+  const activeArgs = Object.keys(request).filter(
+    item => item !== 'version' && request[item] !== undefined
   );
-  const activeArgument = filteredRequest.find(item => request[item] !== undefined);
-  console.log('active', activeArgument);
+  if (invalidArgs(activeArgs)) showHelp('Invalid argument combination');
+  log('active', activeArgs.length);
 };
 
 const useBox = text => {
-  console.log(
+  log(
     boxen(text, { padding: 3, margin: 1, borderStyle: 'double' }),
     program.args.join(' ')
   );
