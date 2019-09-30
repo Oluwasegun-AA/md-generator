@@ -30,3 +30,77 @@ program.command('*').action(function(env) {
 });
 
 program.parse(process.argv);
+
+
+
+
+
+
+
+// // #!/usr/bin/env node
+// import program from 'commander';
+// import { showHelpOnError, useBox } from './utils/index';
+// import { log } from '../utils/index';
+// import validateOptions from './validations/validateOptions';
+
+// program
+//   .name('md-generator')
+//   .version('1.0.0')
+//   .option('--optional', 'Optional .md Files')
+//   .option('--required', 'Required .md Files')
+//   .option('-A, --all [value]', 'All .md files')
+//   .option('-F, --file [value]', 'Specific .md files')
+//   .option('-E, --empty', 'make added files empty');
+// program
+//   .command('list')
+//   .description('list All Required/optional .md files')
+//   .action((type, args) => {
+//     log(type._name);
+//     log(program.opts());
+//     validateOptions(type);
+//   });
+// program
+//   .command('create')
+//   .description('create All/specific files')
+//   .action((type, args) => {
+//     log(program.opts());
+//     validateOptions(type);
+//     showHelpOnError(type);
+//   });
+// program
+//   .command('check')
+//   .description('check for missing .md files')
+//   .action((type, args) => {
+//     validateOptions(type);
+//     showHelpOnError(type);
+//     log(program.opts());
+//   });
+// program
+//   .command('remove')
+//   .description('remove All/specific .md files')
+//   .action((type, args) => {
+//     log(program.opts());
+//     log('remove');
+//     validateOptions(type);
+//     showHelpOnError(type);
+//     // log(program.opts());
+//   });
+// program
+//   .command('import')
+//   .description('import .md files from remote repository')
+//   // .option('-A, --all [value]', 'Generate all required/optional .md files')
+//   // .option('-F, --file [value]', 'Generate specific .md files')
+//   // .option('-E, --empty', 'make added files empty')
+//   .action((type, args) => {
+//     log(program.opts());
+//     validateOptions(type);
+//     showHelpOnError(type);
+//     // log(program.opts());
+//   });
+
+// program.command('*').action(cmd => {
+//   log(`Invalid command:  ${cmd}  \n See --help for a list of available commands.`);
+// });
+
+// program.parse(process.argv);
+
