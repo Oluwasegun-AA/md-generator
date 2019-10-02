@@ -26,6 +26,7 @@ module.exports = {
     "operator-linebreak":0,
     "implicit-arrow-linebreak": 0,
     "no-underscore-dangle":0,
+    "no-return-assign": 0,
   },
   globals:{
     chrome: true

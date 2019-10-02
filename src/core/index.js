@@ -1,84 +1,69 @@
 #!/usr/bin/env node
 import program from 'commander';
+import pad from 'pad';
 import { showHelpOnError, filterCurrentRequest, useBox } from './utils/index';
 import { log } from '../utils/index';
+import validateOptions from './validations/validateOptions';
 
 program
   .name('md-generator')
   .version('1.0.0')
-  .option('--optional', 'Optional .md Files')
-  .option('--required', 'Required .md Files')
-  .option('-A, --all [value]', 'All .md files')
-  .option('-F, --file [value]', 'Specific .md files')
-  .option('-E, --empty', 'make added files empty');
+  .on('--help', () => {
+    log('\n\nCommand-Options :');
+    log('Usage: md-generator [commands] [command-options]\n');
+    log(pad('-A, --all', 25), 'Operate on all required/optional .md files');
+    log(pad('-F, --file', 25), 'Operate on specific .md files');
+    log(pad('-E, --empty', 25), 'make added files empty');
+    log(pad('-R --required', 25), 'Operate on required files');
+    log(pad('-O --optional', 25), 'Operate on optional files');
+  });
 program
-  .command('list')
+  .command('list [env]')
   .description('list All Required/optional .md files')
-  .allowUnknownOption()
-  // .option('--optional', 'make added files empty')
-  // .option('--required', 'make added files empty')
+  .option('-O --optional', 'make added files empty')
+  .option('-R --required', 'make added files empty')
   .action((type, args) => {
-    log(type._name);
-    // console.log(type);
-    // console.log(args)
-    // filterCurrentRequest();
-    // showHelpOnError(type.parent.rawArgs[3]);
+    validateOptions(args);
+    // log(program.opts());
   });
 program
   .command('create [env]')
   .description('create All/specific files')
-  .allowUnknownOption()
-  // .option('--optional', 'make added files empty')
-  // .option('--required', 'make added files empty')
-  // .option('-A, --all [value]', 'Generate all required/optional .md files')
-  // .option('-F, --file [value]', 'Generate specific .md files')
-  // .option('-E, --empty', 'make added files empty')
+  .option('-O, --optional', 'make added files empty')
+  .option('-R, --required', 'make added files empty')
+  .option('-A, --all [value]', 'Generate all required/optional .md files')
+  .option('-F, --file [value]', 'Generate specific .md files')
+  .option('-E, --empty', 'make added files empty')
   .action((type, args) => {
-    log(program.opts());
-    log('create');
-    // filterCurrentRequest();
-    showHelpOnError(type.parent.rawArgs[3]);
+    validateOptions(args);
   });
 program
   .command('check [env]')
   .description('check for missing .md files')
-  .allowUnknownOption()
   .action((type, args) => {
-    log('check');
+    validateOptions(args);
+    // console.log(type);
+    // console.log(args)
     // filterCurrentRequest();
-    showHelpOnError(type.parent.rawArgs[3]);
+    // showHelpOnError();
     // log(program.opts());
   });
 program
   .command('remove [env]')
   .description('remove All/specific .md files')
-  .allowUnknownOption()
-  // .option('-A, --all [value]')
-  // .option('-F, --file [value]', 'Generate specific .md files')
+  .option('-A, --all [value]')
+  .option('-F, --file [value]', 'Generate specific .md files')
   .action((type, args) => {
-    log(program.opts());
-    log('remove');
-    // filterCurrentRequest();
-    showHelpOnError(type.parent.rawArgs[3]);
-    // log(program.opts());
+    validateOptions(args);
   });
 program
   .command('import [env]')
   .description('import .md files from remote repository')
-  // .option('-A, --all [value]', 'Generate all required/optional .md files')
-  // .option('-F, --file [value]', 'Generate specific .md files')
-  // .option('-E, --empty', 'make added files empty')
-  .allowUnknownOption()
+  .option('-A, --all [value]', 'Generate all required/optional .md files')
+  .option('-F, --file [value]', 'Generate specific .md files')
+  .option('-E, --empty', 'make added files empty')
   .action((type, args) => {
-    log(program.opts());
-    log('import');
-    // filterCurrentRequest();
-    showHelpOnError(type.parent.rawArgs[3]);
-    // log(program.opts());
+    validateOptions(args);
   });
-
-program.command('*').action(cmd => {
-  log(`Invalid command:  ${cmd}  \n See --help for a list of available commands.`);
-});
 
 program.parse(process.argv);

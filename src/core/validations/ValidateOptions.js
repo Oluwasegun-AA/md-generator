@@ -13,9 +13,7 @@ const validateOptions = type => {
   const args = ExtractOptions[command](type);
   const activeArgs = filterValidArgs(args);
   log('activeArgs', activeArgs);
-  // if (IsValidArgs[command](activeArgs)) showHelp('Invalid argument combination');
-  // log('active', activeArgs.length);
-  log(IsValidArgs[command](activeArgs));
+  if (!IsValidArgs[command](activeArgs)) showHelp('Invalid argument combination');
 };
 
 export default validateOptions;
