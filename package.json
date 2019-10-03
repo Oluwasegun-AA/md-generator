@@ -4,8 +4,10 @@
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
   "scripts": {
+    "compile": "yarn clear && yarn build",
+    "build": "babel ./src -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clear": "rimraf public",
+    "clear": "rimraf dist",
     "pretty": "./node_modules/.bin/prettier --single-quote --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint src/**/*.js --fix",
     "contributors:init": "all-contributors init",
@@ -13,7 +15,7 @@
     "contributors:generate": "npx all-contributors generate"
   },
   "bin": {
-    "generate": "dist/index.js"
+    "generate": "dist/core/index.js"
   },
   "files": [
     "dist",
@@ -51,6 +53,7 @@
     "git-repo-name": "1.0.1",
     "inquirer": "6.4.1",
     "load-json-file": "6.2.0",
+    "lodash": "4.17.15",
     "ora": "4.0.1",
     "pad": "3.2.0",
     "yargs": "14.0.0"
