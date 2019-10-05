@@ -1,5 +1,9 @@
 import boxen from 'boxen';
 import pad from 'pad';
+import chalk from 'chalk';
+
+const { green } = chalk;
+const whiteUnderline = chalk.underline.rgb(174, 174, 174);
 
 const log = (item, payload = '') => {
   process.stdout.write(`\n${item}`);
@@ -27,4 +31,10 @@ const customHelp = () => {
   log(pad('-R --required', 26), 'Operate on required files');
   log(pad('-O --optional', 26), 'Operate on optional files');
 };
-export { log, useBox, customHelp };
+export {
+  log,
+  useBox,
+  green,
+  customHelp,
+  whiteUnderline
+};

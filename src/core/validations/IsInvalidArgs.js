@@ -5,7 +5,7 @@ const isValidOption = (args, validOptions) =>
 
 class IsValidArgs {
   static list(args) {
-    const validArgs = [['required'], ['optional']];
+    const validArgs = [['required'], ['optional'], []];
     return isValidOption(args, validArgs);
   }
 
@@ -18,6 +18,7 @@ class IsValidArgs {
       ['all'],
       ['optional'],
       ['required'],
+      []
     ];
     return isValidOption(args, validArgs);
   }
@@ -27,7 +28,7 @@ class IsValidArgs {
   }
 
   static remove(args) {
-    const validArgs = [['all'], ['file']];
+    const validArgs = [['all'], ['file'], []];
     return isValidOption(args, validArgs);
   }
 
@@ -37,6 +38,7 @@ class IsValidArgs {
       ['required'],
       ['file', 'all'],
       ['all', 'file'],
+      []
     ];
     return isValidOption(args, validArgs);
   }
