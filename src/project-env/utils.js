@@ -1,47 +1,37 @@
 import loadJsonFile from 'load-json-file';
-import boxen from 'boxen';
 import path from 'path';
-import getReposName from 'git-repo-name';
+import getRepoName from 'git-repo-name';
 import { execSync } from 'child_process';
+import { useBox } from '../utils/index';
 
-const END_MSG = `README.md was successfully generated.
-Thanks for using readme-md-generator!`;
-
-const BOXEN_CONFIG = {
-  padding: 1,
-  margin: { top: 2, bottom: 3 },
-  borderColor: 'cyan',
-  align: 'center',
-  borderStyle: 'double',
-};
+const END_MSG = `.md file(s) successfully generated.
+Thanks for using md-generator!`;
 
 /**
- * Display end message
+ * @description Display end message
  */
-const showEndMessage = () => process.stdout.write(boxen(END_MSG, BOXEN_CONFIG));
+const showEndMessage = () => process.stdout.write(useBox(END_MSG));
 
 /**
- * Get package json name property
- *
+ * @description Get package json name property
  * @param {Object} packageJson
  */
 const getPackageJsonName = (packageJson = {}) => packageJson.name || undefined;
 
 /**
- * Get git repository name
- *
+ * @description Get git repository name
  * @param {String} cwd process.cwd()
  */
 const getGitRepositoryName = cwd => {
   try {
-    return getReposName.sync({ cwd });
+    return getRepoName.sync({ cwd });
   } catch (err) {
     return undefined;
   }
 };
 
 /**
- * Get project name
+ * @description Get project name
  */
 const getProjectName = packageJson => {
   const cwd = process.cwd();
@@ -53,7 +43,7 @@ const getProjectName = packageJson => {
 };
 
 /**
- * Get package.json content
+ * @description Get package.json content
  */
 const getPackageJson = async () => {
   try {
@@ -64,8 +54,21 @@ const getPackageJson = async () => {
 };
 
 /**
- * Get the default answer depending on the question type
- *
+ * @description Return true if the project is available on NPM, return false otherwise.
+ * @param projectName
+ * @returns boolean
+ */
+const isProjectAvailableOnNpm = projectName => {
+  try {
+    execSync(`npm view ${projectName}`, { stdio: 'ignore' });
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+
+/**
+ * @description Get the default answer depending on the question type
  * @param {Object} question
  */
 const getDefaultAnswer = (question, answersContext) => {
@@ -83,24 +86,9 @@ const getDefaultAnswer = (question, answersContext) => {
   }
 };
 
-/**
- * Return true if the project is available on NPM, return false otherwise.
- *
- * @param projectName
- * @returns boolean
- */
-const isProjectAvailableOnNpm = projectName => {
-  try {
-    execSync(`npm view ${projectName}`, { stdio: 'ignore' });
-    return true;
-  } catch (err) {
-    return false;
-  }
-};
 
 /**
- * Get default question's answers
- *
+ * @description Get default question's answers
  * @param {Array} questions
  */
 const getDefaultAnswers = questions =>
@@ -113,19 +101,17 @@ const getDefaultAnswers = questions =>
   );
 
 /**
- * Clean social network username by removing the @ prefix
- *
+ * @description Clean social network username by removing the @ prefix
  * @param input social network username input
  * @returns {*} input without the prefix
  */
 const cleanSocialNetworkUsername = input => input.replace(/^@/, '');
 
-module.exports = {
+export {
   getPackageJson,
   showEndMessage,
   getProjectName,
   END_MSG,
-  BOXEN_CONFIG,
   getDefaultAnswers,
   getDefaultAnswer,
   cleanSocialNetworkUsername,

@@ -1,27 +1,20 @@
 #!/usr/bin/env node
 import program from 'commander';
-import pad from 'pad';
-import { showHelpOnError, filterCurrentRequest, useBox } from './utils/index';
-import { log } from '../utils/index';
+// import { showHelpOnError, filterCurrentRequest, useBox } from './utils/index';
+import { log, customHelp } from '../utils/index';
 import validateOptions from './validations/validateOptions';
 
 program
   .name('md-generator')
   .version('1.0.0')
   .on('--help', () => {
-    log('\n\nCommand-Options :');
-    log('Usage: md-generator [commands] [command-options]\n');
-    log(pad('-A, --all', 25), 'Operate on all required/optional .md files');
-    log(pad('-F, --file', 25), 'Operate on specific .md files');
-    log(pad('-E, --empty', 25), 'make added files empty');
-    log(pad('-R --required', 25), 'Operate on required files');
-    log(pad('-O --optional', 25), 'Operate on optional files');
+    customHelp();
   });
 program
   .command('list [env]')
   .description('list All Required/optional .md files')
-  .option('-O --optional', 'make added files empty')
-  .option('-R --required', 'make added files empty')
+  .option('-O --optional', 'list all optional files')
+  .option('-R --required', 'list all required files')
   .action((type, args) => {
     validateOptions(args);
     // log(program.opts());
@@ -29,11 +22,11 @@ program
 program
   .command('create [env]')
   .description('create All/specific files')
-  .option('-O, --optional', 'make added files empty')
-  .option('-R, --required', 'make added files empty')
-  .option('-A, --all [value]', 'Generate all required/optional .md files')
-  .option('-F, --file [value]', 'Generate specific .md files')
-  .option('-E, --empty', 'make added files empty')
+  .option('-O, --optional', 'create all optional files')
+  .option('-R, --required', 'create all required files')
+  .option('-A, --all [value]', 'create all required/optional .md files')
+  .option('-F, --file [value]', 'Create specific .md files')
+  .option('-E, --empty', 'make created files empty')
   .action((type, args) => {
     validateOptions(args);
   });
@@ -51,17 +44,20 @@ program
 program
   .command('remove [env]')
   .description('remove All/specific .md files')
-  .option('-A, --all [value]')
-  .option('-F, --file [value]', 'Generate specific .md files')
+  .option('-A, --all [value]', 'remove all .md files')
+  .option('-F, --file [value]', 'remove specific .md files')
   .action((type, args) => {
     validateOptions(args);
   });
 program
   .command('import [env]')
   .description('import .md files from remote repository')
-  .option('-A, --all [value]', 'Generate all required/optional .md files')
-  .option('-F, --file [value]', 'Generate specific .md files')
-  .option('-E, --empty', 'make added files empty')
+  .option(
+    '-A, --all [value]',
+    'Import all required/optional .md files from remote repo'
+  )
+  .option('-F, --file [value]', 'import specific .md files from remote repo')
+  .option('-E, --empty', 'make imported files empty')
   .action((type, args) => {
     validateOptions(args);
   });
