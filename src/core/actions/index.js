@@ -1,14 +1,17 @@
 import pad from 'pad';
-import fs from 'fs';
-import path from 'path';
+import { log, green, whiteUnderline } from '../../utils/index';
 import {
-  log,
-  green,
-  whiteUnderline,
-  red,
-  gray,
-  dimWhite,
-} from '../../utils/index';
+  allFiles,
+  requiredFiles,
+  optionalFiles,
+  concatFiles,
+  deleteFiles,
+  check,
+  checkFilesExist,
+  removeNonSpecific,
+  removeRequiredFiles,
+  removeOptionalFiles,
+} from './actionsUtils';
 
 const username = 'username';
 const repoName = 'repoName';
@@ -42,82 +45,23 @@ const listFiles = (required, optional, all) => {
   );
 };
 
-const checkFileExist = relativePath => {
-  const resolvedPath = path.resolve(__dirname, relativePath);
-  return !!fs.existsSync(resolvedPath);
-};
-
-const requiredFiles = {
-  README: {
-    name: 'README.md',
-    exists: checkFileExist('../../../README.md'),
-  },
-  LICENSE: {
-    name: 'LICENSE',
-    exists: checkFileExist('../../../LICENSE'),
-  },
-  CODE_OF_CONDUCT: {
-    name: 'CODE_OF_CONDUCT.md',
-    exists: checkFileExist('../../../CODE_OF_CONDUCT.md'),
-  },
-  PULL_REQUEST_TEMPLATE: {
-    name: 'PULL_REQUEST_TEMPLATE.md',
-    exists: checkFileExist('../../../.github/PULL_REQUEST_TEMPLATE.md'),
-  },
-  bug_report: {
-    name: 'bug_report.md',
-    exists: checkFileExist('../../../.github/ISSUE_TEMPLATE/bug_report.md'),
-  },
-  feature_request: {
-    name: 'feature_request.md',
-    exists: checkFileExist(
-      '../../../.github/ISSUE_TEMPLATE/feature_request.md'
-    ),
-  },
-};
-
-const optionalFiles = {
-  CHANGELOG: {
-    name: 'CHANGELOG.md',
-    existis: checkFileExist('../../../CHANGELOG.md'),
-  },
-  SUPPORT: {
-    name: 'SUPPORT.md',
-    existis: checkFileExist('../../../SUPPORT.md'),
-  },
-  CONTRIBUTORS: {
-    name: 'CONTRIBUTORS.md',
-    existis: checkFileExist('../../../CONTRIBUTORS.md'),
-  },
-  AUTHORS: {
-    name: 'AUTHORS.md',
-    existis: checkFileExist('../../../AUTHORS.md'),
-  },
-  ACKNOWLEDGMENTS: {
-    name: 'ACKNOWLEDGMENTS.md',
-    existis: checkFileExist('../../../ACKNOWLEDGMENTS.md'),
-  },
-  CODEOWNERS: {
-    name: 'CODEOWNERS.md',
-    existis: checkFileExist('../../../CODEOWNERS.md'),
-  },
-};
-
-const check = file => {
-  Object.keys(file).forEach(key => {
-    if (!file[key].exists) {
-      return log(
-        pad(red(' X '), 12),
-        gray(pad(`${file[key].name}`, 27), 'Not found')
-      );
-    }
+const handleSpecificDelete = values => {
+  const args = values.parent.rawArgs[4];
+  if (!args || args.length === 0) {
     return log(
-      pad(green(' √ '), 12),
-      dimWhite(pad(`${file[key].name}`, 27)),
-      'exists'
+      'Error: File names not detected, please supply file names i.e --file "README.md CONTRIBUTING.md" \n'
     );
-  });
-  log('\n');
+  }
+  const data = args.split(' ');
+  const filesStatus = checkFilesExist(data, allFiles);
+  const { foundFiles, filesNotFound } = filesStatus;
+  if (filesNotFound.length > 0) {
+    const filesList = concatFiles(filesNotFound);
+    log('The following file(s) were not found :\n', `${filesList} \n`);
+  }
+  if (foundFiles.length > 0) {
+    deleteFiles(foundFiles, allFiles);
+  }
 };
 
 const checkFiles = (required, optional, all) => {
@@ -129,6 +73,13 @@ const checkFiles = (required, optional, all) => {
     log(whiteUnderline('Optional Files :\n'));
     check(optionalFiles);
   }
+};
+
+const removeFiles = (file, required, optional, resp) => {
+  if (file) return handleSpecificDelete(resp);
+  if (required) return removeRequiredFiles(resp);
+  if (optional) return removeOptionalFiles(resp);
+  removeNonSpecific(resp);
 };
 
 class Actions {
@@ -150,8 +101,11 @@ class Actions {
     checkFiles(required, optional, all);
   }
 
-  static remove() {
-    log('remove');
+  static remove(args, resp) {
+    const file = args.find(item => item === 'file');
+    const required = args.find(item => item === 'required');
+    const optional = args.find(item => item === 'optional');
+    removeFiles(file, required, optional, resp);
   }
 
   static import() {

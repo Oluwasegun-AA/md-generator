@@ -29,7 +29,12 @@ class IsValidArgs {
   }
 
   static remove(args) {
-    const validArgs = [['all'], ['file'], []];
+    const validArgs = [
+      ['all'],
+      ['file'],
+      ['optional'],
+      ['required'],
+      []];
     return isValidOption(args, validArgs);
   }
 

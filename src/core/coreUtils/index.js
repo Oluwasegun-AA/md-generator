@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import program from 'commander';
 import { log } from '../../utils';
 
@@ -47,10 +46,17 @@ class ExtractOptions {
   }
 
   static remove(args) {
-    const { all, file } = args;
+    const {
+      all,
+      file,
+      required,
+      optional
+    } = args;
     return {
       all,
       file,
+      required,
+      optional
     };
   }
 

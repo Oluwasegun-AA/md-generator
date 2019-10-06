@@ -2,7 +2,12 @@ import boxen from 'boxen';
 import pad from 'pad';
 import chalk from 'chalk';
 
-const { red, gray, green } = chalk;
+const {
+  red,
+  gray,
+  green,
+  cyan
+} = chalk;
 const whiteUnderline = chalk.underline.rgb(174, 174, 174);
 const dimWhite = chalk.rgb(174, 174, 174);
 
@@ -42,5 +47,6 @@ export {
   whiteUnderline,
   red,
   gray,
-  dimWhite
+  dimWhite,
+  cyan
 };

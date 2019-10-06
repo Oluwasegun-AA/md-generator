@@ -14,6 +14,7 @@ import askContributing from './contributing';
 import askInstallCommand from './install-command';
 import askUsage from './usage';
 import askTestCommand from './test-command';
+import { removeFiles, validateRemove, removeRequired, removeOptional } from './removeCommand/removeInit';
 
 export {
   askProjectName,
@@ -32,4 +33,8 @@ export {
   askInstallCommand,
   askUsage,
   askTestCommand,
+  removeFiles,
+  validateRemove,
+  removeRequired,
+  removeOptional
 };

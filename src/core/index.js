@@ -46,7 +46,9 @@ program
 program
   .command('remove [env]')
   .description('remove All/specific .md files')
-  .option('-A, --all [value]', 'remove all .md files')
+  .option('-A, --all', 'remove all .md files')
+  .option('-O, --optional', 'remove all optional files')
+  .option('-R, --required', 'remove all required files')
   .option('-F, --file [value]', 'remove specific .md files')
   .action((type, args) => {
     validateOptions(args);
@@ -55,7 +57,7 @@ program
   .command('import [env]')
   .description('import .md files from remote repository')
   .option(
-    '-A, --all [value]',
+    '-A, --all',
     'Import all required/optional .md files from remote repo'
   )
   .option('-F, --file [value]', 'import specific .md files from remote repo')
