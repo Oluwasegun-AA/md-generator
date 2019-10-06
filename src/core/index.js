@@ -33,6 +33,8 @@ program
 program
   .command('check [env]')
   .description('check for missing .md files')
+  .option('-O, --optional', 'check all optional files')
+  .option('-R, --required', 'check all required files')
   .action((type, args) => {
     validateOptions(args);
     // console.log(type);

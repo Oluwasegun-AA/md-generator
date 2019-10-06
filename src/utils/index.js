@@ -2,12 +2,14 @@ import boxen from 'boxen';
 import pad from 'pad';
 import chalk from 'chalk';
 
-const { green } = chalk;
+const { red, gray, green } = chalk;
 const whiteUnderline = chalk.underline.rgb(174, 174, 174);
+const dimWhite = chalk.rgb(174, 174, 174);
 
-const log = (item, payload = '') => {
-  process.stdout.write(`\n${item}`);
-  process.stdout.write(`${payload}`);
+const log = (data1, data2 = '', data3 = '') => {
+  process.stdout.write(`\n${data1}`);
+  process.stdout.write(`${data2}`);
+  process.stdout.write(`${data3}`);
 };
 
 const BOX_CONFIG = {
@@ -31,10 +33,14 @@ const customHelp = () => {
   log(pad('-R --required', 26), 'Operate on required files');
   log(pad('-O --optional', 26), 'Operate on optional files');
 };
+
 export {
   log,
   useBox,
   green,
   customHelp,
-  whiteUnderline
+  whiteUnderline,
+  red,
+  gray,
+  dimWhite
 };

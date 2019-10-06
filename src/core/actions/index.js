@@ -1,6 +1,14 @@
 import pad from 'pad';
-import chalk from 'chalk';
-import { log, green, whiteUnderline } from '../../utils/index';
+import fs from 'fs';
+import path from 'path';
+import {
+  log,
+  green,
+  whiteUnderline,
+  red,
+  gray,
+  dimWhite,
+} from '../../utils/index';
 
 const username = 'username';
 const repoName = 'repoName';
@@ -33,6 +41,96 @@ const listFiles = (required, optional, all) => {
     `You can check community standards met via https://github.com/${username}/${repoName}/community \n`
   );
 };
+
+const checkFileExist = relativePath => {
+  const resolvedPath = path.resolve(__dirname, relativePath);
+  return !!fs.existsSync(resolvedPath);
+};
+
+const requiredFiles = {
+  README: {
+    name: 'README.md',
+    exists: checkFileExist('../../../README.md'),
+  },
+  LICENSE: {
+    name: 'LICENSE',
+    exists: checkFileExist('../../../LICENSE'),
+  },
+  CODE_OF_CONDUCT: {
+    name: 'CODE_OF_CONDUCT.md',
+    exists: checkFileExist('../../../CODE_OF_CONDUCT.md'),
+  },
+  PULL_REQUEST_TEMPLATE: {
+    name: 'PULL_REQUEST_TEMPLATE.md',
+    exists: checkFileExist('../../../.github/PULL_REQUEST_TEMPLATE.md'),
+  },
+  bug_report: {
+    name: 'bug_report.md',
+    exists: checkFileExist('../../../.github/ISSUE_TEMPLATE/bug_report.md'),
+  },
+  feature_request: {
+    name: 'feature_request.md',
+    exists: checkFileExist(
+      '../../../.github/ISSUE_TEMPLATE/feature_request.md'
+    ),
+  },
+};
+
+const optionalFiles = {
+  CHANGELOG: {
+    name: 'CHANGELOG.md',
+    existis: checkFileExist('../../../CHANGELOG.md'),
+  },
+  SUPPORT: {
+    name: 'SUPPORT.md',
+    existis: checkFileExist('../../../SUPPORT.md'),
+  },
+  CONTRIBUTORS: {
+    name: 'CONTRIBUTORS.md',
+    existis: checkFileExist('../../../CONTRIBUTORS.md'),
+  },
+  AUTHORS: {
+    name: 'AUTHORS.md',
+    existis: checkFileExist('../../../AUTHORS.md'),
+  },
+  ACKNOWLEDGMENTS: {
+    name: 'ACKNOWLEDGMENTS.md',
+    existis: checkFileExist('../../../ACKNOWLEDGMENTS.md'),
+  },
+  CODEOWNERS: {
+    name: 'CODEOWNERS.md',
+    existis: checkFileExist('../../../CODEOWNERS.md'),
+  },
+};
+
+const check = file => {
+  Object.keys(file).forEach(key => {
+    if (!file[key].exists) {
+      return log(
+        pad(red(' X '), 12),
+        gray(pad(`${file[key].name}`, 27), 'Not found')
+      );
+    }
+    return log(
+      pad(green(' √ '), 12),
+      dimWhite(pad(`${file[key].name}`, 27)),
+      'exists'
+    );
+  });
+  log('\n');
+};
+
+const checkFiles = (required, optional, all) => {
+  if (required || all) {
+    log(whiteUnderline('Required Files :\n'));
+    check(requiredFiles);
+  }
+  if (optional || all) {
+    log(whiteUnderline('Optional Files :\n'));
+    check(optionalFiles);
+  }
+};
+
 class Actions {
   static list(args) {
     const optional = args.find(item => item === 'optional');
@@ -42,19 +140,22 @@ class Actions {
   }
 
   static create() {
-    console.log('create');
+    log('create');
   }
 
-  static check() {
-    console.log('check');
+  static async check(args) {
+    const optional = args.find(item => item === 'optional');
+    const required = args.find(item => item === 'required');
+    const all = !optional && !required;
+    checkFiles(required, optional, all);
   }
 
   static remove() {
-    console.log('remove');
+    log('remove');
   }
 
   static import() {
-    console.log('import');
+    log('import');
   }
 }
 

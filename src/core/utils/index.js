@@ -41,8 +41,9 @@ class ExtractOptions {
     };
   }
 
-  static check() {
-    return {};
+  static check(args) {
+    const { optional, required } = args;
+    return { optional, required };
   }
 
   static remove(args) {

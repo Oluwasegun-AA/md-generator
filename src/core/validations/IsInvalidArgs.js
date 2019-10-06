@@ -24,7 +24,8 @@ class IsValidArgs {
   }
 
   static check(args) {
-    return isValidOption(args, []);
+    const validArgs = [['required'], ['optional'], []];
+    return isValidOption(args, validArgs);
   }
 
   static remove(args) {
