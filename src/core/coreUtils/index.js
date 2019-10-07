@@ -1,5 +1,5 @@
 import program from 'commander';
-import { log } from '../../utils';
+import { log } from '../../common';
 
 const showHelp = text => {
   log(text);

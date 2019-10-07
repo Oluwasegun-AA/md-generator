@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 import program from 'commander';
 // import { showHelpOnError, filterCurrentRequest, useBox } from './utils/index';
-import { log, customHelp } from '../utils/index';
+import { customHelp, wrongCommandAlert, noCommandAlert } from '../common/index';
 import validateOptions from './validations/validateOptions';
 
 program
   .name('md-generator')
   .version('1.0.0')
+  .command('*')
+  .action(command => wrongCommandAlert(command))
   .on('--help', () => {
     customHelp();
   });
+
 program
   .command('list [env]')
   .description('list All Required/optional .md files')
@@ -17,8 +20,8 @@ program
   .option('-R --required', 'list all required files')
   .action((type, args) => {
     validateOptions(args);
-    // log(program.opts());
   });
+
 program
   .command('create [env]')
   .description('create All/specific files')
@@ -30,6 +33,7 @@ program
   .action((type, args) => {
     validateOptions(args);
   });
+
 program
   .command('check [env]')
   .description('check for missing .md files')
@@ -37,12 +41,8 @@ program
   .option('-R, --required', 'check all required files')
   .action((type, args) => {
     validateOptions(args);
-    // console.log(type);
-    // console.log(args)
-    // filterCurrentRequest();
-    // showHelpOnError();
-    // log(program.opts());
   });
+
 program
   .command('remove [env]')
   .description('remove All/specific .md files')
@@ -53,6 +53,7 @@ program
   .action((type, args) => {
     validateOptions(args);
   });
+
 program
   .command('import [env]')
   .description('import .md files from remote repository')
@@ -65,5 +66,7 @@ program
   .action((type, args) => {
     validateOptions(args);
   });
+
+if (!process.argv[2]) noCommandAlert();
 
 program.parse(process.argv);

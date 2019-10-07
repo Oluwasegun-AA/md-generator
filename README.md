@@ -1,4 +1,5 @@
 
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
 <h2 align="center">md-generator</h2>
 <p align="center">
 <a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability"><img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" /></a>
@@ -42,6 +43,11 @@ Loading  . . .
 ## Contributors
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table><tr><td align="center"><a href="https://github.com/Oluwasegun-AA"><img src="https://avatars0.githubusercontent.com/u/25525765?v=4" width="100px;" alt="Adépòjù Olúwáségun"/><br /><sub><b>Adépòjù Olúwáségun</b></sub></a><br /><a href="https://github.com/Adépòjù Olúwáségun/md-generator/commits?author=Oluwasegun-AA" title="Code">💻</a> <a href="https://github.com/Adépòjù Olúwáségun/md-generator/commits?author=Oluwasegun-AA" title="Documentation">📖</a> <a href="#maintenance-Oluwasegun-AA" title="Maintenance">🚧</a> <a href="https://github.com/Adépòjù Olúwáségun/md-generator/commits?author=Oluwasegun-AA" title="Tests">⚠️</a></td></tr></table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->

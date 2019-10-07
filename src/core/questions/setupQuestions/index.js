@@ -14,7 +14,17 @@ import askContributing from './contributing';
 import askInstallCommand from './install-command';
 import askUsage from './usage';
 import askTestCommand from './test-command';
-import { removeFiles, validateRemove, removeRequired, removeOptional } from './removeCommand/removeInit';
+import {
+  removeFiles,
+  validateRemove,
+  removeRequired,
+  removeOptional,
+} from './removeCommand/removeInit';
+import {
+  createFiles,
+  createRequired,
+  createOptional,
+} from './createCommand/createInit';
 
 export {
   askProjectName,
@@ -36,5 +46,8 @@ export {
   removeFiles,
   validateRemove,
   removeRequired,
-  removeOptional
+  removeOptional,
+  createFiles,
+  createRequired,
+  createOptional,
 };

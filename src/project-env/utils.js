@@ -2,7 +2,7 @@ import loadJsonFile from 'load-json-file';
 import path from 'path';
 import getRepoName from 'git-repo-name';
 import { execSync } from 'child_process';
-import { useBox } from '../utils/index';
+import { useBox } from '../common/index';
 
 const END_MSG = `.md file(s) successfully generated.
 Thanks for using md-generator!`;

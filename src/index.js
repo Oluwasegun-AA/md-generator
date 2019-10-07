@@ -1,6 +1,6 @@
 import readme from './templates/fileWriter/readme';
 import infos from './project-env/project-info';
-import utils from './utils';
+import utils from './common';
 import askQuestions from './core/questions/askQuestions';
 
 /**

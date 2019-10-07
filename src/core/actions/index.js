@@ -1,22 +1,25 @@
 import pad from 'pad';
-import { log, green, whiteUnderline } from '../../utils/index';
+import { log, green, whiteUnderline } from '../../common/index';
 import {
-  allFiles,
   requiredFiles,
   optionalFiles,
-  concatFiles,
-  deleteFiles,
   check,
-  checkFilesExist,
   removeNonSpecific,
+  removeSpecificFiles,
   removeRequiredFiles,
   removeOptionalFiles,
+  createNonSpecificFiles,
+  createSpecificFiles,
+  createRequiredFiles,
+  createOptionalFiles,
 } from './actionsUtils';
 
 const username = 'username';
 const repoName = 'repoName';
 
-const listFiles = (required, optional, all) => {
+const listFiles = values => {
+  const { required, optional } = values;
+  const all = !optional && !required;
   if (required || all) {
     log(
       whiteUnderline(
@@ -27,6 +30,7 @@ const listFiles = (required, optional, all) => {
     log(pad('📘', 5), green('LICENSE'));
     log(pad('📘', 5), green('CODE_OF_CONDUCT.md'));
     log(pad('📘', 5), green('PULL_REQUEST_TEMPLATE.md'));
+    log(pad('📘', 5), green('CONTRIBUTING.md'));
     log(pad('📘', 5), green('bug_report.md'));
     log(pad('📘', 5), green('feature_request.md'));
   }
@@ -45,26 +49,9 @@ const listFiles = (required, optional, all) => {
   );
 };
 
-const handleSpecificDelete = values => {
-  const args = values.parent.rawArgs[4];
-  if (!args || args.length === 0) {
-    return log(
-      'Error: File names not detected, please supply file names i.e --file "README.md CONTRIBUTING.md" \n'
-    );
-  }
-  const data = args.split(' ');
-  const filesStatus = checkFilesExist(data, allFiles);
-  const { foundFiles, filesNotFound } = filesStatus;
-  if (filesNotFound.length > 0) {
-    const filesList = concatFiles(filesNotFound);
-    log('The following file(s) were not found :\n', `${filesList} \n`);
-  }
-  if (foundFiles.length > 0) {
-    deleteFiles(foundFiles, allFiles);
-  }
-};
-
-const checkFiles = (required, optional, all) => {
+const checkFiles = values => {
+  const { required, optional } = values;
+  const all = !optional && !required;
   if (required || all) {
     log(whiteUnderline('Required Files :\n'));
     check(requiredFiles);
@@ -75,41 +62,66 @@ const checkFiles = (required, optional, all) => {
   }
 };
 
-const removeFiles = (file, required, optional, resp) => {
-  if (file) return handleSpecificDelete(resp);
+const removeFiles = values => {
+  const {
+    file,
+    required,
+    optional,
+    resp
+  } = values;
   if (required) return removeRequiredFiles(resp);
   if (optional) return removeOptionalFiles(resp);
+  if (file) return removeSpecificFiles(resp);
   removeNonSpecific(resp);
 };
 
+const getArgs = (args, option) => args.find(item => item === option);
+
+const getValues = (args, resp) => ({
+  file: getArgs(args, 'file'),
+  required: getArgs(args, 'required'),
+  optional: getArgs(args, 'optional'),
+  all: getArgs(args, 'all'),
+  empty: getArgs(args, 'empty'),
+  resp,
+});
+
+const createFiles = values => {
+  const {
+    file,
+    required,
+    optional,
+    resp
+  } = values;
+  if (file) return createSpecificFiles(resp);
+  if (required) return createRequiredFiles(resp);
+  if (optional) return createOptionalFiles(resp);
+  createNonSpecificFiles();
+};
 class Actions {
-  static list(args) {
-    const optional = args.find(item => item === 'optional');
-    const required = args.find(item => item === 'required');
-    const all = !optional && !required;
-    listFiles(required, optional, all);
+  static list(args, resp) {
+    const values = getValues(args, resp);
+    listFiles(values);
   }
 
-  static create() {
-    log('create');
+  static create(args, resp) {
+    const values = getValues(args, resp);
+    createFiles(values);
   }
 
-  static async check(args) {
-    const optional = args.find(item => item === 'optional');
-    const required = args.find(item => item === 'required');
-    const all = !optional && !required;
-    checkFiles(required, optional, all);
+  static async check(args, resp) {
+    const values = getValues(args, resp);
+    checkFiles(values);
   }
 
   static remove(args, resp) {
-    const file = args.find(item => item === 'file');
-    const required = args.find(item => item === 'required');
-    const optional = args.find(item => item === 'optional');
-    removeFiles(file, required, optional, resp);
+    const values = getValues(args, resp);
+    removeFiles(values);
   }
 
-  static import() {
-    log('import');
+  static import(args, resp) {
+    const values = getValues(args, resp);
+    log(values);
   }
 }
 

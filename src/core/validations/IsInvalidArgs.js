@@ -16,6 +16,7 @@ class IsValidArgs {
       ['all', 'empty'],
       ['file', 'empty'],
       ['all'],
+      ['file'],
       ['optional'],
       ['required'],
       []

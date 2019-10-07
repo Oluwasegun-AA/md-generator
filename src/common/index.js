@@ -2,12 +2,7 @@ import boxen from 'boxen';
 import pad from 'pad';
 import chalk from 'chalk';
 
-const {
-  red,
-  gray,
-  green,
-  cyan
-} = chalk;
+const { red, gray, green, cyan } = chalk;
 const whiteUnderline = chalk.underline.rgb(174, 174, 174);
 const dimWhite = chalk.rgb(174, 174, 174);
 
@@ -39,6 +34,18 @@ const customHelp = () => {
   log(pad('-O --optional', 26), 'Operate on optional files');
 };
 
+const wrongCommandAlert = command => {
+  return log(
+    `Command "${command}" Does not Exist,\nPlease use --help to get the available commands\n`
+  );
+};
+
+const noCommandAlert = () => {
+  log(
+    'Error: No Command Supplied. Please use --help to view the available Commands and Options\n'
+  );
+};
+
 export {
   log,
   useBox,
@@ -48,5 +55,7 @@ export {
   red,
   gray,
   dimWhite,
-  cyan
+  cyan,
+  wrongCommandAlert,
+  noCommandAlert
 };
