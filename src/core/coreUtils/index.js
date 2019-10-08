@@ -59,15 +59,6 @@ class ExtractOptions {
       optional
     };
   }
-
-  static import(args) {
-    const { all, file, empty } = args;
-    return {
-      all,
-      file,
-      empty,
-    };
-  }
 }
 
 export { showHelpOnError, showHelp, ExtractOptions };

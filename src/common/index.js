@@ -1,6 +1,7 @@
 import boxen from 'boxen';
 import pad from 'pad';
 import chalk from 'chalk';
+import ora from 'ora';
 
 const { red, gray, green, cyan } = chalk;
 const whiteUnderline = chalk.underline.rgb(174, 174, 174);
@@ -24,6 +25,9 @@ const useBox = text => {
   log(boxen(text, BOX_CONFIG));
 };
 
+const showEndMessage = () =>
+  useBox('File(s) Created Successfully\nThank you for using md-generator');
+
 const customHelp = () => {
   log('\nCommand-Options :');
   log('Usage: md-generator [commands] [command-options]\n');
@@ -46,6 +50,9 @@ const noCommandAlert = () => {
   );
 };
 
+const spinnerStart = text => ora(text).start();
+const spinnerStop = text => spinnerStart.succeed(text);
+
 export {
   log,
   useBox,
@@ -57,5 +64,8 @@ export {
   dimWhite,
   cyan,
   wrongCommandAlert,
-  noCommandAlert
+  noCommandAlert,
+  spinnerStart,
+  spinnerStop,
+  showEndMessage
 };

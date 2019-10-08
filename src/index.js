@@ -1,6 +1,6 @@
 import readme from './templates/fileWriter/readme';
-import infos from './project-env/project-info';
-import utils from './common';
+import getProjectInfos from './project-env/project-info';
+import { showEndMessage } from './common/index';
 import askQuestions from './core/questions/askQuestions';
 
 /**
@@ -13,24 +13,23 @@ import askQuestions from './core/questions/askQuestions';
  *
  * @param {Object} args
  */
-const start = async ({ customTemplatePath, useDefaultAnswers }) => {
-  const templatePath = await readme.getReadmeTemplatePath(
-    customTemplatePath,
-    useDefaultAnswers
-  );
-  const projectInformations = await infos.getProjectInfos();
+const start = async (customTemplatePath, useDefaultAnswers) => {
+  const projectInformations = await getProjectInfos();
   const answersContext = await askQuestions(
     projectInformations,
     useDefaultAnswers
   );
-  const readmeContent = await readme.buildReadmeContent(
-    answersContext,
-    templatePath
-  );
 
-  await readme.writeReadme(readmeContent);
+  // const readmeContent = await readme.buildReadmeContent(
+  //   answersContext,
+  //   answersContext.templatePath
+  // );
 
-  utils.showEndMessage();
+  // await readme.writeReadme(readmeContent);
+
+  // showEndMessage();
+  // console.log( answersContext);
+  return answersContext;
 };
 
 export default start;

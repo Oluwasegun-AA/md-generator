@@ -38,17 +38,6 @@ class IsValidArgs {
       []];
     return isValidOption(args, validArgs);
   }
-
-  static import(args) {
-    const validArgs = [
-      ['optional'],
-      ['required'],
-      ['file', 'all'],
-      ['all', 'file'],
-      []
-    ];
-    return isValidOption(args, validArgs);
-  }
 }
 
 export default IsValidArgs;

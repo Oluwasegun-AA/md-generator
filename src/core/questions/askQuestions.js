@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import { flatMap } from 'lodash';
 
-import questionsBuilders from './setupQuestions/index';
+import { setupQuestions } from './setupQuestions/index';
 import * as utils from '../../project-env/utils';
 
 /**
@@ -10,7 +10,7 @@ import * as utils from '../../project-env/utils';
  * @param {Boolean} useDefaultAnswers
  */
 const askQuestions = async (projectInfos, useDefaultAnswers) => {
-  const question = flatMap(Object.values(questionsBuilders), questionBuilder =>
+  const question = flatMap(Object.values(setupQuestions), questionBuilder =>
     questionBuilder(projectInfos));
 
   const answersContext = useDefaultAnswers

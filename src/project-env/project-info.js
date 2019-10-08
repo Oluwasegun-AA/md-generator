@@ -106,8 +106,6 @@ const getAuthorName = packageJson => {
  * @description Get project information from git and package.json
  */
 const getProjectInfos = async () => {
-  const spinner = ora('Loading required Infos').start();
-
   const packageJson = await getPackageJson();
   const name = getProjectName(packageJson);
   const description = get(packageJson, 'description', undefined);
@@ -133,7 +131,6 @@ const getProjectInfos = async () => {
     ? getLicenseUrlFromGithubRepositoryUrl(repositoryUrl)
     : undefined;
 
-  spinner.succeed('Done!');
 
   return {
     name,

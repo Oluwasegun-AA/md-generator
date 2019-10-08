@@ -1,4 +1,4 @@
-import { cleanSocialNetworkUsername } from '../../../project-env/utils';
+import { cleanSocialNetworkUsername } from '../../../../project-env/utils';
 
 const twitterUsername = () => ({
   type: 'input',

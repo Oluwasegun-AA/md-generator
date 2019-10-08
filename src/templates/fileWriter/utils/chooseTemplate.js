@@ -1,17 +1,17 @@
 import inquirer from 'inquirer';
 import path from 'path';
 
-module.exports = async useDefaultAnswers => {
-  const defaultTemplate = path.resolve(__dirname, '../templates/default.md');
+const chooseTemplate = async useDefaultAnswers => {
+  const defaultTemplate = path.resolve(__dirname, '../../files/required/template-html-README.md');
   const defaultNoHtmlTemplate = path.resolve(
     __dirname,
-    '../templates/default-no-html.md'
+    '../../files/required/template-noHtml-README.md'
   );
 
   if (useDefaultAnswers) return defaultTemplate;
 
   const question = {
-    type: 'list',
+    type: 'confirm',
     message:
       '🎨  Use HTML in your README.md for a nicer rendering? (not supported everywhere. ex: Bitbucket)',
     name: 'templatePath',
@@ -27,7 +27,9 @@ module.exports = async useDefaultAnswers => {
     ],
   };
 
-  const { templatePath } = await inquirer.prompt([question]);
+  const { templatePath } = await inquirer.prompt(question);
 
   return templatePath;
 };
+
+export default chooseTemplate;

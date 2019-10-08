@@ -1,5 +1,5 @@
 import pad from 'pad';
-import { log, green, whiteUnderline } from '../../common/index';
+import { log, cyan, whiteUnderline } from '../../common/index';
 import {
   requiredFiles,
   optionalFiles,
@@ -26,22 +26,22 @@ const listFiles = values => {
         'Required .md files needed to meet community standards :\n'
       )
     );
-    log(pad('📘', 5), green('README.md'));
-    log(pad('📘', 5), green('LICENSE'));
-    log(pad('📘', 5), green('CODE_OF_CONDUCT.md'));
-    log(pad('📘', 5), green('PULL_REQUEST_TEMPLATE.md'));
-    log(pad('📘', 5), green('CONTRIBUTING.md'));
-    log(pad('📘', 5), green('bug_report.md'));
-    log(pad('📘', 5), green('feature_request.md'));
+    log(pad('📘', 5), cyan('README.md'));
+    log(pad('📘', 5), cyan('LICENSE'));
+    log(pad('📘', 5), cyan('CODE_OF_CONDUCT.md'));
+    log(pad('📘', 5), cyan('PULL_REQUEST_TEMPLATE.md'));
+    log(pad('📘', 5), cyan('CONTRIBUTING.md'));
+    log(pad('📘', 5), cyan('bug_report.md'));
+    log(pad('📘', 5), cyan('feature_request.md'));
   }
   if (optional || all) {
     log(whiteUnderline('\n Optional .md files :\n'));
-    log(pad('📘', 5), green('CHANGELOG.md'));
-    log(pad('📘', 5), green('SUPPORT.md'));
-    log(pad('📘', 5), green('CONTRIBUTORS.md'));
-    log(pad('📘', 5), green('AUTHORS.md'));
-    log(pad('📘', 5), green('ACKNOWLEDGMENTS.md'));
-    log(pad('📘', 5), green('CODEOWNERS.md'));
+    log(pad('📘', 5), cyan('CHANGELOG.md'));
+    log(pad('📘', 5), cyan('SUPPORT.md'));
+    log(pad('📘', 5), cyan('CONTRIBUTORS.md'));
+    log(pad('📘', 5), cyan('AUTHORS.md'));
+    log(pad('📘', 5), cyan('ACKNOWLEDGMENTS.md'));
+    log(pad('📘', 5), cyan('CODEOWNERS.md'));
   }
   log(pad('\nDo remember to add a description to your repository.'));
   log(
@@ -117,11 +117,6 @@ class Actions {
   static remove(args, resp) {
     const values = getValues(args, resp);
     removeFiles(values);
-  }
-
-  static import(args, resp) {
-    const values = getValues(args, resp);
-    log(values);
   }
 }
 

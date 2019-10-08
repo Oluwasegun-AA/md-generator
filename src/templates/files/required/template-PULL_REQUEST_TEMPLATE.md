@@ -12,3 +12,6 @@
 
 #### Questions:
 
+
+***
+<%- include('../footer.md'); -%>
