@@ -1,6 +1,6 @@
 const authorName = projectInfos => ({
   type: 'input',
-  message: '👤  Author\'s name',
+  message: '  Author\'s name',
   name: 'authorName',
   default: projectInfos.author,
 });

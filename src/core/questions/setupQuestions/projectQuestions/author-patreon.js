@@ -1,6 +1,6 @@
 const patreonUsername = () => ({
   type: 'input',
-  message: '❤️  Patreon username (use empty value to skip)',
+  message: '  Patreon username (use empty value to skip)',
   name: 'authorPatreonUsername',
 });
 

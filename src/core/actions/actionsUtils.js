@@ -1,7 +1,7 @@
 import fs from 'fs';
-import path from 'path';
 import inquirer from 'inquirer';
 import pad from 'pad';
+import path from 'path';
 import {
   removeFiles,
   validateRemove,
@@ -10,17 +10,20 @@ import {
   createFiles,
   createRequired,
   createOptional,
+  selectFileToCreate,
 } from '../questions/setupQuestions/index';
 import {
   log,
   red,
   gray,
   green,
-  cyan,
   dimWhite,
   useBox,
+  spinner,
+  castElementsToFormatedString,
 } from '../../common/index';
 import start from '../../index';
+import { buildFileContent, writeFile } from '../../templates/fileWriter';
 
 const getResolvedPath = relativePath => path.resolve(__dirname, relativePath);
 
@@ -129,14 +132,6 @@ const optionalFiles = {
 
 const allFiles = { ...requiredFiles, ...optionalFiles };
 
-const concatFiles = filesArray => {
-  let files = '';
-  filesArray.forEach(
-    file => (files += `${cyan(pad('-', 2))} ${dimWhite(`${file}`)}\n`)
-  );
-  return files;
-};
-
 const deleteFromCodebase = (filesArray, allFiles) => {
   filesArray.forEach(file => {
     const { path } = allFiles[file];
@@ -148,14 +143,15 @@ const deleteFromCodebase = (filesArray, allFiles) => {
 };
 
 const deleteFiles = (ValidFilesArray, allFiles) => {
-  if (ValidFilesArray.length === 0)
-    return log('Error: No file selected, Please select a file\n');
-  inquirer.prompt(validateRemove(concatFiles(ValidFilesArray))).then(answer => {
-    const { removeFiles } = answer;
-    if (removeFiles === true) {
-      deleteFromCodebase(ValidFilesArray, allFiles);
-    }
-  });
+  if (ValidFilesArray.length === 0) { return log('Error: No file selected, Please select a file\n'); }
+  inquirer
+    .prompt(validateRemove(castElementsToFormatedString(ValidFilesArray)))
+    .then(answer => {
+      const { removeFiles } = answer;
+      if (removeFiles === true) {
+        deleteFromCodebase(ValidFilesArray, allFiles);
+      }
+    });
 };
 
 const check = file => {
@@ -205,8 +201,7 @@ const allFileNames = (files = allFiles) =>
   Object.values(files).flatMap(item => item);
 
 const processRemoval = (selectedFiles, filesInfo, mode) => {
-  if (selectedFiles.length === 0)
-    return log('The desired .md file(s) not found in the codebase\n');
+  if (selectedFiles.length === 0) { return log('The desired .md file(s) not found in the codebase\n'); }
   inquirer.prompt(mode(selectedFiles)).then(answer => {
     const selectedFiles = removeDotMdAttribute(answer.removeFiles);
     deleteFiles(selectedFiles, filesInfo);
@@ -230,7 +225,7 @@ const queryFilesExistence = values => {
 const removeSpecificFiles = values => {
   const { foundFiles, filesNotFound } = queryFilesExistence(values);
   if (filesNotFound.length > 0) {
-    const filesList = concatFiles(filesNotFound);
+    const filesList = castElementsToFormatedString(filesNotFound);
     log('The following file(s) were not found :\n', `${filesList} \n`);
   }
   if (foundFiles.length > 0) {
@@ -254,51 +249,55 @@ const removeOptionalFiles = () => {
   );
 };
 
-const processCreation = async (allFiles, mode) => {
-  let projectInfos;
+const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
+  await start(USE_DEFAULT).then(projectInfos => {
+    filesToBeCreated.forEach(async file => {
+      const { path, templatePath } = file;
+      const pathToTemplate = templatePath || projectInfos.templatePath;
+      const fileContent = isEmpty
+        ? ''
+        : await buildFileContent(projectInfos, pathToTemplate);
+      writeFile(fileContent, path);
+    });
+  });
+  spinner().succeed('File(s) created Successfully\n');
+  useBox('File(s) created successfully\nThank you for using md-generator');
+};
+
+const processCreation = async (allFiles, mode, CREATE_EMPTY_FILE) => {
   const USE_DEFAULT = true;
-  const templatePath = undefined;
   inquirer.prompt(mode(allFileNames(allFiles))).then(answer => {
+    const { createFiles } = answer;
+    const filesToBeCreated = Object.values(allFiles).filter(file =>
+      createFiles.includes(file.name));
     if (
-      answer.createFiles.includes('README.md') ||
-      answer.createFiles.includes('CODE_OF_CONDUCT.md')
+      createFiles.includes('README') ||
+      createFiles.includes('CODE_OF_CONDUCT') ||
+      createFiles.includes('LICENSE')
     ) {
-      projectInfos = start();
-    } else projectInfos = start(templatePath, USE_DEFAULT);
-    if (projectInfos) {
-      console.log('evi', projectInfos);
-      // answer.createFiles.forEach(file => {
-      //   fs.writeFile(allFiles[file.split('.')[0]].path, 'Hello World', err => {
-      //     if (err) log('file not created');
-      //   });
-      // });
-      // useBox('File(s) created successfully\nThank you for using md-generator');
+      return createMdFiles(!USE_DEFAULT, filesToBeCreated, CREATE_EMPTY_FILE);
     }
+    createMdFiles(USE_DEFAULT, filesToBeCreated, CREATE_EMPTY_FILE);
   });
 };
 
-const createNonSpecificFiles = () => {
-  processCreation(allFiles, createFiles);
-  // console.log(requiredFiles.README.templatePath)
-};
-
-const createSpecificFiles = values => {
-  const { foundFiles, filesNotFound } = queryFilesExistence(values);
+const checkCreatableFiles = values => {
+  const list = typeof values[0] === 'object' ? Object.keys(values) : values;
+  const { foundFiles, filesNotFound } = queryFilesExistence(list);
   const validFileNames = filesNotFound.filter(key =>
-    Object.keys(allFiles).includes(key)
-  );
+    Object.keys(allFiles).includes(key));
   const inValidFileNames = filesNotFound.filter(
     key => !Object.keys(allFiles).includes(key)
   );
   if (inValidFileNames.length > 0) {
     log(
-      `The following .md file(s) is/are not recognized as one of the required/optional .md files\n${concatFiles(
+      `The following .md file(s) is/are not recognized as one of the required/optional .md files\n${castElementsToFormatedString(
         inValidFileNames
       )}`
     );
   }
   if (foundFiles.length > 0) {
-    const filesList = concatFiles(foundFiles);
+    const filesList = castElementsToFormatedString(foundFiles);
     log(
       'The following .md file(s) already exist in the codebase :\n',
       `${filesList} \n`
@@ -306,25 +305,33 @@ const createSpecificFiles = values => {
   }
   if (validFileNames.length > 0) {
     const validFiles = Object.values(allFiles).filter(item =>
-      validFileNames.includes(item.name.split('.')[0])
-    );
-    processCreation(validFiles, createFiles);
+      validFileNames.includes(item.name.split('.')[0]));
+    return validFiles;
   }
+  process.exit(1);
 };
 
-const createRequiredFiles = () => {
-  processCreation(requiredFiles, createRequired);
+const createNonSpecificFiles = () => {
+  processCreation(allFiles, selectFileToCreate);
 };
 
-const createOptionalFiles = () => {
-  processCreation(optionalFiles, createOptional);
+const createSpecificFiles = (isEmpty, values) => {
+  const files = checkCreatableFiles(values);
+  processCreation(files, createFiles, isEmpty);
+};
+
+const createRequiredFiles = isEmpty => {
+  processCreation(requiredFiles, createRequired, isEmpty);
+};
+
+const createOptionalFiles = isEmpty => {
+  processCreation(optionalFiles, createOptional, isEmpty);
 };
 
 export {
   allFiles,
   requiredFiles,
   optionalFiles,
-  concatFiles,
   check,
   checkFilesExist,
   deleteFiles,

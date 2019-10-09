@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import { flatMap } from 'lodash';
 
 import { setupQuestions } from './setupQuestions/index';
-import * as utils from '../../project-env/utils';
+import * as utils from '../../projectEnv/utils';
 
 /**
  * @description Ask user questions on the terminal and returns selected answers

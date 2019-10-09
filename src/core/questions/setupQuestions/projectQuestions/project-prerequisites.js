@@ -2,8 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 
 /**
- * Return engines as formatted choices
- *
+ * @description Return engines as formatted choices
  * @param {Object} engines
  */
 const buildFormattedChoices = engines => {
@@ -30,7 +29,7 @@ const hasProjectInfosEngines = projectInfos =>
 
 const prerequisites = projectInfos => ({
   type: 'checkbox',
-  message: '⚠️  Project prerequisites',
+  message: '  Project prerequisites',
   name: 'projectPrerequisites',
   choices: buildFormattedChoices(projectInfos.engines),
   when: () => hasProjectInfosEngines(projectInfos),

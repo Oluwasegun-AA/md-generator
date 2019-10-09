@@ -1,6 +1,6 @@
 const installScript = () => ({
   type: 'input',
-  message: '📦  Install Script (use empty value to skip)',
+  message: '  Install Script (use empty value to skip)',
   name: 'installCommand',
   default: 'npm install',
 });

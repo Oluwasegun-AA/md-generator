@@ -1,5 +1,4 @@
-const getFullFileNames = filesArray =>
-  filesArray.flatMap(currentFile => currentFile.name);
+import { getFullFileNames } from '../../../../common/index';
 
 const removeFiles = files => ({
   type: 'checkbox',

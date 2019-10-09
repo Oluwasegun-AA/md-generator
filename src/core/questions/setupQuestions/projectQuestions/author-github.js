@@ -1,8 +1,8 @@
-import { cleanSocialNetworkUsername } from '../../../../project-env/utils';
+import { cleanSocialNetworkUsername } from '../../../../projectEnv/utils';
 
 const authorGithubUsername = projectInfos => ({
   type: 'input',
-  message: '👤  GitHub username (use empty value to skip)',
+  message: '  GitHub username (use empty value to skip)',
   name: 'authorGithubUsername',
   default: projectInfos.githubUsername,
   filter: cleanSocialNetworkUsername,

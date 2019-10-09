@@ -1,6 +1,6 @@
 const projectName = projectInfos => ({
   type: 'input',
-  message: '💡  Project name',
+  message: '  Project name',
   name: 'projectName',
   default: projectInfos.name,
 });

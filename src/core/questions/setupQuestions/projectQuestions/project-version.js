@@ -1,6 +1,6 @@
 const projectVersion = projectInfos => ({
   type: 'input',
-  message: 'ℹ️  Project version (use empty value to skip)',
+  message: '  Project version (use empty value to skip)',
   name: 'projectVersion',
   default: projectInfos.version,
 });

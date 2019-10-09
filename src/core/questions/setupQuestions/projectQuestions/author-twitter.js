@@ -1,8 +1,8 @@
-import { cleanSocialNetworkUsername } from '../../../../project-env/utils';
+import { cleanSocialNetworkUsername } from '../../../../projectEnv/utils';
 
 const twitterUsername = () => ({
   type: 'input',
-  message: '🐦  Twitter username (use empty value to skip)',
+  message: '  Twitter username (use empty value to skip)',
   name: 'authorTwitterUsername',
   filter: cleanSocialNetworkUsername,
 });

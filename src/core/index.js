@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 import program from 'commander';
-// import { showHelpOnError, filterCurrentRequest, useBox } from './utils/index';
 import { customHelp, wrongCommandAlert, noCommandAlert } from '../common/index';
 import validateOptions from './validations/validateOptions';
-import start from '../index';
 
 program
   .name('md-generator')

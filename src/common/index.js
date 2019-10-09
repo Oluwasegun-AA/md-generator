@@ -3,7 +3,12 @@ import pad from 'pad';
 import chalk from 'chalk';
 import ora from 'ora';
 
-const { red, gray, green, cyan } = chalk;
+const {
+  red,
+  gray,
+  green,
+  cyan
+} = chalk;
 const whiteUnderline = chalk.underline.rgb(174, 174, 174);
 const dimWhite = chalk.rgb(174, 174, 174);
 
@@ -15,7 +20,7 @@ const log = (data1, data2 = '', data3 = '') => {
 
 const BOX_CONFIG = {
   padding: 1,
-  margin: { top: 2, bottom: 3 },
+  margin: { top: 2, bottom: 2 },
   borderColor: 'cyan',
   align: 'center',
   borderStyle: 'double',
@@ -38,11 +43,9 @@ const customHelp = () => {
   log(pad('-O --optional', 26), 'Operate on optional files');
 };
 
-const wrongCommandAlert = command => {
-  return log(
-    `Command "${command}" Does not Exist,\nPlease use --help to get the available commands\n`
-  );
-};
+const wrongCommandAlert = command => log(
+  `Command "${command}" Does not Exist,\nPlease use --help to get the available commands\n`
+);
 
 const noCommandAlert = () => {
   log(
@@ -50,8 +53,30 @@ const noCommandAlert = () => {
   );
 };
 
-const spinnerStart = text => ora(text).start();
-const spinnerStop = text => spinnerStart.succeed(text);
+const spinner = text => ora(text).start();
+
+const castElementsToFormatedString = filesArray => {
+  let files = '';
+  filesArray.forEach(
+    file => (files += `${cyan(pad('-', 2))} ${dimWhite(`${file}`)}\n`)
+  );
+  return files;
+};
+
+const getFullFileNames = filesArray =>
+  filesArray.flatMap(currentFile => currentFile.name);
+
+const checkCommunityStandardMet = (authorGithubUsername, projectName) => {
+  if (authorGithubUsername && projectName) {
+    log(
+      `You can check community standards met via https://github.com/${authorGithubUsername}/${projectName}/community \n`
+    );
+  } else {
+    log(
+      'You can check community standards met via https://github.com/"<authorGithubUsername>"/"<projectName>"/community \n'
+    );
+  }
+};
 
 export {
   log,
@@ -65,7 +90,9 @@ export {
   cyan,
   wrongCommandAlert,
   noCommandAlert,
-  spinnerStart,
-  spinnerStop,
-  showEndMessage
+  spinner,
+  showEndMessage,
+  getFullFileNames,
+  checkCommunityStandardMet,
+  castElementsToFormatedString,
 };

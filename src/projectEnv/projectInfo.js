@@ -1,7 +1,6 @@
 import isNil from 'lodash/isNil';
 import get from 'lodash/get';
 import has from 'lodash/has';
-import ora from 'ora';
 import { execSync } from 'child_process';
 import { getPackageJson, getProjectName } from './utils';
 
@@ -130,7 +129,6 @@ const getProjectInfos = async () => {
   const licenseUrl = isGithubRepo
     ? getLicenseUrlFromGithubRepositoryUrl(repositoryUrl)
     : undefined;
-
 
   return {
     name,
