@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "compile": "yarn clear && yarn build",
-    "build": "babel ./src -d dist",
+    "build": "babel ./src -d dist --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clear": "rimraf dist",
     "pretty": "./node_modules/.bin/prettier --single-quote --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint src/**/*.js --fix",
+    "release": "standard-version",
     "contributors:init": "all-contributors init",
-    "contributors:add": "npx all-contributors add",
-    "contributors:generate": "npx all-contributors generate"
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "bin": {
     "generate": "dist/core/index.js"
@@ -49,11 +50,13 @@
     "boxen": "4.1.0",
     "chalk": "2.4.2",
     "commander": "3.0.1",
+    "date-fns": "2.4.1",
     "ejs": "2.7.1",
     "git-repo-name": "1.0.1",
     "inquirer": "6.4.1",
     "load-json-file": "6.2.0",
     "lodash": "4.17.15",
+    "mkdirp": "0.5.1",
     "ora": "4.0.1",
     "pad": "3.2.0",
     "yargs": "14.0.0"
@@ -63,7 +66,7 @@
     "@babel/core": "7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "7.4.5",
-    "all-contributors-cli": "6.9.1",
+    "all-contributors-cli": "6.1.2",
     "eslint": "5.3.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",
@@ -71,6 +74,7 @@
     "husky": "3.0.4",
     "lint-staged": "9.2.3",
     "prettier": "1.18.2",
-    "rimraf": "2.6.3"
+    "rimraf": "2.6.3",
+    "standard-version": "7.0.0"
   }
 }

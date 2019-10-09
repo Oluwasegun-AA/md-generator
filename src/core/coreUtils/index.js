@@ -1,7 +1,5 @@
-/* eslint-disable no-undef */
 import program from 'commander';
-import boxen from 'boxen';
-import { log } from '../../utils';
+import { log } from '../../common';
 
 const showHelp = text => {
   log(text);
@@ -14,17 +12,9 @@ const showHelpOnError = type => {
   const NO_COMMAND_SPECIFIED = Object.keys(program.opts()).every(
     key => program.opts()[`${key}`] === undefined || key === 'version'
   );
-  console.log(option);
   if (NO_COMMAND_SPECIFIED) {
     showHelp(`Invalid Option: ${option}`);
   }
-};
-
-const useBox = text => {
-  log(
-    boxen(text, { padding: 3, margin: 1, borderStyle: 'double' }),
-    program.args.join(' ')
-  );
 };
 
 class ExtractOptions {
@@ -34,7 +24,13 @@ class ExtractOptions {
   }
 
   static create(args) {
-    const { optional, required, all, file, empty } = args;
+    const {
+      optional,
+      required,
+      all,
+      file,
+      empty
+    } = args;
     return {
       optional,
       required,
@@ -44,26 +40,25 @@ class ExtractOptions {
     };
   }
 
-  static check() {
-    return {};
+  static check(args) {
+    const { optional, required } = args;
+    return { optional, required };
   }
 
   static remove(args) {
-    const { all, file } = args;
+    const {
+      all,
+      file,
+      required,
+      optional
+    } = args;
     return {
       all,
       file,
-    };
-  }
-
-  static import(args) {
-    const { all, file, empty } = args;
-    return {
-      all,
-      file,
-      empty,
+      required,
+      optional
     };
   }
 }
 
-export { showHelpOnError, useBox, showHelp, ExtractOptions };
+export { showHelpOnError, showHelp, ExtractOptions };

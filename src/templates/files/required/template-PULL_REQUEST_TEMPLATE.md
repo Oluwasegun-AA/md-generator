@@ -11,3 +11,7 @@
 #### Screenshots (if appropriate)
 
 #### Questions:
+
+
+***
+<%- include('../footer.md'); -%>

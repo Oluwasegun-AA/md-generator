@@ -1,19 +1,16 @@
-import program from 'commander';
-import { showHelp, ExtractOptions } from '../utils/index';
-import { log } from '../../utils/index';
+import { showHelp, ExtractOptions } from '../coreUtils/index';
 import IsValidArgs from './IsInvalidArgs';
+import Actions from '../actions/index';
 
-const filterValidArgs = args => {
-  return Object.keys(args).filter(item => args[item] !== undefined);
-};
+const filterValidArgs = args =>
+  Object.keys(args).filter(item => args[item] !== undefined);
 
-const validateOptions = type => {
-  const command = type._name;
-  log('command', command);
-  const args = ExtractOptions[command](type);
+const validateOptions = values => {
+  const command = values._name;
+  const args = ExtractOptions[command](values);
   const activeArgs = filterValidArgs(args);
-  log('activeArgs', activeArgs);
-  if (!IsValidArgs[command](activeArgs)) showHelp('Invalid argument combination');
+  if (!IsValidArgs[command](activeArgs)) showHelp('Invalid argument combination\n');
+  Actions[command](activeArgs, values);
 };
 
 export default validateOptions;

@@ -8,7 +8,6 @@ NPM Package which bootstraps Development by creating all required .md files to m
 ## Table of Contents
 * [Project Overview](#Project-Overview)
 * [Features](#Features)
-* [Built With](#Built-With)
 * [Demo](#demo)
 * [Known Issues](#Known-issues)
 * [Installation](#Installation)
@@ -22,11 +21,6 @@ loading . . .
 
 ## Features
 loading . . .
-
-## Built With
-- [Commander.js](https://github.com/tj/commander.js)
-- [EJS](https://ejs.co/)
-- [Inquirer](https://www.npmjs.com/package/inquirer)
 
 ## Demo
 loading . . .
@@ -59,3 +53,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 - **[MIT license]()**
 - Copyright 2019 © <a href="https://twitter.com/Oluwasegun_AA" target="_blank">Olúwáségun</a>
+
+***
+<%- include('../footer.md'); -%>
