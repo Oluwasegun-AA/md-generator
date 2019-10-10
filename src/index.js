@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 import program from 'commander';
 import { customHelp, wrongCommandAlert, noCommandAlert } from './common/index';
-import validateOptions from './core/validations/ValidateOptions';
+import handleCommand from './core/validations/ValidateOptions';
 
 program
-  .name('md-generator')
+  .name('dotmd')
   .version('1.0.0')
-  .command('*')
   .action(command => wrongCommandAlert(command))
   .on('--help', () => {
     customHelp();
@@ -18,7 +17,7 @@ program
   .option('-O --optional', 'list all optional files')
   .option('-R --required', 'list all required files')
   .action((type, args) => {
-    validateOptions(args);
+    handleCommand(args);
   });
 
 program
@@ -30,7 +29,7 @@ program
   .option('-F, --file [value]', 'Create specific .md files')
   .option('-E, --empty', 'make created files empty')
   .action((type, args) => {
-    validateOptions(args);
+    handleCommand(args);
   });
 
 program
@@ -39,7 +38,7 @@ program
   .option('-O, --optional', 'check all optional files')
   .option('-R, --required', 'check all required files')
   .action((type, args) => {
-    validateOptions(args);
+    handleCommand(args);
   });
 
 program
@@ -50,7 +49,7 @@ program
   .option('-R, --required', 'remove all required files')
   .option('-F, --file [value]', 'remove specific .md files')
   .action((type, args) => {
-    validateOptions(args);
+    handleCommand(args);
   });
 
 program
@@ -63,7 +62,7 @@ program
   .option('-F, --file [value]', 'import specific .md files from remote repo')
   .option('-E, --empty', 'make imported files empty')
   .action((type, args) => {
-    validateOptions(args);
+    handleCommand(args);
   });
 
 if (!process.argv[2]) noCommandAlert();

@@ -26,6 +26,8 @@ import {
   createRequired,
   createOptional,
   selectFileToCreate,
+  createEmptyFiles,
+  overrideFiles
 } from './createCommand/createInit';
 
 const setupQuestions = {
@@ -58,4 +60,6 @@ export {
   createRequired,
   createOptional,
   selectFileToCreate,
+  createEmptyFiles,
+  overrideFiles
 };

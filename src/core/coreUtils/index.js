@@ -1,12 +1,24 @@
 import program from 'commander';
 import { log } from '../../common';
 
+/**
+ * @description
+ * log help text to the terminal
+ *
+ * @param {String} text custom preliminary string to be logged
+ */
 const showHelp = text => {
   log(text);
   program.help();
   process.exit(1);
 };
 
+/**
+ * @description
+ * logs help message on wrong arguments
+ *
+ * @param {Object} type response payload
+ */
 const showHelpOnError = type => {
   const option = type.parent.rawArgs[3];
   const NO_COMMAND_SPECIFIED = Object.keys(program.opts()).every(
@@ -17,6 +29,10 @@ const showHelpOnError = type => {
   }
 };
 
+/**
+ * @class
+ * Extract all needed options in each mode
+ */
 class ExtractOptions {
   static list(args) {
     const { optional, required } = args;

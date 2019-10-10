@@ -8,6 +8,7 @@ const GITHUB_URL = 'https://github.com/';
 
 /**
  * @description Clean repository url by removing '.git' and 'git+'
+ *
  * @param {string} repoUrl
  */
 const cleanRepoUrl = repoUrl =>
@@ -18,6 +19,7 @@ const cleanRepoUrl = repoUrl =>
 
 /**
  * @description Get repository url from package.json
+ *
  * @param {Object} repoUrl
  */
 const getRepoUrlFromPackageJson = async packageJson => {
@@ -39,6 +41,7 @@ const getRepoUrlFromGit = () => {
 
 /**
  * @description Get repository url from package.json or git
+ *
  * @param {Object} packageJson
  */
 const getRepoUrl = async packageJson =>
@@ -46,6 +49,7 @@ const getRepoUrl = async packageJson =>
 
 /**
  * @description Get repository issues url from package.json or git
+ *
  * @param {Object} packageJson
  */
 const getRepoIssuesUrl = async packageJson => {
@@ -58,12 +62,12 @@ const getRepoIssuesUrl = async packageJson => {
       repoIssuesUrl = `${repoUrl}/issues`;
     }
   }
-
   return repoIssuesUrl;
 };
 
 /**
  * @description Check if repository is a Github repository
+ *
  * @param {string} repositoryUrl
  */
 const isGithubRepository = repositoryUrl =>
@@ -71,6 +75,7 @@ const isGithubRepository = repositoryUrl =>
 
 /**
  * @description Get github username from repository url
+ *
  * @param {string} repositoryUrl
  */
 const getGithubUsernameFromRepositoryUrl = repositoryUrl =>
@@ -78,6 +83,7 @@ const getGithubUsernameFromRepositoryUrl = repositoryUrl =>
 
 /**
  * @description Get license url from github repository url
+ *
  * @param {string} repositoryUrl
  */
 const getLicenseUrlFromGithubRepositoryUrl = repositoryUrl =>
@@ -88,7 +94,8 @@ const getReadmeUrlFromGithubRepositoryUrl = repositoryUrl =>
 
 /**
  * @description Get project author name from package.json
- * @param packageJson
+ *
+ * @param {Object} packageJson
  * @returns {string} authorName
  */
 const getAuthorName = packageJson => {

@@ -31,6 +31,7 @@ const askQuestions = async (projectInfos, useDefaultAnswers) => {
  * @description
  * 1) Gather project infos
  * 2) Ask user questions
+ * 3) return all answers
  *
  * @param {Object} args
  *@returns {Object} answersContext

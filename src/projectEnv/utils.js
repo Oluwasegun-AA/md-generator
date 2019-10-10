@@ -2,18 +2,10 @@ import loadJsonFile from 'load-json-file';
 import path from 'path';
 import getRepoName from 'git-repo-name';
 import { execSync } from 'child_process';
-import { useBox } from '../common/index';
-
-const END_MSG = `.md file(s) successfully generated.
-Thanks for using md-generator!`;
-
-/**
- * @description Display end message
- */
-const showEndMessage = () => process.stdout.write(useBox(END_MSG));
 
 /**
  * @description Get package json name property
+ *
  * @param {Object} packageJson
  */
 const getPackageJsonName = (packageJson = {}) => packageJson.name || undefined;
@@ -86,7 +78,6 @@ const getDefaultAnswer = (question, answersContext) => {
   }
 };
 
-
 /**
  * @description Get default question's answers
  * @param {Array} questions
@@ -109,9 +100,7 @@ const cleanSocialNetworkUsername = input => input.replace(/^@/, '');
 
 export {
   getPackageJson,
-  showEndMessage,
   getProjectName,
-  END_MSG,
   getDefaultAnswers,
   getDefaultAnswer,
   cleanSocialNetworkUsername,
