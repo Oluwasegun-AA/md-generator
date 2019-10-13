@@ -1,5 +1,5 @@
 {
-  "name": "md-generator",
+  "name": "dotmd",
   "version": "0.1.0",
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "contributors:generate": "all-contributors generate"
   },
   "bin": {
-    "generate": "dist/core/index.js"
+    "dotmd": "dist/index.js"
   },
   "files": [
     "dist",

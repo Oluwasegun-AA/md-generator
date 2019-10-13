@@ -1,5 +1,11 @@
 import { getFullFileNames } from '../../../../common/index';
 
+/**
+ * @description
+ * Return question for files removal
+ *
+ * @param {Array} files optional files names array
+ */
 const removeFiles = files => ({
   type: 'checkbox',
   name: 'removeFiles',
@@ -7,6 +13,12 @@ const removeFiles = files => ({
   choices: [...getFullFileNames(files)],
 });
 
+/**
+ * @description
+ * Return validation for files removal;
+ *
+ * @param {Array} files optional files names array
+ */
 const validateRemove = files => ({
   type: 'confirm',
   name: 'removeFiles',
@@ -14,6 +26,12 @@ const validateRemove = files => ({
   default: false,
 });
 
+/**
+ * @description
+ * Return question for required files removal
+ *
+ * @param {Array} files optional files names array
+ */
 const removeRequired = files => ({
   type: 'checkbox',
   name: 'removeFiles',
@@ -22,6 +40,12 @@ const removeRequired = files => ({
   choices: [...getFullFileNames(files)],
 });
 
+/**
+ * @description
+ * Return question for optional files removal
+ *
+ * @param {Array} files optional files names array
+ */
 const removeOptional = files => ({
   type: 'checkbox',
   name: 'removeFiles',

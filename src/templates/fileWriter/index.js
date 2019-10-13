@@ -8,7 +8,8 @@ import mkdirp from 'mkdirp';
 import { log } from '../../common/index';
 
 /**
- * fs.writeFile but makes parent directories if required
+ * @description writes file and makes parent directories if required
+ *
  * @param {String} path
  * @param {String} text
  */
@@ -26,6 +27,7 @@ const writeFile = (text, path) => {
 
 /**
  * @description Get file template content from the given templatePath
+ *
  * @param {string} templatePath
  */
 const getFileTemplate = async templatePath => {
@@ -38,7 +40,7 @@ const getFileTemplate = async templatePath => {
 };
 
 /**
- * @Build create file content with the given context and templatePath
+ * @description create file content with the given context and templatePath
  * @param {Object} context
  * @param {string} templatePath
  */
