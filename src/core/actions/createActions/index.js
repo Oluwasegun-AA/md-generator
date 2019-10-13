@@ -46,8 +46,7 @@ const shouldOverride = async (existingFiles, noneExistingFiles) => {
 };
 
 const getValidFiles = values => {
-  const list =
-    typeof values[0] === 'object' ? getFullFileNames(values) : values;
+  const list = typeof values[0] === 'object' ? getFullFileNames(values) : values;
   const { foundFiles, filesNotFound } = queryFilesExistence(list);
   const validFileNames = filesNotFound.filter(key =>
     Object.keys(allFiles).includes(key));
@@ -139,7 +138,7 @@ const processCreation = async (allItems, mode, IS_EMPTY_FILE) => {
           );
         }
       }
-      return createMdFiles(USE_DEFAULT_VALUES, allItems, CREATE_EMPTY_FILE);
+      return createMdFiles(USE_DEFAULT_VALUES, createFiles, CREATE_EMPTY_FILE);
     });
   });
   // createMdFiles(USE_DEFAULT, allItems, IS_EMPTY_FILE);
