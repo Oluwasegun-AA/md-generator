@@ -50,44 +50,42 @@ const checkFileExist = relativePath => {
 const requiredFiles = {
   README: {
     name: 'README.md',
-    exists: checkFileExist('../../../README.md'),
-    path: getResolvedPath('../../../README.md'),
+    exists: checkFileExist('./README.md'),
+    path: './README.md',
   },
   LICENSE: {
     name: 'LICENSE',
-    exists: checkFileExist('../../../LICENSE'),
-    path: getResolvedPath('../../../LICENSE'),
+    exists: checkFileExist('./LICENSE'),
+    path: './LICENSE',
   },
   CODE_OF_CONDUCT: {
     name: 'CODE_OF_CONDUCT.md',
-    exists: checkFileExist('../../../CODE_OF_CONDUCT.md'),
-    path: getResolvedPath('../../../CODE_OF_CONDUCT.md'),
+    exists: checkFileExist('./CODE_OF_CONDUCT.md'),
+    path: './CODE_OF_CONDUCT.md',
     templatePath: getResolvedPath(
       '../../templates/files/required/template-CODE_OF_CONDUCT.md'
     ),
   },
   PULL_REQUEST_TEMPLATE: {
     name: 'PULL_REQUEST_TEMPLATE.md',
-    exists: checkFileExist('../../../.github/PULL_REQUEST_TEMPLATE.md'),
-    path: getResolvedPath('../../../.github/PULL_REQUEST_TEMPLATE.md'),
+    exists: checkFileExist('./.github/PULL_REQUEST_TEMPLATE.md'),
+    path: './.github/PULL_REQUEST_TEMPLATE.md',
     templatePath: getResolvedPath(
       '../../templates/files/required/template-PULL_REQUEST_TEMPLATE.md'
     ),
   },
   BUG_REPORT: {
     name: 'bug_report.md',
-    exists: checkFileExist('../../../.github/ISSUE_TEMPLATE/bug_report.md'),
-    path: getResolvedPath('../../../.github/ISSUE_TEMPLATE/bug_report.md'),
+    exists: checkFileExist('./.github/ISSUE_TEMPLATE/bug_report.md'),
+    path: './.github/ISSUE_TEMPLATE/bug_report.md',
     templatePath: getResolvedPath(
       '../../templates/files/required/template-BUG_REPORT.md'
     ),
   },
   FEATURE_REQUEST: {
     name: 'feature_request.md',
-    exists: checkFileExist(
-      '../../../.github/ISSUE_TEMPLATE/feature_request.md'
-    ),
-    path: getResolvedPath('../../../.github/ISSUE_TEMPLATE/feature_request.md'),
+    exists: checkFileExist('./.github/ISSUE_TEMPLATE/feature_request.md'),
+    path: './.github/ISSUE_TEMPLATE/feature_request.md',
     templatePath: getResolvedPath(
       '../../templates/files/required/template-FEATURE_REQUEST.md'
     ),
@@ -98,48 +96,48 @@ const requiredFiles = {
 const optionalFiles = {
   CHANGELOG: {
     name: 'CHANGELOG.md',
-    exists: checkFileExist('../../../CHANGELOG.md'),
-    path: getResolvedPath('../../../CHANGELOG.md'),
+    exists: checkFileExist('./CHANGELOG.md'),
+    path: './CHANGELOG.md',
     templatePath: getResolvedPath(
       '../../templates/files/optional/template-CHANGELOG.md'
     ),
   },
   SUPPORT: {
     name: 'SUPPORT.md',
-    exists: checkFileExist('../../../SUPPORT.md'),
-    path: getResolvedPath('../../../SUPPORT.md'),
+    exists: checkFileExist('./SUPPORT.md'),
+    path: './SUPPORT.md',
     templatePath: getResolvedPath(
       '../../templates/files/optional/template-SUPPORT.md'
     ),
   },
   CONTRIBUTORS: {
     name: 'CONTRIBUTORS.md',
-    exists: checkFileExist('../../../CONTRIBUTORS.md'),
-    path: getResolvedPath('../../../CONTRIBUTORS.md'),
+    exists: checkFileExist('./CONTRIBUTORS.md'),
+    path: './CONTRIBUTORS.md',
     templatePath: getResolvedPath(
       '../../templates/files/optional/template-CONTRIBUTORS.md'
     ),
   },
   AUTHORS: {
     name: 'AUTHORS.md',
-    exists: checkFileExist('../../../AUTHORS.md'),
-    path: getResolvedPath('../../../AUTHORS.md'),
+    exists: checkFileExist('./AUTHORS.md'),
+    path: './AUTHORS.md',
     templatePath: getResolvedPath(
       '../../templates/files/optional/template-AUTHORS.md'
     ),
   },
   ACKNOWLEDGMENTS: {
     name: 'ACKNOWLEDGMENTS.md',
-    exists: checkFileExist('../../../ACKNOWLEDGMENTS.md'),
-    path: getResolvedPath('../../../ACKNOWLEDGMENTS.md'),
+    exists: checkFileExist('./ACKNOWLEDGMENTS.md'),
+    path: './ACKNOWLEDGMENTS.md',
     templatePath: getResolvedPath(
       '../../templates/files/optional/template-ACKNOWLEDGMENTS.md'
     ),
   },
   CODEOWNERS: {
     name: 'CODEOWNERS.md',
-    exists: checkFileExist('../../../CODEOWNERS.md'),
-    path: getResolvedPath('../../../CODEOWNERS.md'),
+    exists: checkFileExist('./CODEOWNERS.md'),
+    path: './CODEOWNERS.md',
     templatePath: getResolvedPath(
       '../../templates/files/optional/template-CODEOWNERS.md'
     ),

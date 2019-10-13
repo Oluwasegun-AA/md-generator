@@ -139,7 +139,7 @@ const removeHandler = values => {
   if (required) return removeRequiredFiles(resp);
   if (optional) return removeOptionalFiles(resp);
   if (file) return removeSpecificFiles(resp);
-  removeNonSpecific(resp);
+  removeNonSpecific();
 };
 
 export default removeHandler;
