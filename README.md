@@ -37,7 +37,8 @@ This npm package was inspired by [readme-md-generator](https://www.npmjs.com/pac
 
 ## Installation
 `npm install md-generator` or globally using `npm install -g md-generator`
-- you can interact with the package from the npm registry without installing using `npm md-generator [command] [options]`
+- you can interact with the package from the npm registry without installing
+using `npx md-generator [command] [options]`
 
 ## Usage
 install globally using 
@@ -49,27 +50,27 @@ install globally using
 - md-generator `[commands]` `[command-options] [file names]`
 
 #### Parent Options:
- |   Option         |           Function              |
- |:----------------:|:-------------------------------:|
- |  -V, --version   |    Output the version number    |
- |  -h, --help      |    Output usage information     |
+ |   Option       |           Function          |
+ |:--------------:|:---------------------------:|
+ |-V, --version   |Output the version number    |
+ |-h, --help      |Output usage information     |
 
 #### Commands:
- |             Command               |                            Function                             |
- |:---------------------------------:|:---------------------------------------------------------------:|
- | list   `[options]` `[File Names]` | List All Required/optional .md files                            |
- |create `[options]` `[File Names]`  | Create All/specific files                                       |
- |check  `[options]` `[File Names]`  | Checks codebase for the availability of  All/Specific .md files |
- |remove `[options]` `[File Names]`  | Remove All/specific .md files                                   |
+ |             Command               |                            Function                            |
+ |:---------------------------------:|:--------------------------------------------------------------:|
+ |list   `[options]` `[File Names]`  |List All Required/optional .md files                            |
+ |create `[options]` `[File Names]`  |Create All/specific files                                       |
+ |check  `[options]` `[File Names]`  |Checks codebase for the availability of  All/Specific .md files |
+ |remove `[options]` `[File Names]`  |Remove All/specific .md files                                   |
 
 #### Command-Options :
- |    Command Option        |                 Function                       |
- |:------------------------:|:----------------------------------------------:|
- |     -A, --all            |     Operate on all required/optional .md files |
- |     -F, --file           |     Operate on specific .md files              |
- |     -E, --empty          |     make added files empty                     |
- |     -R --required        |     Operate on required files                  |
- |     -O --optional        |     Operate on optional files                  |
+ |    Command Option   |                 Function                  |
+ |:-------------------:|:-----------------------------------------:|
+ |-A, --all            |Operate on all required/optional .md files |
+ |-F, --file           |Operate on specific .md files              |
+ |-E, --empty          |make added files empty                     |
+ |-R --required        |Operate on required files                  |
+ |-O --optional        |Operate on optional files                  |
 
 > Note:
 - `File Names` can be with/without the file extension

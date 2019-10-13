@@ -51,7 +51,7 @@ const checkHandler = async values => {
   const USE_DEFAULT = true;
   await getInfos(USE_DEFAULT).then(projectInfos => {
     spin.succeed('Done');
-    const { authorGithubUsername, projectName } = projectInfos;
+    const { githubUsername, name } = projectInfos;
     if (required || all) {
       log(whiteUnderline('Required Files :\n'));
       check(requiredFiles);
@@ -60,7 +60,7 @@ const checkHandler = async values => {
       log(whiteUnderline('Optional Files :\n'));
       check(optionalFiles);
     }
-    checkCommunityStandardMet(authorGithubUsername, projectName);
+    checkCommunityStandardMet(githubUsername, name);
   });
 };
 

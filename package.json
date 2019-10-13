@@ -1,5 +1,5 @@
 {
-  "name": "dotmd",
+  "name": "md-generator",
   "version": "0.1.0",
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "contributors:generate": "all-contributors generate"
   },
   "bin": {
-    "md": "dist/index.js"
+    "md-generator": "dist/index.js"
   },
   "files": [
     "dist",
@@ -27,7 +27,7 @@
     "type": "git",
     "url": "git+https://github.com/Oluwasegun-AA/md-generator.git"
   },
-  "keywords": [],
+  "keywords": ["files", ".md", "files template", "cli", "generator" ],
   "author": "Adépòjù Olúwásêgun <oluwasegunadepoju@gmail.com> (https://oluwasegun-aa.github.io/)",
   "license": "MIT",
   "bugs": {

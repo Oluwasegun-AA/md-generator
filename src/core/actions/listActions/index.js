@@ -21,7 +21,7 @@ const listHandler = async values => {
   const USE_DEFAULT = true;
   await getInfos(USE_DEFAULT).then(projectInfos => {
     spin.succeed('Done');
-    const { authorGithubUsername, projectName } = projectInfos;
+    const { githubUsername, name } = projectInfos;
     if (required || all) {
       log(
         whiteUnderline(
@@ -46,7 +46,7 @@ const listHandler = async values => {
       log(pad('📘', 5), cyan('CODEOWNERS.md'));
     }
     log('\nDo remember to add a description to your repository.');
-    checkCommunityStandardMet(authorGithubUsername, projectName);
+    checkCommunityStandardMet(githubUsername, name);
   });
 };
 

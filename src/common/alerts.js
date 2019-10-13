@@ -123,7 +123,7 @@ const checkCommunityStandardMet = (authorGithubUsername, projectName) => {
     );
   } else {
     log(
-      'You can check community standards met via https://github.com/"<authorGithubUsername>"/"<projectName>"/community \n'
+      'You can check community standards met via https://github.com/"<GithubUsername>"/"<projectName>"/community \n'
     );
   }
 };
