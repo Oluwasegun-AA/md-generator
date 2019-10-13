@@ -42,8 +42,7 @@ const getValues = (args, resp) => ({
  * @param {String} relativePath relative path to file
  */
 const checkFileExist = relativePath => {
-  const resolvedPath = getResolvedPath(relativePath);
-  return !!fs.existsSync(resolvedPath);
+  return !!fs.existsSync(relativePath);
 };
 
 // required files Objects and their details
