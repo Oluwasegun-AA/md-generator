@@ -1,6 +1,6 @@
 {
   "name": "md-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
   "scripts": {
