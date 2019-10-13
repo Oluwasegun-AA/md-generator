@@ -41,9 +41,7 @@ const getValues = (args, resp) => ({
  *
  * @param {String} relativePath relative path to file
  */
-const checkFileExist = relativePath => {
-  return !!fs.existsSync(relativePath);
-};
+const checkFileExist = relativePath => !!fs.existsSync(relativePath);
 
 // required files Objects and their details
 const requiredFiles = {
@@ -191,8 +189,7 @@ const removeDotMdAttribute = item => {
 const allExistingFiles = (files = allFiles) =>
   Object.values(files).filter(item => !!item.exists);
 
-const getArrayOfValues = (files = allFiles) =>
-  Object.values(files).flatMap(item => item);
+const getArrayOfValues = (files = allFiles) => Object.values(files);
 
 /**
  * @description

@@ -1,3 +1,5 @@
+
+import { flatMap } from 'lodash';
 import {
   log,
   useBox,
@@ -26,7 +28,7 @@ import {
  * @param {Array} filesArray array of objects with a name key
  */
 const getFullFileNames = filesArray =>
-  filesArray.flatMap(currentFile => currentFile.name);
+  flatMap(filesArray, currentFile => currentFile.name);
 
 
 export {

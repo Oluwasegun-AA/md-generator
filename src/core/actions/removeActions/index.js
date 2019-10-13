@@ -68,7 +68,7 @@ const deleteFiles = (ValidFilesArray, allFiles) => {
  */
 const processRemoval = (selectedFiles, filesInfo, mode) => {
   if (selectedFiles.length === 0) {
-    return log('The desired .md file(s) not found in the codebase\n');
+    return log('Error: .md file(s) not found in the codebase\n');
   }
   inquirer.prompt(mode(selectedFiles)).then(answer => {
     const selectedFiles = removeDotMdAttribute(answer.removeFiles);
