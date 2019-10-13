@@ -1,6 +1,6 @@
 {
   "name": "md-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,13 @@
     "type": "git",
     "url": "git+https://github.com/Oluwasegun-AA/md-generator.git"
   },
-  "keywords": ["files", ".md", "files template", "cli", "generator" ],
+  "keywords": [
+    "files",
+    ".md",
+    "files template",
+    "cli",
+    "generator"
+  ],
   "author": "Adépòjù Olúwásêgun <oluwasegunadepoju@gmail.com> (https://oluwasegun-aa.github.io/)",
   "license": "MIT",
   "bugs": {
