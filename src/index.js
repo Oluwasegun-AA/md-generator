@@ -4,7 +4,7 @@ import { customHelp, wrongCommandAlert, noCommandAlert } from './common/index';
 import handleCommand from './core/validations/ValidateOptions';
 
 program
-  .name('dotmd')
+  .name('md-generator')
   .version('1.0.0')
   .action(command => wrongCommandAlert(command))
   .on('--help', () => {
@@ -48,19 +48,6 @@ program
   .option('-O, --optional', 'remove all optional files')
   .option('-R, --required', 'remove all required files')
   .option('-F, --file [value]', 'remove specific .md files')
-  .action((type, args) => {
-    handleCommand(args);
-  });
-
-program
-  .command('import [env]')
-  .description('import .md files from remote repository')
-  .option(
-    '-A, --all',
-    'Import all required/optional .md files from remote repo'
-  )
-  .option('-F, --file [value]', 'import specific .md files from remote repo')
-  .option('-E, --empty', 'make imported files empty')
   .action((type, args) => {
     handleCommand(args);
   });

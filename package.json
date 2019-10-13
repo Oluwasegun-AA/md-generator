@@ -16,7 +16,7 @@
     "contributors:generate": "all-contributors generate"
   },
   "bin": {
-    "dotmd": "dist/index.js"
+    "md": "dist/index.js"
   },
   "files": [
     "dist",
