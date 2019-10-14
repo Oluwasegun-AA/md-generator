@@ -2,7 +2,7 @@
 <p align="center">
 <a href="https://npmjs.com/package/md-generator"><img src="https://img.shields.io/npm/dm/md-generator.svg?style=flat" /></a>
 <a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability"><img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" /></a>
-<a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square" alt="Version"></a>
+<a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="Version"></a>
 <a href="https://www.npmjs.com/package/md-generator" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/md-generator.svg">
   </a>
@@ -14,10 +14,10 @@ CLI tool which bootstraps Development by creating "ALL" required .md files to me
 - [Project Overview](#Project-Overview)
 - [Features](#Features)
 - [Built With](#Built-With)
-- [Demo](#Installation)
-- [Known Issues](#Usage)
-- [Installation](#Demo)
-- [Installation](#Known-Issues)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Demo](#Demo)
+- [Known Issues](#Known-Issues)
 - [Contributing](#contributing)
 - [Contributors](#Contributors)
 - [License](#License)
@@ -47,7 +47,7 @@ This npm package was inspired by [readme-md-generator](https://www.npmjs.com/pac
 
 `npm install md-generator` or globally using `npm install -g md-generator`
 
-- you can interact with the package from the npm registry without installing
+- you can interact with the package from the npm registry
   using `npx md-generator [command] [options]`
 
 ## Usage
@@ -121,8 +121,6 @@ install globally using
 |    md-generator remove                                       |         Interactively deletes all desired .md files                  |
 |    md-generator remove --file "file1 file2  ..."             |         Interactively deletes all specified .md files                |
 
-loading . . .
-
 ## Known issues
 
 No known [issues](https://github.com/Oluwasegun-AA/md-generator/issues) at the moment. However, [issues](https://github.com/Oluwasegun-AA/md-generator/issues) can be raised when such is noticed
@@ -130,7 +128,7 @@ No known [issues](https://github.com/Oluwasegun-AA/md-generator/issues) at the m
 ## Contributing
 
 > Feel free to contribute and kindly go through the Pull Request guide, and contributing.md file
-> 👯 Clone the repository using https://github.com/Oluwasegun-AA/md-generator.git
+> 👯 Clone the repository using https://github.com/Oluwasegun-AA/md-generator.git .
 > Make Contributions
 
 ## Contributors

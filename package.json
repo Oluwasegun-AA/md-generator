@@ -1,6 +1,6 @@
 {
   "name": "md-generator",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "files": [
     "dist",
-    "LICENSE.md",
+    "LICENSE",
     "README.md"
   ],
   "repository": {
@@ -32,7 +32,10 @@
     ".md",
     "files template",
     "cli",
-    "generator"
+    "generator",
+    "md-generator",
+    "template",
+    "automate"
   ],
   "author": "Adépòjù Olúwásêgun <oluwasegunadepoju@gmail.com> (https://oluwasegun-aa.github.io/)",
   "license": "MIT",
