@@ -7,7 +7,7 @@
     <img alt="Version" src="https://img.shields.io/npm/v/md-generator.svg">
   </a>
 </p>
-NPM Package which bootstraps Development by creating `ALL` required .md files to meet `community standards`.
+CLI tool which bootstraps Development by creating "ALL" required .md files to meet "community standards".
 
 ## Table of Contents
 
