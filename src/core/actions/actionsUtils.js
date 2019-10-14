@@ -208,7 +208,7 @@ const queryFilesExistence = values => {
 };
 
 const getItemFromFileName = fileName =>
-  Object.values(allFiles).find(value => value.name === fileName || `${fileName}.md`);
+  Object.values(allFiles).find(value => value.name.includes(fileName));
 
 export {
   allFiles,
