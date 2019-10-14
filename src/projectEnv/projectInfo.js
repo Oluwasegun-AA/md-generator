@@ -118,7 +118,7 @@ const getProjectInfos = async () => {
   const engines = get(packageJson, 'engines', undefined);
   const author = getAuthorName(packageJson);
   const version = get(packageJson, 'version', undefined);
-  const licenseName = get(packageJson, 'license', undefined);
+  const licenseName = { name: get(packageJson, 'license', undefined) };
   const homepage = get(packageJson, 'homepage', undefined);
   const usage = has(packageJson, 'scripts.start') ? 'npm run start' : undefined;
   const testCommand = has(packageJson, 'scripts.test')

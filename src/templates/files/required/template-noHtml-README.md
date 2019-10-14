@@ -16,8 +16,8 @@
 <% if (isGithubRepos) { -%>
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](<%= repositoryUrl %>/graphs/commit-activity)
 <% } -%>
-<% if (licenseName && licenseUrl) { -%>
-[![License: <%= licenseName %>](https://img.shields.io/badge/License-<%= licenseName %>-yellow.svg)](<%= licenseUrl %>)
+<% if (licenseName.name && licenseUrl) { -%>
+[![License: <%= licenseName.name %>](https://img.shields.io/badge/License-<%= licenseName %>-yellow.svg)](<%= licenseUrl %>)
 <% } -%>
 <% if (authorTwitterUsername) { -%>
 [![Twitter: <%= authorTwitterUsername %>](https://img.shields.io/twitter/follow/<%= authorTwitterUsername %>.svg?style=social)](https://twitter.com/<%= authorTwitterUsername %>)
@@ -117,7 +117,7 @@ Give a ⭐️ if this project helped you!
 Copyright © <%= currentYear %> [<%= authorName %>](https://github.com/<%= authorGithubUsername %>).
 
 <% } -%>
-This project is [<%= licenseName %>](<%= licenseUrl %>) licensed.
+This project is [<%= licenseName.name %>](<%= licenseUrl %>) licensed.
 <% } -%>
 
 ***

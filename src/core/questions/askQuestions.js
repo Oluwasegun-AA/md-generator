@@ -17,7 +17,6 @@ const askQuestions = async (projectInfos, useDefaultAnswers) => {
   const answersContext = useDefaultAnswers
     ? utils.getDefaultAnswers(question)
     : await inquirer.prompt(question);
-
   return {
     isGithubRepos: projectInfos.isGithubRepos,
     repositoryUrl: projectInfos.repositoryUrl,

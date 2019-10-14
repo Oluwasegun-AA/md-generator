@@ -23,9 +23,9 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
 <% } -%>
-<% if (licenseName && licenseUrl) { -%>
+<% if (licenseName.name && licenseUrl) { -%>
   <a href="<%= licenseUrl %>" target="_blank">
-    <img alt="License: <%= licenseName %>" src="https://img.shields.io/badge/License-<%= licenseName %>-yellow.svg" />
+    <img alt="License: <%= licenseName.name %>" src="https://img.shields.io/badge/License-<%= licenseName.name %>-yellow.svg" />
   </a>
 <% } -%>
 <% if (authorTwitterUsername) { -%>
@@ -122,14 +122,14 @@ Give a ⭐️ if this project helped you!
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 <% } -%>
-<% if (licenseName && licenseUrl) { -%>
+<% if (licenseName.name && licenseUrl) { -%>
 
 ## 📝 License
 
 <% if (authorName && authorGithubUsername) { -%>
 Copyright © <%= currentYear %> [<%= authorName %>](https://github.com/<%= authorGithubUsername %>).<br />
 <% } -%>
-This project is [<%= licenseName %>](<%= licenseUrl %>) licensed.
+This project is [<%= licenseName.name %>](<%= licenseUrl %>) licensed.
 <% } -%>
 
 ***
