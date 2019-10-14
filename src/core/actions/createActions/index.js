@@ -122,13 +122,12 @@ const processCreation = async (allItems, mode, IS_EMPTY_FILE) => {
     if (createFiles === false) return process.exit(1);
     inquirer.prompt(createEmptyFiles()).then(res => {
       CREATE_EMPTY_FILE = IS_EMPTY_FILE || res.empty;
-
       if (typeof createFiles === 'object') {
         filesToBeCreated = Object.values(allItems).filter(file =>
           createFiles.includes(file.name));
         if (
-          createFiles.includes('README') ||
-          createFiles.includes('CODE_OF_CONDUCT') ||
+          createFiles.includes('README.md') ||
+          createFiles.includes('CODE_OF_CONDUCT.md') ||
           createFiles.includes('LICENSE')
         ) {
           return createMdFiles(

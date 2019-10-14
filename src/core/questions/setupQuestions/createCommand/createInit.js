@@ -42,7 +42,7 @@ const createEmptyFiles = () => ({
   type: 'confirm',
   name: 'empty',
   message: 'Would you like the created file(s) to be empty?\n',
-  choices: false,
+  default: false,
 });
 
 /**

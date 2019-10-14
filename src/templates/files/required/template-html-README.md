@@ -133,5 +133,5 @@ This project is [<%= licenseName %>](<%= licenseUrl %>) licensed.
 <% } -%>
 
 ***
-<%- include('footer.md'); -%>
+<%- include('../footer.md'); -%>
 
