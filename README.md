@@ -95,6 +95,15 @@ install globally using
 
 ## Demo
 
+<p align="center">
+  <a href="" target="">
+    <img src="https://user-images.githubusercontent.com/25525765/66755090-9643aa00-ee97-11e9-99b0-adfe6ff287aa.gif" alt="Demo">
+  </a>
+  <a href="" target="">
+    <img src="https://user-images.githubusercontent.com/25525765/66753341-db65dd00-ee93-11e9-80ed-3d279f6444c3.gif" alt="Demo">
+  </a>
+</p>
+
 |                      Cli Command                             |                         Function                                     |
 | :----------------------------------------------------------: | :------------------------------------------------------------------: |
 |    md-generator --help                                       |        displays help (all available command and option)              |
