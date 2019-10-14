@@ -1,58 +1,137 @@
-<h2 align="center">md-generator</h2>
-<p align="center">
-<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability"><img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" /></a>
-<a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square" alt="Version"></a>
+<h1 align="center">Welcome to <%= projectName %> 👋</h1>
+<p>
+<% if (isProjectOnNpm) { -%>
+  <a href="https://www.npmjs.com/package/<%= projectName %>" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/<%= projectName %>.svg">
+  </a>
+<% } -%>
+<% if (projectVersion && !isProjectOnNpm) { -%>
+  <img alt="Version" src="https://img.shields.io/badge/version-<%= projectVersion %>-blue.svg?cacheSeconds=2592000" />
+<% } -%>
+<% if (projectPrerequisites) { -%>
+<% projectPrerequisites.map(({ name, value }) => { -%>
+  <img src="https://img.shields.io/badge/<%= name %>-<%= encodeURIComponent(value) %>-blue.svg" />
+<% }) -%>
+<% } -%>
+<% if (projectDocumentationUrl) { -%>
+  <a href="<%= projectDocumentationUrl %>" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+<% } -%>
+<% if (isGithubRepos) { -%>
+  <a href="<%= repositoryUrl %>/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+<% } -%>
+<% if (licenseName && licenseUrl) { -%>
+  <a href="<%= licenseUrl %>" target="_blank">
+    <img alt="License: <%= licenseName %>" src="https://img.shields.io/badge/License-<%= licenseName %>-yellow.svg" />
+  </a>
+<% } -%>
+<% if (authorTwitterUsername) { -%>
+  <a href="https://twitter.com/<%= authorTwitterUsername %>" target="_blank">
+    <img alt="Twitter: <%= authorTwitterUsername %>" src="https://img.shields.io/twitter/follow/<%= authorTwitterUsername %>.svg?style=social" />
+  </a>
+<% } -%>
 </p>
-NPM Package which bootstraps Development by creating all required .md files to meet community standards.
 
 ## Table of Contents
 * [Project Overview](#Project-Overview)
+* [Prerequisites](#Prerequisites)
 * [Features](#Features)
 * [Demo](#demo)
-* [Known Issues](#Known-issues)
+* [Usage](#Usage)
 * [Installation](#Installation)
+* [Known Issues](#Known-issues)
 * [Contributing](#contributing)
-* [Contributors](#Contributors)
+* [support](#support)
 * [License](#License)
 
-## Project Overview
-loading . . .
 
+## Project-Overview
 
-## Features
-loading . . .
+<% if (projectDescription) { -%>
 
-## Demo
-loading . . .
+> <%= projectDescription %>
+<% } -%>
+<% if (projectHomepage) { -%>
 
-## Known issues
-loading . . .
+### 🏠 [Homepage](<%= projectHomepage %>)
+<% } -%>
+<% if (projectPrerequisites && projectPrerequisites.length) { -%>
+
+## Prerequisites
+
+<% projectPrerequisites.map(({ name, value }) => { -%>
+- <%= name %> <%= value %>
+<% }) -%>
+<% } -%>
+<% if (installCommand) { -%>
 
 ## Installation
-Loading  . . .
 
-## Contributing
->  Feel free to contribute and kindly ensure to go through the Pull Request guide, and contributing.md file
+```sh
+<%= installCommand %>
+```
+<% } -%>
+<% if (usage) { -%>
 
->  👯 Clone the repository using https://github.com/Oluwasegun-AA/md-generator.git
+## Usage
 
-> Make Contributions
+```sh
+<%= usage %>
+```
+<% } -%>
+<% if (testCommand) { -%>
 
-## Contributors
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## Run tests
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/Oluwasegun-AA"><img src="https://avatars0.githubusercontent.com/u/25525765?v=4" width="100px;" alt="Adépòjù Olúwáségun"/><br /><sub><b>Adépòjù Olúwáségun</b></sub></a><br /><a href="https://github.com/Adépòjù Olúwáségun/md-generator/commits?author=Oluwasegun-AA" title="Code">💻</a> <a href="https://github.com/Adépòjù Olúwáségun/md-generator/commits?author=Oluwasegun-AA" title="Documentation">📖</a> <a href="#maintenance-Oluwasegun-AA" title="Maintenance">🚧</a> <a href="https://github.com/Adépòjù Olúwáségun/md-generator/commits?author=Oluwasegun-AA" title="Tests">⚠️</a></td></tr></table>
+```sh
+<%= testCommand %>
+```
+<% } -%>
+<% if (authorName || authorTwitterUsername || authorGithubUsername) { -%>
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
+## Known Issues
+No known [issues](<%= contributingUrl %>) at the moment.
 
-## License
-![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+## Author
+<% if (authorName) { %>
+👤 **<%= authorName %>**
+<% } %>
+<% if (authorTwitterUsername) { -%>
+* Twitter: [@<%= authorTwitterUsername %>](https://twitter.com/<%= authorTwitterUsername %>)
+<% } -%>
+<% if (authorGithubUsername) { -%>
+* Github: [@<%= authorGithubUsername %>](https://github.com/<%= authorGithubUsername %>)
+<% } -%>
+<% } -%>
+<% if (contributingUrl) { -%>
 
-- **[MIT license]()**
-- Copyright 2019 © <a href="https://twitter.com/Oluwasegun_AA" target="_blank">Olúwáségun</a>
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](<%= contributingUrl %>).
+<% } -%>
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+<% if (authorPatreonUsername) { -%>
+
+<a href="https://www.patreon.com/<%= authorPatreonUsername %>">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+<% } -%>
+<% if (licenseName && licenseUrl) { -%>
+
+## 📝 License
+
+<% if (authorName && authorGithubUsername) { -%>
+Copyright © <%= currentYear %> [<%= authorName %>](https://github.com/<%= authorGithubUsername %>).<br />
+<% } -%>
+This project is [<%= licenseName %>](<%= licenseUrl %>) licensed.
+<% } -%>
 
 ***
-<%- include('../footer.md'); -%>
+<%- include('footer.md'); -%>
+

@@ -24,9 +24,23 @@
 <% } -%>
 <% if (projectDescription) { -%>
 
+## Table of Contents
+* [Project Overview](#Project-Overview)
+* [Prerequisites](#Prerequisites)
+* [Features](#Features)
+* [Demo](#demo)
+* [Usage](#Usage)
+* [Installation](#Installation)
+* [Known Issues](#Known-issues)
+* [Contributing](#contributing)
+* [support](#support)
+* [License](#License)
+
 > <%= projectDescription %>
 <% } -%>
 <% if (projectHomepage) { -%>
+
+## Project-Overview
 
 ### 🏠 [Homepage](<%= projectHomepage %>)
 <% } -%>
@@ -63,6 +77,9 @@
 ```
 <% } -%>
 <% if (authorName || authorTwitterUsername || authorGithubUsername) { -%>
+
+## Known Issues
+No known [issues](<%= contributingUrl %>) at the moment.
 
 ## Author
 <% if (authorName) { %>
