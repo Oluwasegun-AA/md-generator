@@ -90,13 +90,10 @@ const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
     process.exit(1);
   }
   filesToBeCreated = validFileNames;
-  console.log('fafa', filesToBeCreated)
   await getInfos(USE_DEFAULT).then(projectInfos => {
     filesToBeCreated.forEach(async file => {
       let pathToTemplate;
       const { path, templatePath } = getItemFromFileName(file);
-      console.log('lll', path)
-      console.log('llljkk', templatePath)
       if (file === 'LICENSE') {
         pathToTemplate = projectInfos.licenseName.path;
       } else {
