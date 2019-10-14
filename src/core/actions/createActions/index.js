@@ -93,16 +93,13 @@ const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
   await getInfos(USE_DEFAULT).then(projectInfos => {
     filesToBeCreated.forEach(async file => {
       let pathToTemplate;
-      console.log('file', file) 
       const item = getItemFromFileName(file);
-      console.log('item', item) 
       const { path, templatePath } = item;
       if (file === 'LICENSE') {
         pathToTemplate = projectInfos.licenseName.path;
       } else {
         pathToTemplate = templatePath || projectInfos.templatePath;
       }
-      console.log('kaka', pathToTemplate)
       const fileContent = isEmpty
         ? ''
         : await buildFileContent(projectInfos, pathToTemplate);
