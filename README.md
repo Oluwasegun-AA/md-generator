@@ -97,18 +97,18 @@ install globally using
 
 |                      Cli Command                             |                         Function                                     |
 | :----------------------------------------------------------: | :------------------------------------------------------------------: |
-|    md-generator --help                                       |        displays help (all available command and option)               |
-|    md-generator list                                         |         lists all supported .md files                                 |
-|    md-generator list --optional                              |         lists all supported optional .md files                        |
-|    md-generator list --required                              |         lists all required .md files to meet community standard       |
-|    md-generator check                                        |         checks code base for existing/missing supported .md files     |
-|    md-generator check --required                             |         checks code base for existing/missing required .md files      |
-|    md-generator check --optional                             |         checks code base for existing/missing optional .md files      |
+|    md-generator --help                                       |        displays help (all available command and option)              |
+|    md-generator list                                         |         lists all supported .md files                                |
+|    md-generator list --optional                              |         lists all supported optional .md files                       |
+|    md-generator list --required                              |         lists all required .md files to meet community standard      |
+|    md-generator check                                        |         checks code base for existing/missing supported .md files    |
+|    md-generator check --required                             |         checks code base for existing/missing required .md files     |
+|    md-generator check --optional                             |         checks code base for existing/missing optional .md files     |
 |    md-generator create                                       |         Interactively Generates all desired files                    |
 |    md-generator create --file "file1.md file2.md ..."        |         Creates the supplied files                                   |
 |    md-generator create  --file "file1 file2 ..." --empty     |         creates supplied files with no template                      |
-|    md-generator create --required                            |         Interactively create required .md files                     |
-|    md-generator create --optional                            |         Interactively create optional .md files                     |
+|    md-generator create --required                            |         Interactively create required .md files                      |
+|    md-generator create --optional                            |         Interactively create optional .md files                      |
 |    md-generator remove                                       |         Interactively deletes all desired .md files                  |
 |    md-generator remove --file "file1 file2  ..."             |         Interactively deletes all specified .md files                |
 
