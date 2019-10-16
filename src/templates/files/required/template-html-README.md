@@ -1,5 +1,5 @@
 <h1 align="center">Welcome to <%= projectName %> 👋</h1>
-<p>
+<p align="center">
 <% if (isProjectOnNpm) { -%>
   <a href="https://www.npmjs.com/package/<%= projectName %>" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/<%= projectName %>.svg">
@@ -76,6 +76,12 @@
 <% } -%>
 <% if (usage) { -%>
 
+## Features
+
+- [x]
+- [x]
+- [x]
+
 ## Usage
 
 ```sh
@@ -113,7 +119,7 @@ No known [issues](<%= contributingUrl %>) at the moment.
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](<%= contributingUrl %>).
 <% } -%>
 
-## Show your support
+## support
 
 Give a ⭐️ if this project helped you!
 <% if (authorPatreonUsername) { -%>

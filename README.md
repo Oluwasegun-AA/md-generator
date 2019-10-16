@@ -1,12 +1,13 @@
 <h2 align="center">md-generator</h2>
 <p align="center">
-<a href="https://npmjs.com/package/md-generator"><img src="https://img.shields.io/npm/dm/md-generator.svg?style=flat" /></a>
-<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability"><img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" /></a>
-<a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="Version"></a>
 <a href="https://www.npmjs.com/package/md-generator" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/md-generator.svg">
   </a>
 </p>
+<a href="https://npmjs.org/package/md-generator"><img src="https://img.shields.io/npm/dt/md-generator.svg?style=flat" alt="Version"></a>
+<a href="https://npmjs.com/package/md-generator"><img src="https://img.shields.io/npm/dm/md-generator.svg?style=flat" /></a>
+<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability"><img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" /></a>
+<a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="Version"></a>
 CLI tool which bootstraps Development by creating "ALL" required .md files to meet "community standards".
 
 ## Table of Contents

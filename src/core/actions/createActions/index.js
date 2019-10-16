@@ -90,6 +90,7 @@ const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
     process.exit(1);
   }
   filesToBeCreated = validFileNames;
+  if (validFileNames.includes('README') || validFileNames.includes('LICENSE')) USE_DEFAULT = false;
   await getInfos(USE_DEFAULT).then(projectInfos => {
     filesToBeCreated.forEach(async file => {
       let pathToTemplate;
@@ -142,12 +143,11 @@ const processCreation = async (allItems, mode, IS_EMPTY_FILE) => {
         }
       }
       if (createFiles === true) {
-        return createMdFiles(USE_DEFAULT_VALUES, allItems, CREATE_EMPTY_FILE);
+        return createMdFiles(!USE_DEFAULT_VALUES, allItems, CREATE_EMPTY_FILE);
       }
       return createMdFiles(USE_DEFAULT_VALUES, createFiles, CREATE_EMPTY_FILE);
     });
   });
-  // createMdFiles(USE_DEFAULT, allItems, IS_EMPTY_FILE);
 };
 
 /**
