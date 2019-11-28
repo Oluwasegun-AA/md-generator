@@ -9,7 +9,7 @@ import { getFullFileNames } from '../../../../common/index';
 const removeFiles = files => ({
   type: 'checkbox',
   name: 'removeFiles',
-  message: 'Which of the following files would you like to delete?\n',
+  message: 'Which of the following files(s) would you like to delete?\n',
   choices: [...getFullFileNames(files)],
 });
 
@@ -36,7 +36,7 @@ const removeRequired = files => ({
   type: 'checkbox',
   name: 'removeFiles',
   message:
-    'Which of the following REQUIRED .md files would you like to delete?\n',
+    'Which of the following REQUIRED .md files(s) would you like to delete?\n',
   choices: [...getFullFileNames(files)],
 });
 
@@ -50,7 +50,7 @@ const removeOptional = files => ({
   type: 'checkbox',
   name: 'removeFiles',
   message:
-    'Which of the following OPTIONAL .md files would you like to delete?\n',
+    'Which of the following OPTIONAL .md files(s) would you like to delete?\n',
   choices: [...getFullFileNames(files)],
 });
 
