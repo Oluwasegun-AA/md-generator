@@ -4,6 +4,7 @@ import askProjectDescription from './projectQuestions/project-description';
 import askProjectHomepage from './projectQuestions/project-homepage';
 import askProjectDocumentationUrl from './projectQuestions/project-documentation-url';
 import askAuthorName from './projectQuestions/author-name';
+import askAuthorEmail from './projectQuestions/author-email';
 import askAuthorGithub from './projectQuestions/author-github';
 import askAuthorTwitter from './projectQuestions/author-twitter';
 import askAuthorPatreon from './projectQuestions/author-patreon';
@@ -30,7 +31,19 @@ import {
   overrideFiles
 } from './createCommand/createInit';
 
-const setupQuestions = {
+const licenseQuestions = {
+  askLicenseName,
+  askLicenseUrl,
+  askAuthorName,
+  askAuthorEmail
+};
+
+const codeOfConductQuestions = {
+  askAuthorName,
+  askAuthorEmail
+};
+
+const readmeQuestions = {
   chooseTemplate,
   askProjectName,
   askProjectVersion,
@@ -51,7 +64,8 @@ const setupQuestions = {
 };
 
 export {
-  setupQuestions,
+  licenseQuestions,
+  readmeQuestions,
   removeFiles,
   validateRemove,
   removeRequired,
@@ -61,5 +75,6 @@ export {
   createOptional,
   selectFileToCreate,
   createEmptyFiles,
-  overrideFiles
+  overrideFiles,
+  codeOfConductQuestions
 };

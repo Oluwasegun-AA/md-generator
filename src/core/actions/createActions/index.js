@@ -91,7 +91,7 @@ const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
   }
   filesToBeCreated = validFileNames;
   if (validFileNames.includes('README') || validFileNames.includes('LICENSE')) USE_DEFAULT = false;
-  await getInfos(USE_DEFAULT).then(projectInfos => {
+  await getInfos(USE_DEFAULT, filesToBeCreated).then(projectInfos => {
     filesToBeCreated.forEach(async file => {
       let pathToTemplate;
       const { path, templatePath } = getItemFromFileName(file);

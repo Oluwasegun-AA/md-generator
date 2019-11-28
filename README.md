@@ -15,7 +15,6 @@ CLI tool which bootstraps Development by creating "ALL" required .md files to me
 
 - [Project Overview](#Project-Overview)
 - [Features](#Features)
-- [Built With](#Built-With)
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [Demo](#Demo)
@@ -38,12 +37,6 @@ This npm package was inspired by [readme-md-generator](https://www.npmjs.com/pac
 - [x] provides bulk creation of .md files
 - [x] optional `--empty` argument to make created files empty if preferred so
 - [x] optional `--required` to `create`/`check`/`list` only all files needed to meet the minimum community standard
-
-## Built With
-
-- [Commander.js](https://github.com/tj/commander.js)
-- [EJS](https://ejs.co/)
-- [Inquirer](https://www.npmjs.com/package/inquirer)
 
 ## Installation
 
