@@ -13,7 +13,8 @@
     "release": "standard-version",
     "contributors:init": "all-contributors init",
     "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
+    "contributors:generate": "all-contributors generate",
+    "build-ts": "rm -rf dist && tsc -b"
   },
   "bin": {
     "md-generator": "dist/index.js"
@@ -68,6 +69,9 @@
     "mkdirp": "0.5.1",
     "ora": "4.0.1",
     "pad": "3.2.0",
+    "tslint": "5.20.1",
+    "tslint-config-airbnb": "5.11.2",
+    "typescript": "3.7.2",
     "yargs": "14.0.0"
   },
   "devDependencies": {
@@ -75,6 +79,8 @@
     "@babel/core": "7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "7.4.5",
+    "@types/lodash": "4.14.149",
+    "@types/node": "12.12.14",
     "all-contributors-cli": "6.1.2",
     "eslint": "5.3.0",
     "eslint-config-airbnb": "17.1.0",
