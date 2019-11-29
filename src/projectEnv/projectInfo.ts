@@ -1,17 +1,16 @@
-import isNil from 'lodash/isNil';
-import get from 'lodash/get';
-import has from 'lodash/has';
+import { isNil, get, has } from 'lodash';
 import { execSync } from 'child_process';
 import { getPackageJson, getProjectName } from './utils';
+import { IProjectInfos } from '../types/typeDeclarations.interface';
 
 const GITHUB_URL = 'https://github.com/';
 
 /**
  * @description Clean repository url by removing '.git' and 'git+'
  *
- * @param {string} repoUrl
+ * @param repoUrl repository url
  */
-const cleanRepoUrl = repoUrl =>
+const cleanRepoUrl = (repoUrl: any): string =>
   repoUrl
     .replace('\n', '')
     .replace('git+', '')
@@ -19,10 +18,8 @@ const cleanRepoUrl = repoUrl =>
 
 /**
  * @description Get repository url from package.json
- *
- * @param {Object} repoUrl
  */
-const getRepoUrlFromPackageJson = async packageJson => {
+const getRepoUrlFromPackageJson = async (packageJson: any): Promise<any> => {
   const repoUrl = get(packageJson, 'repository.url', undefined);
   return isNil(repoUrl) ? undefined : cleanRepoUrl(repoUrl);
 };
@@ -30,7 +27,7 @@ const getRepoUrlFromPackageJson = async packageJson => {
 /**
  * @description Get repository url from git
  */
-const getRepoUrlFromGit = () => {
+const getRepoUrlFromGit = (): any => {
   try {
     const stdout = execSync('git config --get remote.origin.url');
     return cleanRepoUrl(stdout);
@@ -42,17 +39,17 @@ const getRepoUrlFromGit = () => {
 /**
  * @description Get repository url from package.json or git
  *
- * @param {Object} packageJson
+ * @param packageJson package.json file
  */
-const getRepoUrl = async packageJson =>
+const getRepoUrl = async (packageJson?: any): Promise<string> =>
   (await getRepoUrlFromPackageJson(packageJson)) || getRepoUrlFromGit();
 
 /**
  * @description Get repository issues url from package.json or git
  *
- * @param {Object} packageJson
+ * @param packageJson package.json file
  */
-const getRepoIssuesUrl = async packageJson => {
+const getRepoIssuesUrl = async (packageJson: any): Promise<string> => {
   let repoIssuesUrl = get(packageJson, 'bugs.url', undefined);
 
   if (isNil(repoIssuesUrl)) {
@@ -68,37 +65,37 @@ const getRepoIssuesUrl = async packageJson => {
 /**
  * @description Check if repository is a Github repository
  *
- * @param {string} repositoryUrl
+ * @param repositoryUrl repository URL
  */
-const isGithubRepository = repositoryUrl =>
+const isGithubRepository = (repositoryUrl: string): boolean =>
   !isNil(repositoryUrl) && repositoryUrl.includes(GITHUB_URL);
 
 /**
  * @description Get github username from repository url
  *
- * @param {string} repositoryUrl
+ * @param repositoryUrl repository URL
  */
-const getGithubUsernameFromRepositoryUrl = repositoryUrl =>
+const getGithubUsernameFromRepositoryUrl = (repositoryUrl: string): string =>
   repositoryUrl.replace(GITHUB_URL, '').split('/')[0];
 
 /**
  * @description Get license url from github repository url
  *
- * @param {string} repositoryUrl
+ * @param repositoryUrl repository URL
  */
-const getLicenseUrlFromGithubRepositoryUrl = repositoryUrl =>
+const getLicenseUrlFromGithubRepositoryUrl = (repositoryUrl: string): string =>
   `${repositoryUrl}/blob/master/LICENSE`;
 
-const getReadmeUrlFromGithubRepositoryUrl = repositoryUrl =>
+const getReadmeUrlFromGithubRepositoryUrl = (repositoryUrl: string): string =>
   `${repositoryUrl}#readme`;
 
 /**
  * @description Get project author name from package.json
  *
- * @param {Object} packageJson
- * @returns {string} authorName
+ * @param packageJson package.json file
+ * @returns authorName
  */
-const getAuthorName = packageJson => {
+const getAuthorName = (packageJson: any): string => {
   if (has(packageJson, 'author.name')) {
     return get(packageJson, 'author.name', undefined);
   }
@@ -111,7 +108,7 @@ const getAuthorName = packageJson => {
 /**
  * @description Get project information from git and package.json
  */
-const getProjectInfos = async () => {
+const getProjectInfos = async (): Promise<IProjectInfos> => {
   const packageJson = await getPackageJson();
   const name = getProjectName(packageJson);
   const description = get(packageJson, 'description', undefined);

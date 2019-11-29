@@ -2,19 +2,20 @@ import loadJsonFile from 'load-json-file';
 import path from 'path';
 import getRepoName from 'git-repo-name';
 import { execSync } from 'child_process';
+import { IQuestionResponse } from '../types/typeDeclarations.interface';
 
 /**
  * @description Get package json name property
  *
- * @param {Object} packageJson
+ * @param packageJson package.json file
  */
-const getPackageJsonName = (packageJson = {}) => packageJson.name || undefined;
+const getPackageJsonName = (packageJson: any = {}): string => packageJson.name || undefined;
 
 /**
  * @description Get git repository name
- * @param {String} cwd process.cwd()
+ * @param cwd process.cwd()
  */
-const getGitRepositoryName = cwd => {
+const getGitRepositoryName = (cwd: any): string => {
   try {
     return getRepoName.sync({ cwd });
   } catch (err) {
@@ -25,7 +26,7 @@ const getGitRepositoryName = cwd => {
 /**
  * @description Get project name
  */
-const getProjectName = packageJson => {
+const getProjectName = (packageJson: any): string => {
   const cwd = process.cwd();
   return (
     getPackageJsonName(packageJson) ||
@@ -37,7 +38,7 @@ const getProjectName = packageJson => {
 /**
  * @description Get package.json content
  */
-const getPackageJson = async () => {
+const getPackageJson = async (): Promise<object> => {
   try {
     return await loadJsonFile('package.json');
   } catch (err) {
@@ -47,10 +48,10 @@ const getPackageJson = async () => {
 
 /**
  * @description Return true if the project is available on NPM, return false otherwise.
- * @param projectName
+ * @param projectName project name
  * @returns boolean
  */
-const isProjectAvailableOnNpm = projectName => {
+const isProjectAvailableOnNpm = (projectName: string): boolean => {
   try {
     execSync(`npm view ${projectName}`, { stdio: 'ignore' });
     return true;
@@ -61,9 +62,9 @@ const isProjectAvailableOnNpm = projectName => {
 
 /**
  * @description Get the default answer depending on the question type
- * @param {Object} question
+ * @param question single question
  */
-const getDefaultAnswer = (question, answersContext) => {
+const getDefaultAnswer = (question: IQuestionResponse, answersContext: any): any => {
   if (question.when && !question.when(answersContext)) return undefined;
 
   switch (question.type) {
@@ -71,8 +72,8 @@ const getDefaultAnswer = (question, answersContext) => {
       return question.default || '';
     case 'checkbox':
       return question.choices
-        .filter(choice => choice.checked)
-        .map(choice => choice.value);
+        .filter((choice: any) => choice.checked)
+        .map((choice: any) => choice.value);
     default:
       return undefined;
   }
@@ -80,9 +81,9 @@ const getDefaultAnswer = (question, answersContext) => {
 
 /**
  * @description Get default question's answers
- * @param {Array} questions
+ * @param questions all questions
  */
-const getDefaultAnswers = questions =>
+const getDefaultAnswers = (questions: any): any =>
   questions.reduce(
     (answersContext, question) => ({
       ...answersContext,
@@ -94,7 +95,7 @@ const getDefaultAnswers = questions =>
 /**
  * @description Clean social network username by removing the @ prefix
  * @param input social network username input
- * @returns {*} input without the prefix
+ * @returns input without the prefix
  */
 const cleanSocialNetworkUsername = (input: string): string => input.replace(/^@/, '');
 
