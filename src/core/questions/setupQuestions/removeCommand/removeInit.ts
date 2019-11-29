@@ -1,12 +1,13 @@
 import { getFullFileNames } from '../../../../common/index';
+import { ICurrentFile, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description
  * Return question for files removal
  *
- * @param {Array} files optional files names array
+ * @param files optional files names array
  */
-const removeFiles = files => ({
+const removeFiles = (files: ICurrentFile[]): IQuestionResponse => ({
   type: 'checkbox',
   name: 'removeFiles',
   message: 'Which of the following files(s) would you like to delete?\n',
@@ -17,9 +18,9 @@ const removeFiles = files => ({
  * @description
  * Return validation for files removal;
  *
- * @param {Array} files optional files names array
+ * @param files optional files names array
  */
-const validateRemove = files => ({
+const validateRemove = (files: ICurrentFile[]): IQuestionResponse => ({
   type: 'confirm',
   name: 'removeFiles',
   message: `Are you sure you would like to delete the following .md file(s)? \n\n${files}`,
@@ -30,9 +31,9 @@ const validateRemove = files => ({
  * @description
  * Return question for required files removal
  *
- * @param {Array} files optional files names array
+ * @param files optional files names array
  */
-const removeRequired = files => ({
+const removeRequired = (files: ICurrentFile[]): IQuestionResponse => ({
   type: 'checkbox',
   name: 'removeFiles',
   message:
@@ -44,9 +45,9 @@ const removeRequired = files => ({
  * @description
  * Return question for optional files removal
  *
- * @param {Array} files optional files names array
+ * @param files optional files names array
  */
-const removeOptional = files => ({
+const removeOptional = (files: ICurrentFile[]): IQuestionResponse => ({
   type: 'checkbox',
   name: 'removeFiles',
   message:

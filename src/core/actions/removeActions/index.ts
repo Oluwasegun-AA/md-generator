@@ -19,18 +19,19 @@ import {
   useBox,
   castElementsToFormatedString,
 } from '../../../common/index';
+import { IArguments, IAllFiles, ICurrentFile } from '../../../types/typeDeclarations.interface';
 
 /**
  * @description
  * Delete file from the codebase
  *
- * @param {Array} filesArray name of files to be deleted (array of strings)
- * @param {Array} allFiles All files Available files
+ * @param filesArray name of files to be deleted (array of strings)
+ * @param allFiles All files Available files
  */
-const deleteFromCodebase = (filesArray, allFiles) => {
-  filesArray.forEach(file => {
-    const { path } = allFiles[file];
-    fs.unlink(path, err => {
+const deleteFromCodebase = (filesArray: string[], allFiles: IAllFiles) => {
+  filesArray.forEach((file: string) => {
+    const { path }: ICurrentFile = allFiles[file];
+    fs.unlink(path, (err: any) => {
       if (err) log(`Could not delete ${file}`);
     });
   });
@@ -41,19 +42,19 @@ const deleteFromCodebase = (filesArray, allFiles) => {
  * @description
  * Handles the delete process, validating if no file is supplied
  *
- * @param {Array} ValidFilesArray name of Valid files to be deleted (array of strings)
- * @param {Array} allFiles All files Available files
+ * @param validFilesArray name of Valid files to be deleted (array of strings)
+ * @param allFiles All files Available files
  */
-const deleteFiles = (ValidFilesArray, allFiles) => {
-  if (ValidFilesArray.length === 0) {
+const deleteFiles = (validFilesArray: string[], allFiles: IAllFiles): void => {
+  if (validFilesArray.length === 0) {
     return log('Error: No file selected, Please select a file\n');
   }
   inquirer
-    .prompt(validateRemove(castElementsToFormatedString(ValidFilesArray)))
-    .then(answer => {
-      const { removeFiles } = answer;
-      if (removeFiles === true) {
-        deleteFromCodebase(ValidFilesArray, allFiles);
+    .prompt(validateRemove(castElementsToFormatedString(validFilesArray)))
+    .then((answer: {removeFiles: boolean}) => {
+      const { removeFiles }: {removeFiles: boolean} = answer;
+      if (removeFiles) {
+        deleteFromCodebase(validFilesArray, allFiles);
       }
     });
 };
@@ -62,15 +63,15 @@ const deleteFiles = (ValidFilesArray, allFiles) => {
  * @description
  * Handles the delete process, validating if the filename is valid and if it exists
  *
- * @param {Array} selectedFiles All files parsed to be deleted
- * @param {Array} filesInfo All available files
- * @param {Object} mode Question mode
+ * @param selectedFiles All files parsed to be deleted
+ * @param filesInfo All available files
+ * @param mode Question mode
  */
-const processRemoval = (selectedFiles, filesInfo, mode) => {
+const processRemoval = (selectedFiles: string[], filesInfo: IAllFiles, mode: any): void => {
   if (selectedFiles.length === 0) {
     return log('Error: .md file(s) not found in the codebase\n');
   }
-  inquirer.prompt(mode(selectedFiles)).then(answer => {
+  inquirer.prompt(mode(selectedFiles)).then((answer: any) => {
     const selectedFiles = removeDotMdAttribute(answer.removeFiles);
     deleteFiles(selectedFiles, filesInfo);
   });
@@ -79,19 +80,19 @@ const processRemoval = (selectedFiles, filesInfo, mode) => {
 /**
  * @description handles item removal when command is passed without an option
  */
-const removeNonSpecific = () => {
+const removeNonSpecific = (): void => {
   processRemoval(allExistingFiles(), allFiles, removeFiles);
 };
 
 /**
  * @description
  * Handles removal when command is passed with option -F or --file
- * @param {Array} values Array of file names supplied
+ * @param values Array of file names supplied
  */
-const removeSpecificFiles = values => {
+const removeSpecificFiles = (values: ICurrentFile[]): void => {
   const { foundFiles, filesNotFound } = queryFilesExistence(values);
   if (filesNotFound.length > 0) {
-    const filesList = castElementsToFormatedString(filesNotFound);
+    const filesList: string = castElementsToFormatedString(filesNotFound);
     log('The following file(s) were not found :\n', `${filesList} \n`);
   }
   if (foundFiles.length > 0) {
@@ -103,7 +104,7 @@ const removeSpecificFiles = values => {
  * @description
  * handles files removals when the option -R or --required is used
  */
-const removeRequiredFiles = () => {
+const removeRequiredFiles = (): void => {
   processRemoval(
     allExistingFiles(requiredFiles),
     requiredFiles,
@@ -115,7 +116,7 @@ const removeRequiredFiles = () => {
  * @description
  * handles files removals when the option -O or --optional is used
  */
-const removeOptionalFiles = () => {
+const removeOptionalFiles = (): void => {
   processRemoval(
     allExistingFiles(optionalFiles),
     optionalFiles,
@@ -129,15 +130,15 @@ const removeOptionalFiles = () => {
  *
  * @param {Array} values arguments i.e command, payload and command options
  */
-const removeHandler = values => {
+const removeHandler = (values: IArguments) => {
   const {
     file,
     required,
     optional,
     resp
   } = values;
-  if (required) return removeRequiredFiles(resp);
-  if (optional) return removeOptionalFiles(resp);
+  if (required) return removeRequiredFiles();
+  if (optional) return removeOptionalFiles();
   if (file) return removeSpecificFiles(resp);
   removeNonSpecific();
 };

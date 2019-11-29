@@ -1,13 +1,14 @@
 import program from 'commander';
 import { log } from '../../common';
+import { IArguments } from '../../types/typeDeclarations.interface';
 
 /**
  * @description
  * log help text to the terminal
  *
- * @param {String} text custom preliminary string to be logged
+ * @param text custom preliminary string to be logged
  */
-const showHelp = text => {
+const showHelp = (text: string): void => {
   log(text);
   program.help();
   process.exit(1);
@@ -17,12 +18,12 @@ const showHelp = text => {
  * @description
  * logs help message on wrong arguments
  *
- * @param {Object} type response payload
+ * @param type response payload
  */
-const showHelpOnError = type => {
+const showHelpOnError = (type: any): void => {
   const option = type.parent.rawArgs[3];
   const NO_COMMAND_SPECIFIED = Object.keys(program.opts()).every(
-    key => program.opts()[`${key}`] === undefined || key === 'version'
+    (key: string) => program.opts()[`${key}`] === undefined || key === 'version'
   );
   if (NO_COMMAND_SPECIFIED) {
     showHelp(`Invalid Option: ${option}`);
@@ -30,23 +31,22 @@ const showHelpOnError = type => {
 };
 
 /**
- * @class
  * Extract all needed options in each mode
  */
 class ExtractOptions {
-  static list(args) {
-    const { optional, required } = args;
+  static list(args: any): IArguments {
+    const { optional, required }: IArguments = args;
     return { optional, required };
   }
 
-  static create(args) {
+  static create(args: any): IArguments {
     const {
       optional,
       required,
       all,
       file,
       empty
-    } = args;
+    }: IArguments = args;
     return {
       optional,
       required,
@@ -56,18 +56,18 @@ class ExtractOptions {
     };
   }
 
-  static check(args) {
-    const { optional, required } = args;
+  static check(args): IArguments {
+    const { optional, required }: IArguments = args;
     return { optional, required };
   }
 
-  static remove(args) {
+  static remove(args): IArguments {
     const {
       all,
       file,
       required,
       optional
-    } = args;
+    }: IArguments = args;
     return {
       all,
       file,

@@ -1,14 +1,14 @@
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
+import { IProjectInfos, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description Return engines as formatted choices
- * @param {Object} engines
  */
-const buildFormattedChoices = engines => {
+const buildFormattedChoices = (engines: any) => {
   const choices = isNil(engines)
     ? null
-    : Object.keys(engines).map(key => ({
+    : Object.keys(engines).map((key: string) => ({
       name: `${key} ${engines[key]}`,
       value: {
         name: key,
@@ -21,13 +21,11 @@ const buildFormattedChoices = engines => {
 
 /**
  * Check if projectInfos has engines properties
- *å
- * @param {Object} projectInfos
  */
-const hasProjectInfosEngines = projectInfos =>
+const hasProjectInfosEngines = (projectInfos: IProjectInfos) =>
   !isNil(projectInfos.engines) && !isEmpty(projectInfos.engines);
 
-const prerequisites = projectInfos => ({
+const prerequisites = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'checkbox',
   message: '  Project prerequisites',
   name: 'projectPrerequisites',

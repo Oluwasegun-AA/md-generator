@@ -1,4 +1,6 @@
-const usageInfo = projectInfos => ({
+import { IProjectInfos, IQuestionResponse } from "../../../../types/typeDeclarations.interface";
+
+const usageInfo = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'input',
   message: '  Usage command or instruction (use empty value to skip)',
   name: 'usage',

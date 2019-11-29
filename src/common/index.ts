@@ -30,7 +30,7 @@ import { ICurrentFile } from '../types/typeDeclarations.interface';
  * @param filesArray array of objects with a name key
  */
 const getFullFileNames = (filesArray: ICurrentFile[]): string[] =>
-  flatMap(filesArray, currentFile => currentFile.name);
+  flatMap(filesArray, (currentFile: ICurrentFile) => currentFile.name);
 
 export {
   log,

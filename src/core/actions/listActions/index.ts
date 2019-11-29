@@ -7,21 +7,22 @@ import {
   whiteUnderline,
   checkCommunityStandardMet
 } from '../../../common/index';
+import {IArguments, IProjectInfos} from '../../../types/typeDeclarations.interface';
 
 /**
  * @description
  * List available .m files i.e required and/or optional
  *
- * @param {Object} values rguments i.e command and command options
+ * @param values arguments i.e command and command options
  */
-const listHandler = async values => {
-  const spin = spinner('Generating Requested List . . .');
-  const { required, optional } = values;
-  const all = !optional && !required;
-  const USE_DEFAULT = true;
-  await getInfos(USE_DEFAULT).then(projectInfos => {
+const listHandler = async (values: IArguments): Promise<void> => {
+  const spin: any = spinner('Generating Requested List . . .');
+  const { required, optional }: IArguments = values;
+  const all: boolean = !optional && !required;
+  const USE_DEFAULT: boolean = true;
+  await getInfos().then((projectInfos: IProjectInfos) => {
     spin.succeed('Done');
-    const { githubUsername, name } = projectInfos;
+    const { githubUsername, name }: IProjectInfos = projectInfos;
     if (required || all) {
       log(
         whiteUnderline(

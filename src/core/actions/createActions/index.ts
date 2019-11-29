@@ -27,17 +27,19 @@ import {
   getItemFromFileName,
 } from '../actionsUtils';
 
+import {ICurrentFile, ISortedFiles, IAllFiles, IArguments} from '../../../types/typeDeclarations.interface';
+
 /**
  * @description
  * return all files to be created based on the choice of the user to override the existing file
  *
- * @param {*} existingFiles
- * @param {*} noneExistingFiles
+ * @param existingFiles -  files existing in the code base
+ * @param noneExistingFiles - files not found in the codebase
  */
-const shouldOverride = async (existingFiles, noneExistingFiles) => {
-  const files = await inquirer
+const shouldOverride: any = async (existingFiles: string[], noneExistingFiles: string[]): Promise<string[]> => {
+  const files: string[] = await inquirer
     .prompt(overrideFiles(existingFiles))
-    .then(item => {
+    .then((item: any) => {
       const { override } = item;
       if (override) return noneExistingFiles.concat(existingFiles);
       return noneExistingFiles;
@@ -45,14 +47,14 @@ const shouldOverride = async (existingFiles, noneExistingFiles) => {
   return files;
 };
 
-const getValidFiles = values => {
-  const list =
-    typeof values[0] === 'object' ? getFullFileNames(values) : values;
-  const { foundFiles, filesNotFound } = queryFilesExistence(list);
-  const validFileNames = filesNotFound.filter(key =>
+const getValidFiles: any = (values : ICurrentFile[] | string[]): ISortedFiles => {
+  const list: string[] =
+    typeof values[0] === 'object' ? getFullFileNames(values as ICurrentFile[]) : values as string[];
+  const { foundFiles, filesNotFound }: ISortedFiles = queryFilesExistence(list);
+  const validFileNames: string[] | ICurrentFile[] = filesNotFound.filter((key: string) =>
     Object.keys(allFiles).includes(key));
-  const inValidFileNames = filesNotFound.filter(
-    key => !Object.keys(allFiles).includes(key)
+  const inValidFileNames: string[] | ICurrentFile[] = filesNotFound.filter(
+    (key: string) => !Object.keys(allFiles).includes(key)
   );
   return {
     validFileNames,
@@ -60,15 +62,16 @@ const getValidFiles = values => {
     foundFiles,
   };
 };
+
 /**
  * @description
- * handles files override for existimng files based on the user's choice
+ * handles files override for existing files based on the user's choice
  *
- * @param {*} values
+ * @param values - files to be overridden
  */
-const handleOverride = async values => {
-  let { validFileNames } = getValidFiles(values);
-  const { inValidFileNames, foundFiles } = getValidFiles(values);
+const handleOverride: any = async (values: string[] | ICurrentFile[]): Promise<ISortedFiles> => {
+  let { validFileNames }: ISortedFiles = getValidFiles(values);
+  const { inValidFileNames, foundFiles }: ISortedFiles = getValidFiles(values);
   if (foundFiles.length > 0) {
     validFileNames = await shouldOverride(foundFiles, validFileNames);
   }
@@ -79,28 +82,30 @@ const handleOverride = async values => {
  * @description
  * Creates Files
  *
- * @param {Boolean} USE_DEFAULT determines if questions are asked or default values are used
- * @param {Array} filesToBeCreated file names (Array of strings)
- * @param {Boolean} isEmpty determines if file to be created would be empty
+ * @param USE_DEFAULT determines if questions are asked or default values are used
+ * @param filesToBeCreated file names (Array of strings)
+ * @param isEmpty determines if file to be created would be empty
  */
-const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
-  const { validFileNames } = await handleOverride(filesToBeCreated);
+// tslint:disable-next-line: max-line-length
+const createMdFiles = async (USE_DEFAULT: boolean, filesToBeCreated: string[] | ICurrentFile[], isEmpty: boolean): Promise<void> => {
+  const { validFileNames }: ISortedFiles = await handleOverride(filesToBeCreated);
   if (validFileNames.length === 0) {
     useHelpAlert();
     process.exit(1);
   }
+  // tslint:disable: no-parameter-reassignment
   filesToBeCreated = validFileNames;
   if (validFileNames.includes('README') || validFileNames.includes('LICENSE')) USE_DEFAULT = false;
-  await getInfos(USE_DEFAULT, filesToBeCreated).then(projectInfos => {
-    filesToBeCreated.forEach(async file => {
-      let pathToTemplate;
-      const { path, templatePath } = getItemFromFileName(file);
+  await getInfos(USE_DEFAULT, filesToBeCreated).then((projectInfos: any) => {
+    filesToBeCreated.forEach(async (file: string | ICurrentFile) => {
+      let pathToTemplate: string;
+      const { path, templatePath }: ICurrentFile = getItemFromFileName(file as string);
       if (file === 'LICENSE') {
         pathToTemplate = projectInfos.licenseName.path;
       } else {
         pathToTemplate = templatePath || projectInfos.templatePath;
       }
-      const fileContent = isEmpty
+      const fileContent: string = isEmpty
         ? ''
         : await buildFileContent(projectInfos, pathToTemplate);
       writeFile(fileContent, path);
@@ -114,21 +119,23 @@ const createMdFiles = async (USE_DEFAULT, filesToBeCreated, isEmpty) => {
  * @description
  * determine which file creation mode is activated with respect to the type of files
  *
- * @param {Array} allFiles all files array
- * @param {Object} mode Question modes
- * @param {Boolean} CREATE_EMPTY_FILE determines if questions are asked or default values are used
+ * @param allItems all files array
+ * @param mode Question modes
+ * @param CREATE_EMPTY_FILE determines if questions are asked or default values are used
  */
-const processCreation = async (allItems, mode, IS_EMPTY_FILE) => {
-  const USE_DEFAULT_VALUES = true;
-  let CREATE_EMPTY_FILE = false;
-  let filesToBeCreated;
-  return inquirer.prompt(mode(getArrayOfValues(allItems))).then(answer => {
+// tslint:disable-next-line: max-line-length
+const processCreation = async (allItems: IAllFiles | ICurrentFile[], mode: any, IS_EMPTY_FILE?: boolean): Promise<any> => {
+  const USE_DEFAULT_VALUES: boolean = true;
+  let CREATE_EMPTY_FILE: boolean = false;
+  let filesToBeCreated: ICurrentFile[];
+  return inquirer.prompt(mode(getArrayOfValues(allItems as IAllFiles)))
+  .then((answer: {createFiles: boolean | string[]}) => {
     const { createFiles } = answer;
     if (createFiles === false) return process.exit(1);
-    inquirer.prompt(createEmptyFiles()).then(res => {
+    inquirer.prompt(createEmptyFiles()).then((res: any) => {
       CREATE_EMPTY_FILE = IS_EMPTY_FILE || res.empty;
       if (typeof createFiles === 'object') {
-        filesToBeCreated = Object.values(allItems).filter(file =>
+        filesToBeCreated = Object.values(allItems).filter((file: ICurrentFile) =>
           createFiles.includes(file.name));
         if (
           createFiles.includes('README.md') ||
@@ -143,7 +150,7 @@ const processCreation = async (allItems, mode, IS_EMPTY_FILE) => {
         }
       }
       if (createFiles === true) {
-        return createMdFiles(!USE_DEFAULT_VALUES, allItems, CREATE_EMPTY_FILE);
+        return createMdFiles(!USE_DEFAULT_VALUES, allItems as ICurrentFile[], CREATE_EMPTY_FILE);
       }
       return createMdFiles(USE_DEFAULT_VALUES, createFiles, CREATE_EMPTY_FILE);
     });
@@ -154,18 +161,18 @@ const processCreation = async (allItems, mode, IS_EMPTY_FILE) => {
  * @description
  * Check if files to be created is a valid .md file, exists in codebase, or doesn't exist.
  *
- * @param {Array} values Array of files names
+ * @param values Array of files names
  */
-const checkCreatableFiles = async values => {
-  const { validFileNames, inValidFileNames, foundFiles } = getValidFiles(
+const checkCreatableFiles = async (values: ICurrentFile[]): Promise<any[]>  => {
+  const { validFileNames, inValidFileNames, foundFiles }: ISortedFiles = getValidFiles(
     values
   );
-  let validFiles = validFileNames.concat(foundFiles);
+  let validFiles: ICurrentFile[] | string[] = validFileNames.concat(foundFiles);
   if (inValidFileNames.length > 0) {
     unrecognizedFileAlert(inValidFileNames);
   }
   if (validFiles.length > 0) {
-    validFiles = Object.values(allFiles).filter(item =>
+    validFiles = Object.values(allFiles).filter((item: any) =>
       validFiles.includes(item.name.split('.')[0]));
   } else {
     fileNotDetectedAlert();
@@ -177,16 +184,16 @@ const checkCreatableFiles = async values => {
 /**
  * @description creates file when command is passed with out options
  */
-const createNonSpecificFiles = () => {
+const createNonSpecificFiles = (): void => {
   processCreation(allFiles, selectFileToCreate);
 };
 
 /**
  * @description creates files when command is passed with option -F or --file
- * @param {Boolean} isEmpty determines if questions are asked or default values are used
- * @param {Array} values Files names (array of string)
+ * @param isEmpty determines if questions are asked or default values are used
+ * @param values Files names
  */
-const createSpecificFiles = async (isEmpty, values) => {
+const createSpecificFiles = async (isEmpty: boolean, values: ICurrentFile[]): Promise<void> => {
   const files = await checkCreatableFiles(values);
   processCreation(files, createFiles, isEmpty);
 };
@@ -195,9 +202,9 @@ const createSpecificFiles = async (isEmpty, values) => {
  * @description
  * Creates files when command is passed with option -R or --required
  *
- * @param {Boolean} isEmpty determines if questions are asked or default values are used
+ * @param isEmpty determines if questions are asked or default values are used
  */
-const createRequiredFiles = isEmpty => {
+const createRequiredFiles = (isEmpty: boolean): void => {
   processCreation(requiredFiles, createRequired, isEmpty);
 };
 
@@ -205,9 +212,9 @@ const createRequiredFiles = isEmpty => {
  * @description
  * Creates files when command is passed with option -O or --optional
  *
- * @param {Boolean} isEmpty determines if questions are asked or default values are used
+ * @param isEmpty determines if questions are asked or default values are used
  */
-const createOptionalFiles = isEmpty => {
+const createOptionalFiles = (isEmpty: boolean): void => {
   processCreation(optionalFiles, createOptional, isEmpty);
 };
 
@@ -215,9 +222,9 @@ const createOptionalFiles = isEmpty => {
  * @description
  * handles file creation
  *
- * @param {Array} values arguments i.e command, payload and command options
+ * @param  values arguments i.e command, payload and command options
  */
-const createHandler = values => {
+const createHandler = (values: IArguments): any => {
   const {
     file,
     required,
@@ -228,7 +235,7 @@ const createHandler = values => {
   if (file) return createSpecificFiles(isEmpty, resp);
   if (required) return createRequiredFiles(isEmpty);
   if (optional) return createOptionalFiles(isEmpty);
-  createNonSpecificFiles(isEmpty);
+  createNonSpecificFiles();
 };
 
 export default createHandler;

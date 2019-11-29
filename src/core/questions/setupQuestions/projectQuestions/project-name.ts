@@ -1,4 +1,6 @@
-const projectName = projectInfos => ({
+import { IQuestionResponse, IProjectInfos } from "../../../../types/typeDeclarations.interface";
+
+const projectName = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'input',
   message: '  Project name',
   name: 'projectName',

@@ -1,6 +1,7 @@
 import path from 'path';
+import { IQuestionResponse } from '../../../../types/typeDeclarations.interface';
 
-const getResolvedPath = relativePath => path.resolve(__dirname, relativePath);
+const getResolvedPath = (relativePath: string) => path.resolve(__dirname, relativePath);
 
 const MIT = getResolvedPath(
   '../../../../templates/files/required/template-MIT-LICENSE.md'
@@ -18,7 +19,7 @@ const MOZILLA = getResolvedPath(
   '../../../../templates/files/required/template-MOZILLA-LICENSE.md'
 );
 
-const licenseName = () => ({
+const licenseName = (): IQuestionResponse => ({
   type: 'list',
   message: '  License name',
   name: 'licenseName',

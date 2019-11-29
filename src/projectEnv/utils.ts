@@ -96,7 +96,7 @@ const getDefaultAnswers = questions =>
  * @param input social network username input
  * @returns {*} input without the prefix
  */
-const cleanSocialNetworkUsername = input => input.replace(/^@/, '');
+const cleanSocialNetworkUsername = (input: string): string => input.replace(/^@/, '');
 
 export {
   getPackageJson,

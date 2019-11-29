@@ -61,6 +61,7 @@ const readmeQuestions = {
   askProjectPrerequisites,
   askContributing,
   askUsage,
+  askAuthorEmail
 };
 
 export {

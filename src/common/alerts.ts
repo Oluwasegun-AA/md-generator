@@ -102,7 +102,7 @@ const spinner: any = (text: string): any => ora(text).start();
  *
  * @param filesArray Array of Strings
  */
-const castElementsToFormatedString: any = (filesArray: string[]) => {
+const castElementsToFormatedString: any = (filesArray: string[]): string => {
   let files:string = '';
   filesArray.forEach(
     (file: string):string => (files += `${cyan(pad('-', 2))} ${dimWhite(`${file}`)}\n`)

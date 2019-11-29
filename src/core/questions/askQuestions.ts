@@ -8,9 +8,10 @@ import {
 } from './setupQuestions/index';
 import * as utils from '../../projectEnv/utils';
 import getProjectInfos from '../../projectEnv/projectInfo';
+import { IProjectInfos, IQuestions } from '../../types/typeDeclarations.interface';
 
-const find = (files, item) => files.find(element => element === item);
-const getAppropriateQuestion = files => {
+const find = (files: string[], item: string): string => files.find((element: string) => element === item);
+const getAppropriateQuestion = (files: string[]): IQuestions => {
   const readmeQstn = find(files, 'README') ? readmeQuestions : null;
   const licenseQstn = find(files, 'LICENSE') ? licenseQuestions : null;
   const codeOfConductQstn = find(files, 'CODE_OF_CONDUCT')
@@ -21,29 +22,28 @@ const getAppropriateQuestion = files => {
 
 /**
  * @description Ask user questions on the terminal and returns selected answers
- * @param {Object} projectInfos
- * @param {Boolean} useDefaultAnswers
+ * @param projectInfos project information retrieved from the codebase / supplied by user
+ * @param useDefaultAnswers boolean
  */
 
 const askQuestions = async (
-  projectInfos,
-  useDefaultAnswers,
-  filesToBeCreated
-) => {
+  projectInfos: IProjectInfos,
+  useDefaultAnswers: boolean,
+  filesToBeCreated: string[]
+): Promise<IProjectInfos> => {
   const filteredQuestions = getAppropriateQuestion(filesToBeCreated);
-  const getQuestions = questions =>
-    flatMap(Object.values(questions), questionBuilder =>
-      questionBuilder(projectInfos));
-  const ask = async questions => {
+  const getQuestions = (questions: IQuestions) =>
+    flatMap(Object.values(questions), (questionBuilder: any) => questionBuilder(projectInfos));
+  const ask = async (questions: IQuestions) => {
     if (questions) {
       const data = await inquirer.prompt(questions);
       return data;
     }
     return utils.getDefaultAnswers(getQuestions(readmeQuestions));
   };
-  const question = filteredQuestions ? getQuestions(filteredQuestions) : null;
+  const question: any = filteredQuestions ? getQuestions(filteredQuestions) : null;
 
-  const answersContext = useDefaultAnswers
+  const answersContext: IProjectInfos = useDefaultAnswers
     ? utils.getDefaultAnswers(getQuestions(readmeQuestions))
     : await ask(question);
   return {
@@ -60,13 +60,10 @@ const askQuestions = async (
  * 1) Gather project infos
  * 2) Ask user questions
  * 3) return all answers
- *
- * @param {Object} args
- *@returns {Object} answersContext
  */
-const getInfos = async (useDefaultAnswers, filesToBeCreated) => {
-  const projectInformations = await getProjectInfos();
-  const answersContext = await askQuestions(
+const getInfos = async (useDefaultAnswers: boolean, filesToBeCreated: string[]) : Promise<IProjectInfos> => {
+  const projectInformations: IProjectInfos = await getProjectInfos();
+  const answersContext: IProjectInfos = await askQuestions(
     projectInformations,
     useDefaultAnswers,
     filesToBeCreated

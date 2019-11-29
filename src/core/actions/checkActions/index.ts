@@ -15,14 +15,16 @@ import {
   optionalFiles
 } from '../actionsUtils';
 
+import { IOptionalFiles, IRequiredFiles, IProjectInfos } from '../../../types/typeDeclarations.interface';
+
 /**
  * @description
  * Check if .md file exists in the codebase
  *
- * @param {*} file file name
+ * @param file file name
  */
-const check = file => {
-  Object.keys(file).forEach(key => {
+const check = (file: IOptionalFiles| IRequiredFiles): void => {
+  Object.keys(file).forEach((key: string): any => {
     if (!file[key].exists) {
       return log(
         pad(red(' X '), 12),
@@ -42,14 +44,14 @@ const check = file => {
  * @description
  * List all required/optional .md files present in the codebase
  *
- * @param {*} values arguments i.e command and command options
+ * @param values arguments i.e command and command options
  */
-const checkHandler = async values => {
-  const spin = spinner('Checking for all Required / Optional .md files . . .');
-  const { required, optional } = values;
-  const all = !optional && !required;
-  const USE_DEFAULT = true;
-  await getInfos(USE_DEFAULT).then(projectInfos => {
+const checkHandler = async (values: Object): Promise<void> => {
+  const spin: any = spinner('Checking for all Required / Optional .md files . . .');
+  const { required, optional }: any = values;
+  const all: boolean = !optional && !required;
+  const USE_DEFAULT: boolean = true;
+  await getInfos().then((projectInfos: IProjectInfos) => {
     spin.succeed('Done');
     const { githubUsername, name } = projectInfos;
     if (required || all) {

@@ -1,32 +1,33 @@
 import fs from 'fs';
 import path from 'path';
 import { fileNotDetectedAlert } from '../../common/index';
+import { IAllFiles, IRequiredFiles, IOptionalFiles, ISortedFiles } from '../../types/typeDeclarations.interface';
 
 /**
  * @description
  * gets the absolute path a file
  *
- * @param {String} relativePath relative path to the file
+ * @param relativePath relative path to the file
  */
-const getResolvedPath = relativePath => path.resolve(__dirname, relativePath);
+const getResolvedPath = (relativePath: string) => path.resolve(__dirname, relativePath);
 
 /**
  * @description
  * Returns the activated command line option
  *
- * @param {Array} args all arguments available
- * @param {String} option option activated
+ * @param args all arguments available
+ * @param option option activated
  */
-const getArgs = (args, option) => args.find(item => item === option);
+const getArgs = (args: [], option:string) => args.find((item: string) => item === option);
 
 /**
  * @description
  * returns an Object showing which option has been activated and the payload supplied
  *
- * @param {*} args all arguments available
- * @param {*} resp option activated
+ * @param args all arguments available
+ * @param resp option activated
  */
-const getValues = (args, resp) => ({
+const getValues = (args: [], resp: any) => ({
   file: getArgs(args, 'file'),
   required: getArgs(args, 'required'),
   optional: getArgs(args, 'optional'),
@@ -39,12 +40,12 @@ const getValues = (args, resp) => ({
  * @description
  * Checks if file exists in the code base
  *
- * @param {String} relativePath relative path to file
+ * @param relativePath relative path to file
  */
-const checkFileExist = relativePath => !!fs.existsSync(relativePath);
+const checkFileExist = (relativePath: string) => !!fs.existsSync(relativePath);
 
 // required files Objects and their details
-const requiredFiles = {
+const requiredFiles: IRequiredFiles = {
   README: {
     name: 'README.md',
     exists: checkFileExist('./README.md'),
@@ -90,7 +91,7 @@ const requiredFiles = {
 };
 
 // optional files Objects and their details
-const optionalFiles = {
+const optionalFiles: IOptionalFiles = {
   CHANGELOG: {
     name: 'CHANGELOG.md',
     exists: checkFileExist('./CHANGELOG.md'),
@@ -142,22 +143,22 @@ const optionalFiles = {
 };
 
 // all files Objects and their details
-const allFiles = { ...requiredFiles, ...optionalFiles };
+const allFiles: IAllFiles = { ...requiredFiles, ...optionalFiles };
 
 /**
  * @description
  * checks if file exists in the code base
 
- * @param {Array} data array of files names
- * @param {Object} allMdFiles Object containing all files available
+ * @param data array of files names
+ * @param allMdFiles Object containing all files available
  */
-const checkFilesExist = (data, allMdFiles) => {
+const checkFilesExist = (data: string[], allMdFiles: IAllFiles): ISortedFiles => {
   const foundFiles = [];
   const filesNotFound = [];
-  data.forEach(item => {
-    const newItem = item.split('.')[0].toUpperCase();
-    const file = Object.keys(allMdFiles).find(
-      key => key === newItem && allMdFiles[newItem].exists
+  data.forEach((item: string) => {
+    const newItem: string = item.split('.')[0].toUpperCase();
+    const file: string = Object.keys(allMdFiles).find(
+      (key: string) => key === newItem && allMdFiles[newItem].exists
     );
     if (file) {
       foundFiles.push(file);
@@ -172,11 +173,11 @@ const checkFilesExist = (data, allMdFiles) => {
  * @description
  * remove the .md attribute of supplied in the terminal with the file name
  *
- * @param {Array} item Array of file names supplied
+ * @param item Array of file names supplied
  */
-const removeDotMdAttribute = item => {
+const removeDotMdAttribute = (item: string[]) => {
   const newItem = [];
-  item.forEach(key => newItem.push(key.split('.')[0].toUpperCase()));
+  item.forEach((key: string) => newItem.push(key.split('.')[0].toUpperCase()));
   return newItem;
 };
 
@@ -184,20 +185,20 @@ const removeDotMdAttribute = item => {
  * @description
  * check if file name supplied is available in the npm module
  *
- * @param {Array} files Array of all file names supplied
+ * @param  files Array of all file names supplied
  */
-const allExistingFiles = (files = allFiles) =>
-  Object.values(files).filter(item => !!item.exists);
+const allExistingFiles = (files: IAllFiles = allFiles) =>
+  Object.values(files).filter((item: any) => !!item.exists);
 
-const getArrayOfValues = (files = allFiles) => Object.values(files);
+const getArrayOfValues = (files: IAllFiles = allFiles) => Object.values(files);
 
 /**
  * @description
  * validate files names with respect to the files supported by the npm module
  *
- * @param {Array} values Array of all file names supplied
+ * @param values Array of all file names supplied
  */
-const queryFilesExistence = values => {
+const queryFilesExistence = (values: any): ISortedFiles => {
   const args = !values.parent ? values.join(' ') : values.parent.rawArgs[4];
   if ((!args || args.length === 0) && values.parent) {
     fileNotDetectedAlert();
@@ -207,8 +208,8 @@ const queryFilesExistence = values => {
   return checkFilesExist(data, allFiles);
 };
 
-const getItemFromFileName = fileName =>
-  Object.values(allFiles).find(value => value.name.toUpperCase().includes(fileName));
+const getItemFromFileName = (fileName: string) =>
+  Object.values(allFiles).find((value: any) => value.name.toUpperCase().includes(fileName));
 
 export {
   allFiles,

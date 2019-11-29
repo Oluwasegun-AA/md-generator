@@ -2,14 +2,15 @@ import {
   castElementsToFormatedString,
   getFullFileNames,
 } from '../../../../common/index';
+import { ICurrentFile, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description
  * Question to validate files creation
  *
- * @param {Array} files files names array
+ * @param files files names array
  */
-const createFiles = files => {
+const createFiles = (files: ICurrentFile[]): IQuestionResponse => {
   const filesAsString = castElementsToFormatedString(getFullFileNames(files));
   return {
     type: 'confirm',
@@ -23,9 +24,9 @@ const createFiles = files => {
  * @description
  * create files Question
  *
- * @param {Array} files files names array
+ * @param files files names array
  */
-const selectFileToCreate = files => ({
+const selectFileToCreate = (files: ICurrentFile[]): IQuestionResponse => ({
   type: 'checkbox',
   name: 'createFiles',
   message: 'Which of the following .md files would you like to create?\n',
@@ -36,9 +37,9 @@ const selectFileToCreate = files => ({
  * @description
  * create files Question
  *
- * @param {Array} files files names array
+ * @param files files names array
  */
-const createEmptyFiles = () => ({
+const createEmptyFiles = (): IQuestionResponse => ({
   type: 'confirm',
   name: 'empty',
   message: 'Would you like the created file(s) to be empty?\n',
@@ -49,9 +50,9 @@ const createEmptyFiles = () => ({
  * @description
  * create required files Question
  *
- * @param {Array} files required files names array
+ * @param files required files names array
  */
-const createRequired = files => ({
+const createRequired = (files: ICurrentFile[]): IQuestionResponse => ({
   type: 'checkbox',
   name: 'createFiles',
   message:
@@ -63,9 +64,9 @@ const createRequired = files => ({
  * @description
  * create optional files Question
  *
- * @param {Array} files optional files names array
+ * @param files optional files names array
  */
-const createOptional = files => ({
+const createOptional = (files: ICurrentFile[]) => ({
   type: 'checkbox',
   name: 'createFiles',
   message:
@@ -77,9 +78,9 @@ const createOptional = files => ({
  * @description
  * create optional files Question
  *
- * @param {Array} files optional files names array
+ * @param files optional files names array
  */
-const overrideFiles = files => {
+const overrideFiles = (files: string[]): IQuestionResponse => {
   const filesAsString = castElementsToFormatedString(files);
   return {
     type: 'confirm',

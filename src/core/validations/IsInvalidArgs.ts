@@ -2,30 +2,29 @@
  * @description
  * converts array to string
  *
- * @param {Array} data array of information
+ * @param data array of information
  */
-const str = data => JSON.stringify(data);
+const str = (data: string[] | []) => JSON.stringify(data);
 
 /**
  * @description
  * validates  strict equality between tow items
- * @param {Array} args
- * @param {Array} validOptions
+ * @param args raw arguments
+ * @param validOptions valid options
  */
-const isValidOption = (args, validOptions) =>
-  !validOptions.every(option => str(args) !== str(option));
+const isValidOption = (args: string[], validOptions: string[][]) =>
+  !validOptions.every((option: string[] | []) => str(args) !== str(option));
 
 /**
- * @class
  * checks the validity of supplied arguments
  */
 class IsValidArgs {
-  static list(args) {
-    const validArgs = [['required'], ['optional'], []];
+  static list(args: string[]): boolean {
+    const validArgs: string[][] = [['required'], ['optional'], []];
     return isValidOption(args, validArgs);
   }
 
-  static create(args) {
+  static create(args: string[]): boolean {
     const validArgs = [
       ['required', 'empty'],
       ['optional', 'empty'],
@@ -40,12 +39,12 @@ class IsValidArgs {
     return isValidOption(args, validArgs);
   }
 
-  static check(args) {
+  static check(args: string[]): boolean {
     const validArgs = [['required'], ['optional'], []];
     return isValidOption(args, validArgs);
   }
 
-  static remove(args) {
+  static remove(args: string[]): boolean {
     const validArgs = [
       ['all'],
       ['file'],
