@@ -29,7 +29,7 @@ const log = (data1: any, data2: any = '', data3: any = ''): void => {
 };
 
 // configuration for boxen
-const BOX_CONFIG: IBOX_CONFIG = {
+const BOX_CONFIG: IBOX_CONFIG| any = {
   padding: 1,
   margin: { top: 2, bottom: 2 },
   borderColor: 'cyan',
@@ -40,7 +40,7 @@ const BOX_CONFIG: IBOX_CONFIG = {
 /**
  * @description
  * Encapsulates Items logged in the console within a styled box
- * @param {String} text text to be printed on the terminal
+ * @param text text to be printed on the terminal
  */
 const useBox: any = (text: string): void  => {
   log(boxen(text, BOX_CONFIG));
@@ -50,14 +50,14 @@ const useBox: any = (text: string): void  => {
  * @description
  * Prints Success message after file creation
  */
-const showEndMessage: any = () =>
+const showEndMessage: any = (): void  =>
   useBox('File(s) Created Successfully\nThank you for using md-generator');
 
 /**
  * @description
  * Prints the custom help to the terminal
  */
-const customHelp: any = () => {
+const customHelp: any = (): void  => {
   log('\nCommand-Options :');
   log('Usage: md-generator [commands] [command-options]\n');
   log(pad('-A, --all', 26), 'Operate on all required/optional .md files');
@@ -71,9 +71,9 @@ const customHelp: any = () => {
  * @description
  * prints to the wrong Command Alert to the terminal
  *
- * @param {String} command the command parsed
+ * @param command the command parsed
  */
-const wrongCommandAlert = (command: any) =>
+const wrongCommandAlert: any = (command: string): void  =>
   log(
     `Command "${command}" Does not Exist,\nPlease use --help to get the available commands\n`
   );
@@ -92,20 +92,20 @@ const noCommandAlert: any = (): void => {
  * @description
  * Shows spinner on the terminal
  *
- * @param {String} text text that accompany the spinner
+ * @param text text that accompany the spinner
  */
-const spinner = text => ora(text).start();
+const spinner: any = (text: string): any => ora(text).start();
 
 /**
  * @description
  * Takes array of strings and returns a formatted list with the array elements
  *
- * @param {Array} filesArray Array of Strings
+ * @param filesArray Array of Strings
  */
 const castElementsToFormatedString: any = (filesArray: string[]) => {
-  let files = '';
+  let files:string = '';
   filesArray.forEach(
-    file => (files += `${cyan(pad('-', 2))} ${dimWhite(`${file}`)}\n`)
+    (file: string):string => (files += `${cyan(pad('-', 2))} ${dimWhite(`${file}`)}\n`)
   );
   return files;
 };
@@ -114,10 +114,10 @@ const castElementsToFormatedString: any = (filesArray: string[]) => {
  * @description
  * logs link to github's community page if username and project name is available
  *
- * @param {*} authorGithubUsername GitHub username
- * @param {*} projectName project name
+ * @param authorGithubUsername GitHub username
+ * @param projectName project name
  */
-const checkCommunityStandardMet: any = (authorGithubUsername: string, projectName: string) => {
+const checkCommunityStandardMet: any = (authorGithubUsername: string, projectName: string): void  => {
   if (authorGithubUsername && projectName) {
     log(
       `You can check community standards met via https://github.com/${authorGithubUsername}/${projectName}/community \n`
@@ -132,7 +132,7 @@ const checkCommunityStandardMet: any = (authorGithubUsername: string, projectNam
 /**
  * alert showing no file names supplied to the --files option
  */
-const fileNotDetectedAlert: any = () => {
+const fileNotDetectedAlert: any = (): void  => {
   log(
     'Error: File names not detected, please supply file names i.e --file "README.md CONTRIBUTING.md" \n'
   );
@@ -140,9 +140,9 @@ const fileNotDetectedAlert: any = () => {
 
 /**
  * Alert showing list of unsupported file names
- * @param {Array} inValidFileNamesArray
+ * @param inValidFileNamesArray invalid file name supplied
  */
-const unrecognizedFileAlert = (inValidFileNamesArray: string[]): void => {
+const unrecognizedFileAlert: any = (inValidFileNamesArray: string[]): void => {
   log(
     `The following file name(s) is/are not recognized as one of the required/optional .md files\n${castElementsToFormatedString(
       inValidFileNamesArray
@@ -153,7 +153,7 @@ const unrecognizedFileAlert = (inValidFileNamesArray: string[]): void => {
 /**
  * Alert directing users to the --help command
  */
-const useHelpAlert = () =>
+const useHelpAlert: any = (): void  =>
   log('File found, please user --help to check all supported md Files\n');
 
 export {

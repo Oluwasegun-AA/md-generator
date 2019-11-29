@@ -21,15 +21,16 @@ import {
   castElementsToFormatedString,
 } from './alerts';
 
+import { ICurrentFile } from '../types/typeDeclarations.interface';
+
 /**
  * @description
  * Takes an array of objects and return an array of the value in the name key of each object
  *
- * @param {Array} filesArray array of objects with a name key
+ * @param filesArray array of objects with a name key
  */
-const getFullFileNames = filesArray =>
+const getFullFileNames = (filesArray: ICurrentFile[]): string[] =>
   flatMap(filesArray, currentFile => currentFile.name);
-
 
 export {
   log,

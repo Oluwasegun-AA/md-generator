@@ -5,4 +5,10 @@ export interface IBOX_CONFIG {
   borderColor: string;
   align: string;
   borderStyle: string;
+};
+
+export interface ICurrentFile {
+  name: string;
+  exists: () => '';
+  path: string;
 }
