@@ -6,31 +6,30 @@ import { promisify } from 'util';
 import { dirname } from 'path';
 import mkdirp from 'mkdirp';
 import { log } from '../../common/index';
+import { IProjectInfos } from '../../types/typeDeclarations.interface';
 
 /**
  * @description writes file and makes parent directories if required
  *
- * @param {String} path
- * @param {String} text
+ * @param path path to file
+ * @param text content to be written
  */
-const writeFile = (text, path) => {
+const writeFile = (text: string, path: string): void => {
   const errMsg = () => log(`${path.split('/').pop()} creation unsuccessful`);
-  return mkdirp(dirname(path), err => {
-    if (err) errMsg();
-    else {
-      fs.writeFile(path, unescape(text), e => {
-        if (e) errMsg();
-      });
-    }
+  return mkdirp(dirname(path), (err: any) => {
+    if (err) return errMsg();
+    fs.writeFile(path, unescape(text), (e: any) => {
+      if (e) errMsg();
+    });
   });
 };
 
 /**
  * @description Get file template content from the given templatePath
  *
- * @param {string} templatePath
+ * @param templatePath path to template
  */
-const getFileTemplate = async templatePath => {
+const getFileTemplate = async (templatePath: string): Promise<string> => {
   try {
     const template = await promisify(fs.readFile)(templatePath, 'utf8');
     return template;
@@ -41,12 +40,12 @@ const getFileTemplate = async templatePath => {
 
 /**
  * @description create file content with the given context and templatePath
- * @param {Object} context
- * @param {string} templatePath
+ * @param context Project information (project / user information)
+ * @param templatePath path to template
  */
-const buildFileContent = async (context, templatePath) => {
-  const currentYear = getYear(new Date());
-  const template = await getFileTemplate(templatePath);
+const buildFileContent = async (context: IProjectInfos, templatePath: string) => {
+  const currentYear: number = getYear(new Date());
+  const template: string = await getFileTemplate(templatePath);
 
   return ejs.render(template, {
     filename: templatePath,
