@@ -7,7 +7,7 @@ import { ICurrentFile, IQuestionResponse } from '../../../../types/typeDeclarati
  *
  * @param files optional files names array
  */
-const removeFiles = (files: ICurrentFile[]): IQuestionResponse => ({
+const removeFiles = (files: ICurrentFile[]): any => ({
   type: 'checkbox',
   name: 'removeFiles',
   message: 'Which of the following files(s) would you like to delete?\n',
@@ -20,7 +20,7 @@ const removeFiles = (files: ICurrentFile[]): IQuestionResponse => ({
  *
  * @param files optional files names array
  */
-const validateRemove = (files: ICurrentFile[]): IQuestionResponse => ({
+const validateRemove = (files: ICurrentFile[]): any => ({
   type: 'confirm',
   name: 'removeFiles',
   message: `Are you sure you would like to delete the following .md file(s)? \n\n${files}`,

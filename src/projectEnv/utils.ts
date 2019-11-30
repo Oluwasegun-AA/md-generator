@@ -15,7 +15,7 @@ const getPackageJsonName = (packageJson: any = {}): string => packageJson.name |
  * @description Get git repository name
  * @param cwd process.cwd()
  */
-const getGitRepositoryName = (cwd: any): string => {
+const getGitRepositoryName = (cwd: any): any => {
   try {
     return getRepoName.sync({ cwd });
   } catch (err) {
@@ -38,7 +38,7 @@ const getProjectName = (packageJson: any): string => {
 /**
  * @description Get package.json content
  */
-const getPackageJson = async (): Promise<object> => {
+const getPackageJson = async (): Promise<any> => {
   try {
     return await loadJsonFile('package.json');
   } catch (err) {
@@ -85,7 +85,7 @@ const getDefaultAnswer = (question: IQuestionResponse, answersContext: any): any
  */
 const getDefaultAnswers = (questions: any): any =>
   questions.reduce(
-    (answersContext, question) => ({
+    (answersContext: any, question: any) => ({
       ...answersContext,
       [question.name]: getDefaultAnswer(question, answersContext),
     }),

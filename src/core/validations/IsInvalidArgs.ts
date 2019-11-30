@@ -19,12 +19,12 @@ const isValidOption = (args: string[], validOptions: string[][]) =>
  * checks the validity of supplied arguments
  */
 class IsValidArgs {
-  static list(args: string[]): boolean {
+  public static list: any = (args: string[]): boolean => {
     const validArgs: string[][] = [['required'], ['optional'], []];
     return isValidOption(args, validArgs);
   }
 
-  static create(args: string[]): boolean {
+  public static create: any = (args: string[]): boolean => {
     const validArgs = [
       ['required', 'empty'],
       ['optional', 'empty'],
@@ -39,12 +39,12 @@ class IsValidArgs {
     return isValidOption(args, validArgs);
   }
 
-  static check(args: string[]): boolean {
+  public static check: any = (args: string[]): boolean => {
     const validArgs = [['required'], ['optional'], []];
     return isValidOption(args, validArgs);
   }
 
-  static remove(args: string[]): boolean {
+  public static remove: any = (args: string[]): boolean => {
     const validArgs = [
       ['all'],
       ['file'],

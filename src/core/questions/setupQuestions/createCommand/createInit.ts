@@ -39,7 +39,7 @@ const selectFileToCreate = (files: ICurrentFile[]): IQuestionResponse => ({
  *
  * @param files files names array
  */
-const createEmptyFiles = (): IQuestionResponse => ({
+const createEmptyFiles = (): any => ({
   type: 'confirm',
   name: 'empty',
   message: 'Would you like the created file(s) to be empty?\n',
@@ -80,7 +80,7 @@ const createOptional = (files: ICurrentFile[]) => ({
  *
  * @param files optional files names array
  */
-const overrideFiles = (files: string[]): IQuestionResponse => {
+const overrideFiles = (files: string[]): any => {
   const filesAsString = castElementsToFormatedString(files);
   return {
     type: 'confirm',

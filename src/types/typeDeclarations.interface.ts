@@ -1,4 +1,3 @@
-
 export interface IBOX_CONFIG {
   padding: number;
   margin: { top: number; bottom: number };
@@ -15,27 +14,27 @@ export interface ICurrentFile {
 };
 
 export interface IProjectInfos {
-  name: string;
-  description: string;
-  version: string;
-  author: string;
-  homepage: string;
-  repositoryUrl: string;
-  contributingUrl: string;
-  githubUsername: string;
-  engines: string;
+  name: string | any;
+  description: string | any;
+  version: string | any;
+  author: string | any;
+  homepage: string | any;
+  repositoryUrl: string | any;
+  contributingUrl: string | any;
+  githubUsername: string | any;
+  engines: string | any;
   licenseName: {
-    name: string;
+    name: string | any;
   };
-  licenseUrl: string;
-  documentationUrl: string;
-  isGithubRepo: boolean;
-  usage: string;
-  testCommand: string;
-  isGithubRepos?: boolean;
-  projectName?: string;
-  projectPrerequisites?: any;
-  isProjectOnNpm?: any;
+  licenseUrl: string | any;
+  documentationUrl: string | any;
+  isGithubRepo: boolean | any;
+  usage: string | any;
+  testCommand: string | any;
+  isGithubRepos?: boolean | any;
+  projectName?: string | any;
+  projectPrerequisites?: any | any;
+  isProjectOnNpm?: any | any;
 };
 
 export interface IRequiredFiles {
@@ -119,10 +118,10 @@ export interface IAllFiles extends IRequiredFiles, IOptionalFiles{
 };
 
 export interface ISortedFiles {
-  validFileNames?: string[];
-  inValidFileNames?: string[];
-  foundFiles?: string[];
-  filesNotFound?: string[];
+  validFileNames: string[];
+  inValidFileNames: string[];
+  foundFiles: string[];
+  filesNotFound: string[];
 };
 
 export interface IArguments {

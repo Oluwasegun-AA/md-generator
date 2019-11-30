@@ -15,7 +15,7 @@ import {
   optionalFiles
 } from '../actionsUtils';
 
-import { IOptionalFiles, IRequiredFiles, IProjectInfos } from '../../../types/typeDeclarations.interface';
+import {IProjectInfos } from '../../../types/typeDeclarations.interface';
 
 /**
  * @description
@@ -23,7 +23,7 @@ import { IOptionalFiles, IRequiredFiles, IProjectInfos } from '../../../types/ty
  *
  * @param file file name
  */
-const check = (file: IOptionalFiles| IRequiredFiles): void => {
+const check = (file: any): void => {
   Object.keys(file).forEach((key: string): any => {
     if (!file[key].exists) {
       return log(
@@ -50,7 +50,7 @@ const checkHandler = async (values: Object): Promise<void> => {
   const spin: any = spinner('Checking for all Required / Optional .md files . . .');
   const { required, optional }: any = values;
   const all: boolean = !optional && !required;
-  const USE_DEFAULT: boolean = true;
+  // const USE_DEFAULT: boolean = true;
   await getInfos().then((projectInfos: IProjectInfos) => {
     spin.succeed('Done');
     const { githubUsername, name } = projectInfos;

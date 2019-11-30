@@ -9,22 +9,22 @@ import { ICurrentFile } from '../../types/typeDeclarations.interface';
  * Handle all actions with respect to the supplied arguments
  */
 class Actions {
-  static list(args: any, resp: ICurrentFile): void {
+  public static list: any = (args: any, resp: ICurrentFile): void => {
     const values = getValues(args, resp);
     listHandler(values);
   }
 
-  static create(args: any, resp: ICurrentFile): void {
+  public static create: any = (args: any, resp: ICurrentFile): void => {
     const values = getValues(args, resp);
     createHandler(values);
   }
 
-  static check(args: any, resp: ICurrentFile): void {
+  public static check: any = (args: any, resp: ICurrentFile): void => {
     const values = getValues(args, resp);
     checkHandler(values);
   }
 
-  static remove(args: any, resp: ICurrentFile): void {
+  public static remove: any = (args: any, resp: ICurrentFile): void => {
     const values = getValues(args, resp);
     removeHandler(values);
   }

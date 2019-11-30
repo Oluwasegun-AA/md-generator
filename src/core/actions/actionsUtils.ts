@@ -152,12 +152,12 @@ const allFiles: IAllFiles = { ...requiredFiles, ...optionalFiles };
  * @param data array of files names
  * @param allMdFiles Object containing all files available
  */
-const checkFilesExist = (data: string[], allMdFiles: IAllFiles): ISortedFiles => {
-  const foundFiles = [];
-  const filesNotFound = [];
+const checkFilesExist = (data: string[], allMdFiles: any): any => {
+  const foundFiles: any[] = [];
+  const filesNotFound: any[] = [];
   data.forEach((item: string) => {
     const newItem: string = item.split('.')[0].toUpperCase();
-    const file: string = Object.keys(allMdFiles).find(
+    const file: any = Object.keys(allMdFiles).find(
       (key: string) => key === newItem && allMdFiles[newItem].exists
     );
     if (file) {
@@ -176,7 +176,7 @@ const checkFilesExist = (data: string[], allMdFiles: IAllFiles): ISortedFiles =>
  * @param item Array of file names supplied
  */
 const removeDotMdAttribute = (item: string[]) => {
-  const newItem = [];
+  const newItem: any[] = [];
   item.forEach((key: string) => newItem.push(key.split('.')[0].toUpperCase()));
   return newItem;
 };

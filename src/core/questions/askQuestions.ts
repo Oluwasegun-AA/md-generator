@@ -10,8 +10,8 @@ import * as utils from '../../projectEnv/utils';
 import getProjectInfos from '../../projectEnv/projectInfo';
 import { IProjectInfos, IQuestions } from '../../types/typeDeclarations.interface';
 
-const find = (files: string[], item: string): string => files.find((element: string) => element === item);
-const getAppropriateQuestion = (files: string[]): IQuestions => {
+const find = (files: string[], item: string): any => files.find((element: string) => element === item);
+const getAppropriateQuestion = (files: string[]): IQuestions| null => {
   const readmeQstn = find(files, 'README') ? readmeQuestions : null;
   const licenseQstn = find(files, 'LICENSE') ? licenseQuestions : null;
   const codeOfConductQstn = find(files, 'CODE_OF_CONDUCT')
@@ -32,9 +32,9 @@ const askQuestions = async (
   filesToBeCreated: string[]
 ): Promise<IProjectInfos> => {
   const filteredQuestions = getAppropriateQuestion(filesToBeCreated);
-  const getQuestions = (questions: IQuestions) =>
+  const getQuestions = (questions: any) =>
     flatMap(Object.values(questions), (questionBuilder: any) => questionBuilder(projectInfos));
-  const ask = async (questions: IQuestions) => {
+  const ask = async (questions: any) => {
     if (questions) {
       const data = await inquirer.prompt(questions);
       return data;

@@ -10,17 +10,17 @@ const filterValidArgs = (args: any): any =>
 
 const validateOptions = (values: any): any => {
   const command = values._name;
-  const args = ExtractOptions[command](values);
-  const activeArgs = filterValidArgs(args);
-  if (!IsValidArgs[command](activeArgs)) {
+  const args: any = ExtractOptions[command as keyof typeof ExtractOptions](values);
+  const activeArgs: any = filterValidArgs(args);
+  if (!IsValidArgs[command as keyof typeof IsValidArgs](activeArgs)) {
     showHelp('Invalid argument combination\n');
   }
   return { activeArgs, values };
 };
 
 const handleCommand = (argValues: any): void => {
-  const command = argValues._name;
-  const { activeArgs, values } = validateOptions(argValues);
+  const command: keyof typeof Actions = argValues._name;
+  const { activeArgs, values }: any = validateOptions(argValues);
   Actions[command](activeArgs, values);
 };
 

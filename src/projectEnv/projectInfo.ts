@@ -95,7 +95,7 @@ const getReadmeUrlFromGithubRepositoryUrl = (repositoryUrl: string): string =>
  * @param packageJson package.json file
  * @returns authorName
  */
-const getAuthorName = (packageJson: any): string => {
+const getAuthorName = (packageJson: any): any => {
   if (has(packageJson, 'author.name')) {
     return get(packageJson, 'author.name', undefined);
   }

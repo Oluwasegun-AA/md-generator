@@ -34,19 +34,19 @@ const showHelpOnError = (type: any): void => {
  * Extract all needed options in each mode
  */
 class ExtractOptions {
-  static list(args: any): IArguments {
-    const { optional, required }: IArguments = args;
+  public static list: any = (args: any): IArguments => {
+    const { optional, required }: any = args;
     return { optional, required };
   }
 
-  static create(args: any): IArguments {
+  public static create: any = (args: any): IArguments => {
     const {
       optional,
       required,
       all,
       file,
       empty
-    }: IArguments = args;
+    }: any = args;
     return {
       optional,
       required,
@@ -56,18 +56,18 @@ class ExtractOptions {
     };
   }
 
-  static check(args): IArguments {
-    const { optional, required }: IArguments = args;
+  public static check = (args: any): IArguments => {
+    const { optional, required }: any = args;
     return { optional, required };
   }
 
-  static remove(args): IArguments {
+  public static remove = (args: any): IArguments => {
     const {
       all,
       file,
       required,
       optional
-    }: IArguments = args;
+    }: any = args;
     return {
       all,
       file,

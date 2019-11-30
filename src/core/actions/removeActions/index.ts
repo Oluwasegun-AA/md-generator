@@ -19,7 +19,7 @@ import {
   useBox,
   castElementsToFormatedString,
 } from '../../../common/index';
-import { IArguments, IAllFiles, ICurrentFile } from '../../../types/typeDeclarations.interface';
+import { IAllFiles, ICurrentFile } from '../../../types/typeDeclarations.interface';
 
 /**
  * @description
@@ -28,7 +28,7 @@ import { IArguments, IAllFiles, ICurrentFile } from '../../../types/typeDeclarat
  * @param filesArray name of files to be deleted (array of strings)
  * @param allFiles All files Available files
  */
-const deleteFromCodebase = (filesArray: string[], allFiles: IAllFiles) => {
+const deleteFromCodebase = (filesArray: string[], allFiles: any) => {
   filesArray.forEach((file: string) => {
     const { path }: ICurrentFile = allFiles[file];
     fs.unlink(path, (err: any) => {
@@ -51,7 +51,7 @@ const deleteFiles = (validFilesArray: string[], allFiles: IAllFiles): void => {
   }
   inquirer
     .prompt(validateRemove(castElementsToFormatedString(validFilesArray)))
-    .then((answer: {removeFiles: boolean}) => {
+    .then((answer: any) => {
       const { removeFiles }: {removeFiles: boolean} = answer;
       if (removeFiles) {
         deleteFromCodebase(validFilesArray, allFiles);
@@ -130,7 +130,7 @@ const removeOptionalFiles = (): void => {
  *
  * @param {Array} values arguments i.e command, payload and command options
  */
-const removeHandler = (values: IArguments) => {
+const removeHandler = (values: any) => {
   const {
     file,
     required,

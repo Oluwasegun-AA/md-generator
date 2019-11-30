@@ -19,7 +19,6 @@ const listHandler = async (values: IArguments): Promise<void> => {
   const spin: any = spinner('Generating Requested List . . .');
   const { required, optional }: IArguments = values;
   const all: boolean = !optional && !required;
-  const USE_DEFAULT: boolean = true;
   await getInfos().then((projectInfos: IProjectInfos) => {
     spin.succeed('Done');
     const { githubUsername, name }: IProjectInfos = projectInfos;

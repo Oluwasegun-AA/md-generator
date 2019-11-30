@@ -27,7 +27,7 @@ import {
   getItemFromFileName,
 } from '../actionsUtils';
 
-import {ICurrentFile, ISortedFiles, IAllFiles, IArguments} from '../../../types/typeDeclarations.interface';
+import {ICurrentFile, ISortedFiles, IAllFiles} from '../../../types/typeDeclarations.interface';
 
 /**
  * @description
@@ -47,7 +47,7 @@ const shouldOverride: any = async (existingFiles: string[], noneExistingFiles: s
   return files;
 };
 
-const getValidFiles: any = (values : ICurrentFile[] | string[]): ISortedFiles => {
+const getValidFiles: any = (values : ICurrentFile[] | string[]): any => {
   const list: string[] =
     typeof values[0] === 'object' ? getFullFileNames(values as ICurrentFile[]) : values as string[];
   const { foundFiles, filesNotFound }: ISortedFiles = queryFilesExistence(list);
@@ -69,7 +69,7 @@ const getValidFiles: any = (values : ICurrentFile[] | string[]): ISortedFiles =>
  *
  * @param values - files to be overridden
  */
-const handleOverride: any = async (values: string[] | ICurrentFile[]): Promise<ISortedFiles> => {
+const handleOverride: any = async (values: string[] | ICurrentFile[]): Promise<any> => {
   let { validFileNames }: ISortedFiles = getValidFiles(values);
   const { inValidFileNames, foundFiles }: ISortedFiles = getValidFiles(values);
   if (foundFiles.length > 0) {
@@ -94,10 +94,10 @@ const createMdFiles = async (USE_DEFAULT: boolean, filesToBeCreated: string[] | 
     process.exit(1);
   }
   // tslint:disable: no-parameter-reassignment
-  filesToBeCreated = validFileNames;
+  const files: any = validFileNames;
   if (validFileNames.includes('README') || validFileNames.includes('LICENSE')) USE_DEFAULT = false;
-  await getInfos(USE_DEFAULT, filesToBeCreated).then((projectInfos: any) => {
-    filesToBeCreated.forEach(async (file: string | ICurrentFile) => {
+  await getInfos(USE_DEFAULT, files).then((projectInfos: any) => {
+    files.forEach(async (file: string | ICurrentFile) => {
       let pathToTemplate: string;
       const { path, templatePath }: ICurrentFile = getItemFromFileName(file as string);
       if (file === 'LICENSE') {
@@ -129,7 +129,7 @@ const processCreation = async (allItems: IAllFiles | ICurrentFile[], mode: any, 
   let CREATE_EMPTY_FILE: boolean = false;
   let filesToBeCreated: ICurrentFile[];
   return inquirer.prompt(mode(getArrayOfValues(allItems as IAllFiles)))
-  .then((answer: {createFiles: boolean | string[]}) => {
+  .then((answer: any): any => {
     const { createFiles } = answer;
     if (createFiles === false) return process.exit(1);
     inquirer.prompt(createEmptyFiles()).then((res: any) => {
@@ -224,7 +224,7 @@ const createOptionalFiles = (isEmpty: boolean): void => {
  *
  * @param  values arguments i.e command, payload and command options
  */
-const createHandler = (values: IArguments): any => {
+const createHandler = (values: any): any => {
   const {
     file,
     required,
