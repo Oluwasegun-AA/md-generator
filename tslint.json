@@ -1,0 +1,74 @@
+{
+  "extends": "tslint-config-airbnb",
+  "jsRules": {
+    "eofline": true
+  },
+  "rules": {
+    "import-name": [
+      false
+    ],
+    "align": [
+      true
+    ],
+    "ter-arrow-parens": [
+      true
+    ],
+    "deprecation": {
+      "severity": "warn"
+    },
+    "interface-name": true,
+    "max-classes-per-file": true,
+    "max-line-length": [
+      true,
+      120
+    ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "no-consecutive-blank-lines": true,
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "no-empty": true,
+    "no-inferrable-types": [
+      false,
+      "ignore-params"
+    ],
+    "no-non-null-assertion": true,
+    "no-redundant-jsdoc": true,
+    "no-switch-case-fall-through": true,
+    "no-use-before-declare": true,
+    "no-var-requires": false,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+    "trailing-comma": false,
+    "no-output-on-prefix": true,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "use-host-property-decorator": true,
+    "no-input-rename": true,
+    "no-output-rename": true,
+    "use-life-cycle-interface": true,
+    "use-pipe-transform-interface": true,
+    "component-class-suffix": true,
+    "directive-class-suffix": true,
+    "no-conditional-assignment": true,
+    "object-shorthand-properties-first": false,
+    "quotemark": [true, "single", "avoid-escape"]
+  }
+}
