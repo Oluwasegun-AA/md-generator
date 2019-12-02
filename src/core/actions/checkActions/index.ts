@@ -24,7 +24,7 @@ import {IProjectInfos } from '../../../types/typeDeclarations.interface';
  * @param file file name
  */
 const check = (file: any): void => {
-  Object.keys(file).forEach((key: string): any => {
+  Object.keys(file).forEach((key: string): void => {
     if (!file[key].exists) {
       return log(
         pad(red(' X '), 12),

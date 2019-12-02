@@ -114,7 +114,7 @@ export interface IOptionalFiles {
   };
 };
 
-export interface IAllFiles extends IRequiredFiles, IOptionalFiles{
+export interface IAllFiles extends IRequiredFiles, IOptionalFiles {
 };
 
 export interface ISortedFiles {
@@ -132,7 +132,7 @@ export interface IArguments {
   empty?: boolean;
   resp?: ICurrentFile[];
   isEmpty?: boolean;
-}
+};
 
 export interface IQuestionResponse {
   type?: string;
@@ -140,7 +140,7 @@ export interface IQuestionResponse {
   message?: string;
   default?: boolean | string;
   filter?: any;
-  choices?: boolean| string[] | any;
+  choices?: boolean | string[] | any;
   when?: any;
 };
 
@@ -163,4 +163,13 @@ export interface IQuestions {
   askContributing?: IQuestionResponse | any;
   askUsage?: IQuestionResponse | any;
   askAuthorEmail?: IQuestionResponse | any;
-}
+};
+
+export interface IInputValue {
+  file: string[];
+  required: string[];
+  optional: string[];
+  isEmpty?: string[];
+  resp: ICurrentFile[];
+  all?: string[];
+};

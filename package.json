@@ -5,16 +5,16 @@
   "main": "index.js",
   "scripts": {
     "compile": "yarn clear && yarn build",
-    "build": "babel ./src -d dist --copy-files",
+    "copy-files": "babel ./src/templates/files -d dist/templates/files --ignore --copy-files",
+    "build": "tsc -b && yarn copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clear": "rimraf dist",
+    "clear": "rm -rf dist",
     "pretty": "./node_modules/.bin/prettier --single-quote --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint src/**/*.js --fix",
     "release": "standard-version",
     "contributors:init": "all-contributors init",
     "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate",
-    "build-ts": "rm -rf dist && tsc -b"
+    "contributors:generate": "all-contributors generate"
   },
   "bin": {
     "md-generator": "dist/index.js"
@@ -93,7 +93,6 @@
     "husky": "3.0.4",
     "lint-staged": "9.2.3",
     "prettier": "1.18.2",
-    "rimraf": "2.6.3",
     "standard-version": "7.0.0"
   }
 }

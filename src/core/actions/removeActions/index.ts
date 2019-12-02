@@ -128,7 +128,7 @@ const removeOptionalFiles = (): void => {
  * @description
  * removes file in the codebase based on the arguments passed
  *
- * @param {Array} values arguments i.e command, payload and command options
+ * @param values arguments i.e command, payload and command options
  */
 const removeHandler = (values: any) => {
   const {
