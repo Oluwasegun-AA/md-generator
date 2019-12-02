@@ -9,10 +9,10 @@ const filterValidArgs = (args: any): any =>
   Object.keys(args).filter((item: string) => args[item] !== undefined);
 
 const validateOptions = (values: any): any => {
-  const command = values._name;
-  const args: any = ExtractOptions[command as keyof typeof ExtractOptions](values);
+  const command: keyof typeof ExtractOptions = values._name;
+  const args: any = ExtractOptions[command](values);
   const activeArgs: any = filterValidArgs(args);
-  if (!IsValidArgs[command as keyof typeof IsValidArgs](activeArgs)) {
+  if (!IsValidArgs[command](activeArgs)) {
     showHelp('Invalid argument combination\n');
   }
   return { activeArgs, values };
