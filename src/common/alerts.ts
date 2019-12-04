@@ -2,7 +2,7 @@ import boxen from 'boxen';
 import pad from 'pad';
 import chalk from 'chalk';
 import ora from 'ora';
-import {IBOX_CONFIG} from '../types/typeDeclarations.interface';
+import {IBOX_CONFIG} from '../../types/typeDeclarations.interface';
 
 // get chalk colors for terminal
 const {

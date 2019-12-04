@@ -1,5 +1,5 @@
 import { getFullFileNames } from '../../../../common/index';
-import { ICurrentFile, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
+import { ICurrentFile, IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
 
 /**
  * @description

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "yarn clear && yarn build",
-    "copy-files": "babel ./src/templates/files -d dist/templates/files --ignore --copy-files",
+    "copy-files": "babel ./src/templates/files -d dist/src/templates/files --ignore --copy-files",
     "build": "tsc -b && yarn copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clear": "rm -rf dist",
@@ -17,7 +17,7 @@
     "contributors:generate": "all-contributors generate"
   },
   "bin": {
-    "md-generator": "dist/index.js"
+    "md-generator": "dist/src/index.js"
   },
   "files": [
     "dist",

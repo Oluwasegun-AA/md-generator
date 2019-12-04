@@ -1,4 +1,4 @@
-import { IProjectInfos, IQuestionResponse } from "../../../../types/typeDeclarations.interface";
+import { IProjectInfos, IQuestionResponse } from "../../../../../types/typeDeclarations.interface";
 
 const testScript = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'input',

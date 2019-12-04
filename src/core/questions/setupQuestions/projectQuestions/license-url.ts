@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
-import { IProjectInfos, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
+import { IProjectInfos, IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
 
 const licenseUrl = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'input',

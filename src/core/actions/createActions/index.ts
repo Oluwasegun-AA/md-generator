@@ -27,7 +27,7 @@ import {
   getItemFromFileName,
 } from '../actionsUtils';
 
-import {ICurrentFile, ISortedFiles, IAllFiles} from '../../../types/typeDeclarations.interface';
+import {ICurrentFile, ISortedFiles, IAllFiles} from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description

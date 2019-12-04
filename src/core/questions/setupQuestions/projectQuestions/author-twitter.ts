@@ -1,5 +1,5 @@
 import { cleanSocialNetworkUsername } from '../../../../projectEnv/utils';
-import { IQuestionResponse } from '../../../../types/typeDeclarations.interface';
+import { IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
 
 const twitterUsername = (): IQuestionResponse => ({
   type: 'input',

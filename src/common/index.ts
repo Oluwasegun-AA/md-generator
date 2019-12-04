@@ -21,7 +21,7 @@ import {
   castElementsToFormatedString,
 } from './alerts';
 
-import { ICurrentFile } from '../types/typeDeclarations.interface';
+import { ICurrentFile } from '../../types/typeDeclarations.interface';
 
 /**
  * @description

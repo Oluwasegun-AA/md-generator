@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileNotDetectedAlert } from '../../common/index';
-import { IAllFiles, IRequiredFiles, IOptionalFiles, ISortedFiles } from '../../types/typeDeclarations.interface';
+import { IAllFiles, IRequiredFiles, IOptionalFiles, ISortedFiles } from '../../../types/typeDeclarations.interface';
 
 /**
  * @description

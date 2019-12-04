@@ -19,7 +19,7 @@ import {
   useBox,
   castElementsToFormatedString,
 } from '../../../common/index';
-import { IAllFiles, ICurrentFile } from '../../../types/typeDeclarations.interface';
+import { IAllFiles, ICurrentFile } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description

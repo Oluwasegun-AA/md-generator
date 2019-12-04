@@ -1,6 +1,6 @@
 import program from 'commander';
 import { log } from '../../common';
-import { IArguments } from '../../types/typeDeclarations.interface';
+import { IArguments } from '../../../types/typeDeclarations.interface';
 
 /**
  * @description

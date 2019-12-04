@@ -3,7 +3,7 @@ import listHandler from './listActions';
 import createHandler from './createActions';
 import checkHandler from './checkActions';
 import removeHandler from './removeActions';
-import { ICurrentFile } from '../../types/typeDeclarations.interface';
+import { ICurrentFile } from '../../../types/typeDeclarations.interface';
 
 /**
  * Handle all actions with respect to the supplied arguments

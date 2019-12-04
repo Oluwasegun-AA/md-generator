@@ -1,5 +1,5 @@
 import { cleanSocialNetworkUsername } from '../../../../projectEnv/utils';
-import { IProjectInfos, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
+import { IProjectInfos, IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
 
 const authorGithubUsername = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'input',

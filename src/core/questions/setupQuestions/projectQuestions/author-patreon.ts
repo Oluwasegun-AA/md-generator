@@ -1,4 +1,4 @@
-import { IQuestionResponse } from "../../../../types/typeDeclarations.interface";
+import { IQuestionResponse } from "../../../../../types/typeDeclarations.interface";
 
 const patreonUsername = (): IQuestionResponse  => ({
   type: 'input',

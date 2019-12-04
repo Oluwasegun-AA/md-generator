@@ -1,5 +1,5 @@
 import path from 'path';
-import { IQuestionResponse } from '../../../../types/typeDeclarations.interface';
+import { IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
 
 const getResolvedPath = (relativePath: string) => path.resolve(__dirname, relativePath);
 

@@ -6,7 +6,7 @@ import { promisify } from 'util';
 import { dirname } from 'path';
 import mkdirp from 'mkdirp';
 import { log } from '../../common/index';
-import { IProjectInfos } from '../../types/typeDeclarations.interface';
+import { IProjectInfos } from '../../../types/typeDeclarations.interface';
 
 /**
  * @description writes file and makes parent directories if required

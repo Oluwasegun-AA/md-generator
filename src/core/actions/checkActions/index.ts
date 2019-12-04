@@ -15,7 +15,7 @@ import {
   optionalFiles
 } from '../actionsUtils';
 
-import {IProjectInfos } from '../../../types/typeDeclarations.interface';
+import {IProjectInfos } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description

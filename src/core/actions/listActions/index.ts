@@ -7,7 +7,7 @@ import {
   whiteUnderline,
   checkCommunityStandardMet
 } from '../../../common/index';
-import {IArguments, IProjectInfos} from '../../../types/typeDeclarations.interface';
+import {IArguments, IProjectInfos} from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description

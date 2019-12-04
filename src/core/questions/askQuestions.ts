@@ -8,7 +8,7 @@ import {
 } from './setupQuestions/index';
 import * as utils from '../../projectEnv/utils';
 import getProjectInfos from '../../projectEnv/projectInfo';
-import { IProjectInfos, IQuestions } from '../../types/typeDeclarations.interface';
+import { IProjectInfos, IQuestions } from '../../../types/typeDeclarations.interface';
 
 const find = (files: string[], item: string): any => files.find((element: string) => element === item);
 const getAppropriateQuestion = (files: string[]): IQuestions| null => {

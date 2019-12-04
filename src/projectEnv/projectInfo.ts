@@ -1,7 +1,7 @@
 import { isNil, get, has } from 'lodash';
 import { execSync } from 'child_process';
 import { getPackageJson, getProjectName } from './utils';
-import { IProjectInfos } from '../types/typeDeclarations.interface';
+import { IProjectInfos } from '../../types/typeDeclarations.interface';
 
 const GITHUB_URL = 'https://github.com/';
 

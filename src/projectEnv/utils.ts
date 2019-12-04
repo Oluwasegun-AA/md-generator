@@ -2,7 +2,7 @@ import loadJsonFile from 'load-json-file';
 import path from 'path';
 import getRepoName from 'git-repo-name';
 import { execSync } from 'child_process';
-import { IQuestionResponse } from '../types/typeDeclarations.interface';
+import { IQuestionResponse } from '../../types/typeDeclarations.interface';
 
 /**
  * @description Get package json name property

@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
-import { IProjectInfos, IQuestionResponse } from '../../../../types/typeDeclarations.interface';
+import { IProjectInfos, IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
 
 /**
  * @description Return engines as formatted choices
