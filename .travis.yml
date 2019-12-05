@@ -1,6 +1,3 @@
-  env:
-    global:
-      - CC_TEST_REPORTER_ID=eb0dc8f53663120d43489b6aed02676396ae70ce67446f03262b5ec42829e277
   language: node_js
   node_js:
     - "stable"
@@ -9,12 +6,8 @@
       - node_modules
   install:
     - yarn
-  before_script:
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-    - chmod +x ./cc-test-reporter
-    - ./cc-test-reporter before-build
   script:
     -  yarn test
   after_success:
     - nyc report --reporter=text-lcov | coveralls
-    - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
