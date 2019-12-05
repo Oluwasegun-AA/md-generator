@@ -13,7 +13,7 @@ import {
   unrecognizedFileAlert
 } from '../alerts';
 import { expect } from 'chai';
-import { elements } from './mock/alert.mock';
+import elements from './mock/alert.mock';
 
 describe('test functions in common/alert', () => {
   it('should log arguments to the console', () => {

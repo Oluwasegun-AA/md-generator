@@ -173,3 +173,8 @@ export interface IInputValue {
   resp: ICurrentFile[];
   all?: string[];
 };
+
+export interface IFilesCategories {
+  required: boolean;
+  optional: boolean;
+}

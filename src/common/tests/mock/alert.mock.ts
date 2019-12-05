@@ -1,5 +1,3 @@
 const elements: string[] = ['readme', 'licence'];
 
-export  {
-  elements,
-};
+export default elements;

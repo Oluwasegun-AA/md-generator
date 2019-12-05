@@ -15,7 +15,7 @@ import {
   optionalFiles
 } from '../actionsUtils';
 
-import {IProjectInfos } from '../../../../types/typeDeclarations.interface';
+import {IProjectInfos, IFilesCategories } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description
@@ -46,9 +46,9 @@ const check = (file: any): void => {
  *
  * @param values arguments i.e command and command options
  */
-const checkHandler = async (values: Object): Promise<void> => {
+const checkHandler: any = async (values: IFilesCategories): Promise<void> => {
   const spin: any = spinner('Checking for all Required / Optional .md files . . .');
-  const { required, optional }: any = values;
+  const { required, optional }: IFilesCategories = values;
   const all: boolean = !optional && !required;
   // const USE_DEFAULT: boolean = true;
   await getInfos().then((projectInfos: IProjectInfos) => {
