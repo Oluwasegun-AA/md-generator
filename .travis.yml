@@ -13,10 +13,8 @@
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build
-  before_install:
-      - npm i -g yarn
   script:
     -  yarn test
   after_success:
-    - yarn coverage
+    - nyc report --reporter=text-lcov | coveralls
     - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
