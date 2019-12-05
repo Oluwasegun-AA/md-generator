@@ -3,11 +3,6 @@
 <a href="https://travis-ci.org/Oluwasegun-AA/md-generator" target="_blank">
     <img alt="Version" src="https://travis-ci.org/Oluwasegun-AA/md-generator.svg?branch=develop">
 </a>
-
-<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/test_coverage" />
-</a>
-
 <a href='https://coveralls.io/github/Oluwasegun-AA/md-generator?branch=develop'>
 <img src='https://coveralls.io/repos/github/Oluwasegun-AA/md-generator/badge.svg?branch=develop' alt='Coverage Status' />
 </a>
