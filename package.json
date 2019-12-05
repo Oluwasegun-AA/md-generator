@@ -4,7 +4,7 @@
   "description": "NPM Package which bootstraps Development by creating all required .md files to meet community standards.",
   "main": "index.js",
   "scripts": {
-    "test": "nyc cross-env TS_NODE_FILES=true mocha --exit --require ts-node/register --colors src/**/**/*.spec.ts",
+    "test": "nyc cross-env TS_NODE_FILES=true mocha --exit --require ts-node/register --colors src/**/**/**/**/*.spec.ts",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "compile": "yarn clear && yarn build",
     "copy-files": "babel ./src/templates/files -d dist/src/templates/files --ignore --copy-files",

@@ -27,7 +27,7 @@ import {
   getItemFromFileName,
 } from '../actionsUtils';
 
-import {ICurrentFile, ISortedFiles, IAllFiles} from '../../../../types/typeDeclarations.interface';
+import { ICurrentFile, ISortedFiles, IAllFiles } from '../../../../types/typeDeclarations.interface';
 
 /**
  * @description
@@ -47,7 +47,7 @@ const shouldOverride: any = async (existingFiles: string[], noneExistingFiles: s
   return files;
 };
 
-const getValidFiles: any = (values : ICurrentFile[] | string[]): any => {
+const getValidFiles: any = (values: ICurrentFile[] | string[]): any => {
   const list: string[] =
     typeof values[0] === 'object' ? getFullFileNames(values as ICurrentFile[]) : values as string[];
   const { foundFiles, filesNotFound }: ISortedFiles = queryFilesExistence(list);
@@ -129,32 +129,32 @@ const processCreation = async (allItems: IAllFiles | ICurrentFile[], mode: any, 
   let CREATE_EMPTY_FILE: boolean = false;
   let filesToBeCreated: ICurrentFile[];
   return inquirer.prompt(mode(getArrayOfValues(allItems as IAllFiles)))
-  .then((answer: any): any => {
-    const { createFiles } = answer;
-    if (createFiles === false) return process.exit(1);
-    inquirer.prompt(createEmptyFiles()).then((res: any) => {
-      CREATE_EMPTY_FILE = IS_EMPTY_FILE || res.empty;
-      if (typeof createFiles === 'object') {
-        filesToBeCreated = Object.values(allItems).filter((file: ICurrentFile) =>
-          createFiles.includes(file.name));
-        if (
-          createFiles.includes('README.md') ||
-          createFiles.includes('CODE_OF_CONDUCT.md') ||
-          createFiles.includes('LICENSE')
-        ) {
-          return createMdFiles(
-            !USE_DEFAULT_VALUES,
-            filesToBeCreated,
-            CREATE_EMPTY_FILE
-          );
+    .then((answer: any): any => {
+      const { createFiles } = answer;
+      if (createFiles === false) return process.exit(1);
+      inquirer.prompt(createEmptyFiles()).then((res: any) => {
+        CREATE_EMPTY_FILE = IS_EMPTY_FILE || res.empty;
+        if (typeof createFiles === 'object') {
+          filesToBeCreated = Object.values(allItems).filter((file: ICurrentFile) =>
+            createFiles.includes(file.name));
+          if (
+            createFiles.includes('README.md') ||
+            createFiles.includes('CODE_OF_CONDUCT.md') ||
+            createFiles.includes('LICENSE')
+          ) {
+            return createMdFiles(
+              !USE_DEFAULT_VALUES,
+              filesToBeCreated,
+              CREATE_EMPTY_FILE
+            );
+          }
         }
-      }
-      if (createFiles === true) {
-        return createMdFiles(!USE_DEFAULT_VALUES, allItems as ICurrentFile[], CREATE_EMPTY_FILE);
-      }
-      return createMdFiles(USE_DEFAULT_VALUES, createFiles, CREATE_EMPTY_FILE);
+        if (createFiles === true) {
+          return createMdFiles(!USE_DEFAULT_VALUES, allItems as ICurrentFile[], CREATE_EMPTY_FILE);
+        }
+        return createMdFiles(USE_DEFAULT_VALUES, createFiles, CREATE_EMPTY_FILE);
+      });
     });
-  });
 };
 
 /**
@@ -163,7 +163,7 @@ const processCreation = async (allItems: IAllFiles | ICurrentFile[], mode: any, 
  *
  * @param values Array of files names
  */
-const checkCreatableFiles = async (values: ICurrentFile[]): Promise<any[]>  => {
+const checkCreatableFiles = async (values: ICurrentFile[]): Promise<any[]> => {
   const { validFileNames, inValidFileNames, foundFiles }: ISortedFiles = getValidFiles(
     values
   );
