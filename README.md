@@ -1,12 +1,26 @@
 <h2 align="center">md-generator</h2>
 <p align="center">
+<a href="https://travis-ci.org/Oluwasegun-AA/md-generator" target="_blank">
+    <img alt="Version" src="https://travis-ci.org/Oluwasegun-AA/md-generator.svg?branch=develop">
+</a>
+<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/test_coverage">
+    <img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/test_coverage" />
+</a>
+<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability">
+    <img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" />
+</a>
 <a href="https://www.npmjs.com/package/md-generator" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/md-generator.svg">
-  </a>
-<a href="https://npmjs.org/package/md-generator"><img src="https://img.shields.io/npm/dt/md-generator.svg?style=flat" alt="Version"></a>
-<a href="https://npmjs.com/package/md-generator"><img src="https://img.shields.io/npm/dm/md-generator.svg?style=flat" /></a>
-<a href="https://codeclimate.com/github/Oluwasegun-AA/md-generator/maintainability"><img src="https://api.codeclimate.com/v1/badges/2b739eec6ec45004c4cd/maintainability" /></a>
-<a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="Version"></a>
+</a>
+<a href="https://npmjs.org/package/md-generator">
+    <img src="https://img.shields.io/npm/dt/md-generator.svg?style=flat" alt="Version">
+</a>
+<a href="https://npmjs.com/package/md-generator">
+    <img src="https://img.shields.io/npm/dm/md-generator.svg?style=flat" />
+</a>
+<a href="#contributors">
+    <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="Version">
+</a>
 </p>
 
 CLI tool which bootstraps Development by creating "ALL" required .md files to meet "community standards".
@@ -77,9 +91,9 @@ install globally using
 
 | Command Option |                  Function                  |
 | :------------: | :----------------------------------------: |
-| -A,   --all    | Operate on all required/optional .md files |
-| -F,   --file   |       Operate on specific .md files        |
-| -E,  --empty   |           make added files empty           |
+|   -A, --all    | Operate on all required/optional .md files |
+|   -F, --file   |       Operate on specific .md files        |
+|  -E, --empty   |           make added files empty           |
 | -R --required  |         Operate on required files          |
 | -O --optional  |         Operate on optional files          |
 
@@ -99,22 +113,22 @@ install globally using
   </a>
 </p>
 
-|                      Cli Command                             |                         Function                                     |
-| :----------------------------------------------------------: | :------------------------------------------------------------------: |
-|    md-generator --help                                       |        displays help (all available command and option)              |
-|    md-generator list                                         |         lists all supported .md files                                |
-|    md-generator list --optional                              |         lists all supported optional .md files                       |
-|    md-generator list --required                              |         lists all required .md files to meet community standard      |
-|    md-generator check                                        |         checks code base for existing/missing supported .md files    |
-|    md-generator check --required                             |         checks code base for existing/missing required .md files     |
-|    md-generator check --optional                             |         checks code base for existing/missing optional .md files     |
-|    md-generator create                                       |         Interactively Generates all desired files                    |
-|    md-generator create --file "file1.md file2.md ..."        |         Creates the supplied files                                   |
-|    md-generator create  --file "file1 file2 ..." --empty     |         creates supplied files with no template                      |
-|    md-generator create --required                            |         Interactively create required .md files                      |
-|    md-generator create --optional                            |         Interactively create optional .md files                      |
-|    md-generator remove                                       |         Interactively deletes all desired .md files                  |
-|    md-generator remove --file "file1 file2  ..."             |         Interactively deletes all specified .md files                |
+|                     Cli Command                      |                         Function                          |
+| :--------------------------------------------------: | :-------------------------------------------------------: |
+|                 md-generator --help                  |     displays help (all available command and option)      |
+|                  md-generator list                   |               lists all supported .md files               |
+|             md-generator list --optional             |          lists all supported optional .md files           |
+|             md-generator list --required             |  lists all required .md files to meet community standard  |
+|                  md-generator check                  | checks code base for existing/missing supported .md files |
+|            md-generator check --required             | checks code base for existing/missing required .md files  |
+|            md-generator check --optional             | checks code base for existing/missing optional .md files  |
+|                 md-generator create                  |         Interactively Generates all desired files         |
+|  md-generator create --file "file1.md file2.md ..."  |                Creates the supplied files                 |
+| md-generator create --file "file1 file2 ..." --empty |          creates supplied files with no template          |
+|            md-generator create --required            |          Interactively create required .md files          |
+|            md-generator create --optional            |          Interactively create optional .md files          |
+|                 md-generator remove                  |        Interactively deletes all desired .md files        |
+|     md-generator remove --file "file1 file2 ..."     |       Interactively deletes all specified .md files       |
 
 ## Known issues
 
@@ -145,6 +159,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 - **[MIT license]()**
 - With ❤️ from <a href="https://twitter.com/Oluwasegun_AA" target="_blank">Olúwáségun</a>
 
+---
 
-***
 _This File was generated by [md-generator](https://github.com/oluwasegun-AA/md-generator)_
