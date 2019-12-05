@@ -18,4 +18,5 @@
   script:
     -  yarn test
   after_success:
+    - yarn coverage
     - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
