@@ -1,6 +1,7 @@
 {
   "cache": false,
   "check-coverage": false,
+  "require": ["ts-node/register"],
   "extension": [
     ".ts"
   ],

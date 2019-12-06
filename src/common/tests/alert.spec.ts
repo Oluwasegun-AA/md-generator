@@ -15,7 +15,7 @@ import {
 import { expect } from 'chai';
 import elements from './mock/alert.mock';
 
-describe('test functions in common/alert', () => {
+export default describe('test functions in common/alert', () => {
   it('should log arguments to the console', () => {
     const logData: any = log('print', 'hello', 'world');
     expect(logData).to.equal(undefined);
@@ -68,3 +68,4 @@ describe('test functions in common/alert', () => {
     expect(messageWithoutParameters).to.equal(undefined);
   });
 });
+
