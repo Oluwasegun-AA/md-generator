@@ -6,7 +6,7 @@ import {
   optionalAndAll
 } from './mock/index.mock';
 
-describe('test functions in core/actions/createActions', async() => {
+export default describe('test functions in core/actions/createActions', async() => {
   it('should call the listHandler function', async() => {
     const infos = await listHandler(requiredAndAll);
     const info = await listHandler(optionalAndAll);

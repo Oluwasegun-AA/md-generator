@@ -7,7 +7,7 @@ import {
   none,
 } from './mock/index.mock';
 
-describe('test functions in core/actions/createActions', async() => {
+export default describe('test functions in core/actions/createActions', async() => {
   it('should call the createHandler function', async() => {
     const resp = await createHandler(none);
     const info = await createHandler(required);
