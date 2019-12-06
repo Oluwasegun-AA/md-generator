@@ -6,7 +6,7 @@ import {
   optional
 } from './mock/index.mock';
 
-describe('test functions in core/actions/createActions', async() => {
+export default describe('test functions in core/actions/createActions', async() => {
   it('should call the checkHandler function', async() => {
     const infos = await checkHandler(required);
     const info = await checkHandler(optional);
