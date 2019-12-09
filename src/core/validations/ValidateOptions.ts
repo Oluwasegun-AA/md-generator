@@ -5,7 +5,7 @@ import Actions from '../actions/index';
 /**
  * extract on ly valid options
  */
-const filterValidArgs = (args: any): any =>
+export const filterValidArgs = (args: any): any =>
   Object.keys(args).filter((item: string) => args[item] !== undefined);
 
 const validateOptions = (values: any): any => {

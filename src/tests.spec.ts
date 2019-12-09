@@ -6,3 +6,5 @@ import './core/actions/removeActions/tests/index.spec';
 import './core/questions/setupQuestions/createCommand/tests/createInit.spec';
 import './core/questions/setupQuestions/projectQuestions/tests/spec';
 import './core/questions/setupQuestions/removeCommand/tests/removeInit.spec';
+import './core/coreUtils/tests/index.spec';
+import './core/validations/tests/spec';
