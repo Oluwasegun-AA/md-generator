@@ -12,7 +12,7 @@ const str = (data: string[] | []) => JSON.stringify(data);
  * @param args raw arguments
  * @param validOptions valid options
  */
-const isValidOption = (args: string[], validOptions: string[][]) =>
+export const isValidOption = (args: string[], validOptions: string[][]) =>
   !validOptions.every((option: string[] | []) => str(args) !== str(option));
 
 /**
