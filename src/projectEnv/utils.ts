@@ -104,6 +104,7 @@ export {
   getProjectName,
   getDefaultAnswers,
   getDefaultAnswer,
-  cleanSocialNetworkUsername,
+  getGitRepositoryName,
   isProjectAvailableOnNpm,
+  cleanSocialNetworkUsername
 };
