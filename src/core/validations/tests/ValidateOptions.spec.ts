@@ -7,6 +7,18 @@ export default describe('Test ValidateOptions.ts', () => {
     const response: any = filterValidArgs({});
     expect(response.args).to.be.equal(undefined);
   });
+
+  it('Should list optional files', () => {
+    const response: any = handleCommand({
+      _name: 'list', optional: true,
+      required: undefined,
+      all: false,
+      file: false,
+      empty: false
+    });
+    expect(response).to.be.equal(undefined);
+  });
+
   it('Should handle commands', () => {
     const response: any = handleCommand({
       _name: 'list', optional: true,
@@ -15,6 +27,6 @@ export default describe('Test ValidateOptions.ts', () => {
       file: false,
       empty: false
     });
-    expect(response.args).to.be.equal(undefined);
+    expect(response).to.be.equal(undefined);
   });
 });

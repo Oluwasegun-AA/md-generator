@@ -8,7 +8,7 @@ import askAuthorEmail from './projectQuestions/author-email';
 import askAuthorGithub from './projectQuestions/author-github';
 import askAuthorTwitter from './projectQuestions/author-twitter';
 import askAuthorPatreon from './projectQuestions/author-patreon';
-import askProjectPrerequisites from './projectQuestions/project-prerequisites';
+import {askProjectPrerequisites} from './projectQuestions/project-prerequisites';
 import askLicenseName from './projectQuestions/license-name';
 import askLicenseUrl from './projectQuestions/license-url';
 import askContributing from './projectQuestions/contributing';

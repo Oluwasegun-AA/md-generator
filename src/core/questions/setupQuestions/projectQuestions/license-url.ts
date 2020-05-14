@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
-import { IProjectInfos, IQuestionResponse } from '../../../../../types/typeDeclarations.interface';
+import { IProjectInfos, IQuestionResponse, IProjectInfosWithMissingFields } from '../../../../../types/typeDeclarations.interface';
 
-const licenseUrl = (projectInfos: IProjectInfos): IQuestionResponse => ({
+const licenseUrl = (projectInfos: IProjectInfos | IProjectInfosWithMissingFields): IQuestionResponse => ({
   type: 'input',
   message: '  License URL (use empty value to skip)',
   name: 'licenseUrl',

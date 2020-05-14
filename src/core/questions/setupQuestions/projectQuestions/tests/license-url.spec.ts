@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import licenseUrl from '../license-url';
-import {projectInfo} from './mock/index.mock';
+import { projectInfo } from './mock/index.mock';
 
 export default describe('test create questions', () => {
   it('should ask for the license URL', () => {
@@ -11,3 +11,4 @@ export default describe('test create questions', () => {
     expect(data.message.trim()).to.be.equal('License URL (use empty value to skip)');
   });
 });
+
