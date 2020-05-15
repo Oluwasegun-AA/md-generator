@@ -45,7 +45,6 @@ CLI tool which bootstraps Development by creating "ALL" required .md files to me
 ## Project Overview
 
 md-generator was created to reduce the time spent creating .md files while trying to set up projects. Hence, bootstrapping development with `ALL` desired md files in line with proven community standards.
-This npm package was inspired by [readme-md-generator](https://www.npmjs.com/package/readme-md-generator) by @kefranabg
 
 ## Features
 

@@ -26,6 +26,7 @@ import {
   queryFilesExistence,
   getItemFromFileName,
 } from '../actionsUtils';
+import { isEmpty } from 'lodash';
 
 import { ICurrentFile, ISortedFiles, IAllFiles } from '../../../../types/typeDeclarations.interface';
 
@@ -41,6 +42,7 @@ export const shouldOverride: any = async (existingFiles: string[], noneExistingF
     .prompt(overrideFiles(existingFiles))
     .then((item: any) => {
       const { override } = item;
+      if (!override && isEmpty(noneExistingFiles[0])) return process.exit(1);
       if (override) return noneExistingFiles.concat(existingFiles);
       return noneExistingFiles;
     });
