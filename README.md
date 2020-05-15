@@ -19,10 +19,6 @@
     <img src="https://img.shields.io/npm/dt/md-generator.svg?style=flat" alt="Version">
 </a>
 
-<a href="https://npmjs.com/package/md-generator">
-    <img src="https://img.shields.io/npm/dm/md-generator.svg?style=flat" />
-</a>
-
 <a href="#contributors">
     <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="Version">
 </a>
