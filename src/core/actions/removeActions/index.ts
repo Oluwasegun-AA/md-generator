@@ -28,7 +28,7 @@ import { IAllFiles, ICurrentFile } from '../../../../types/typeDeclarations.inte
  * @param filesArray name of files to be deleted (array of strings)
  * @param allFiles All files Available files
  */
-const deleteFromCodebase = (filesArray: string[], allFiles: any) => {
+export const deleteFromCodebase = (filesArray: string[], allFiles: any) => {
   filesArray.forEach((file: string) => {
     const { path }: ICurrentFile = allFiles[file];
     fs.unlink(path, (err: any) => {
@@ -45,7 +45,7 @@ const deleteFromCodebase = (filesArray: string[], allFiles: any) => {
  * @param validFilesArray name of Valid files to be deleted (array of strings)
  * @param allFiles All files Available files
  */
-const deleteFiles = (validFilesArray: string[], allFiles: IAllFiles): void => {
+export const deleteFiles = (validFilesArray: string[], allFiles: IAllFiles): void => {
   if (validFilesArray.length === 0) {
     return log('Error: No file selected, Please select a file\n');
   }
@@ -89,7 +89,7 @@ const removeNonSpecific = (): void => {
  * Handles removal when command is passed with option -F or --file
  * @param values Array of file names supplied
  */
-const removeSpecificFiles = (values: ICurrentFile[]): void => {
+export const removeSpecificFiles = (values: ICurrentFile[]): void => {
   const { foundFiles, filesNotFound } = queryFilesExistence(values);
   if (filesNotFound.length > 0) {
     const filesList: string = castElementsToFormatedString(filesNotFound);

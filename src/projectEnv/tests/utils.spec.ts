@@ -34,7 +34,6 @@ export default describe('test functions in projectEnv/utils', async () => {
   });
   it('should return true if project is available on npm', async () => {
     const response = isProjectAvailableOnNpm('md-generator');
-    console.log('ppp', response);
     expect(response).to.be.equal(true);
   });
   it('should return "" question type = input and default answer undefined', async () => {
@@ -55,7 +54,6 @@ export default describe('test functions in projectEnv/utils', async () => {
   });
   it('should get answers for multiple questions', async () => {
     const response = getDefaultAnswers(['']);
-    console.log('ppp', response);
     expect(response).to.be.equal(undefined);
   });
   it('should clean social network username removing an "@" character', async () => {

@@ -10,8 +10,8 @@ import * as utils from '../../projectEnv/utils';
 import getProjectInfos from '../../projectEnv/projectInfo';
 import { IProjectInfos, IQuestions } from '../../../types/typeDeclarations.interface';
 
-const find = (files: string[], item: string): any => files.find((element: string) => element === item);
-const getAppropriateQuestion = (files: string[]): IQuestions| null => {
+export const find = (files: string[], item: string): any => files.find((element: string) => element === item);
+export const getAppropriateQuestion = (files: string[]): IQuestions| null => {
   const readmeQstn = find(files, 'README') ? readmeQuestions : null;
   const licenseQstn = find(files, 'LICENSE') ? licenseQuestions : null;
   const codeOfConductQstn = find(files, 'CODE_OF_CONDUCT')

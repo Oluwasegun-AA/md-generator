@@ -59,6 +59,7 @@
   "dependencies": {
     "@babel/runtime": "7.4.5",
     "@types/chai-spies": "1.0.1",
+    "babel-node": "^0.0.1-security",
     "boxen": "4.1.0",
     "chai": "4.2.0",
     "chai-spies": "1.0.0",

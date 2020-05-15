@@ -37,6 +37,30 @@ export interface IProjectInfos {
   isProjectOnNpm?: any | any;
 };
 
+export interface IProjectInfosWithMissingFields {
+  name?: string | any;
+  description?: string | any;
+  version?: string | any;
+  author?: string | any;
+  homepage?: string | any;
+  repositoryUrl?: string | any;
+  contributingUrl?: string | any;
+  githubUsername?: string | any;
+  engines?: string | any;
+  licenseName?: {
+    name?: string | any;
+  } | any;
+  licenseUrl?: string | any;
+  documentationUrl?: string | any;
+  isGithubRepo?: boolean | any;
+  usage?: string | any;
+  testCommand?: string | any;
+  isGithubRepos?: boolean | any;
+  projectName?: string | any;
+  projectPrerequisites?: any | any;
+  isProjectOnNpm?: any | any;
+};
+
 export interface IRequiredFiles {
   README?: {
     name: string;
