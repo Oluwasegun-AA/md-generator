@@ -36,7 +36,7 @@ import { ICurrentFile, ISortedFiles, IAllFiles } from '../../../../types/typeDec
  * @param existingFiles -  files existing in the code base
  * @param noneExistingFiles - files not found in the codebase
  */
-const shouldOverride: any = async (existingFiles: string[], noneExistingFiles: string[]): Promise<string[]> => {
+export const shouldOverride: any = async (existingFiles: string[], noneExistingFiles: string[]): Promise<string[]> => {
   const files: string[] = await inquirer
     .prompt(overrideFiles(existingFiles))
     .then((item: any) => {
@@ -47,7 +47,7 @@ const shouldOverride: any = async (existingFiles: string[], noneExistingFiles: s
   return files;
 };
 
-const getValidFiles: any = (values: ICurrentFile[] | string[]): any => {
+export const getValidFiles: any = (values: ICurrentFile[] | string[]): any => {
   const list: string[] =
     typeof values[0] === 'object' ? getFullFileNames(values as ICurrentFile[]) : values as string[];
   const { foundFiles, filesNotFound }: ISortedFiles = queryFilesExistence(list);
@@ -69,7 +69,7 @@ const getValidFiles: any = (values: ICurrentFile[] | string[]): any => {
  *
  * @param values - files to be overridden
  */
-const handleOverride: any = async (values: string[] | ICurrentFile[]): Promise<any> => {
+export const handleOverride: any = async (values: string[] | ICurrentFile[]): Promise<any> => {
   let { validFileNames }: ISortedFiles = getValidFiles(values);
   const { inValidFileNames, foundFiles }: ISortedFiles = getValidFiles(values);
   if (foundFiles.length > 0) {
@@ -87,7 +87,7 @@ const handleOverride: any = async (values: string[] | ICurrentFile[]): Promise<a
  * @param isEmpty determines if file to be created would be empty
  */
 // tslint:disable-next-line: max-line-length
-const createMdFiles = async (USE_DEFAULT: boolean, filesToBeCreated: string[] | ICurrentFile[], isEmpty: boolean): Promise<void> => {
+export const createMdFiles = async (USE_DEFAULT: boolean, filesToBeCreated: string[] | ICurrentFile[], isEmpty: boolean): Promise<void> => {
   const { validFileNames }: ISortedFiles = await handleOverride(filesToBeCreated);
   if (validFileNames.length === 0) {
     useHelpAlert();
@@ -163,7 +163,7 @@ const processCreation = async (allItems: IAllFiles | ICurrentFile[], mode: any, 
  *
  * @param values Array of files names
  */
-const checkCreatableFiles = async (values: ICurrentFile[]): Promise<any[]> => {
+export const checkCreatableFiles = async (values: ICurrentFile[]): Promise<any[]> => {
   const { validFileNames, inValidFileNames, foundFiles }: ISortedFiles = getValidFiles(
     values
   );
@@ -193,7 +193,7 @@ const createNonSpecificFiles = (): void => {
  * @param isEmpty determines if questions are asked or default values are used
  * @param values Files names
  */
-const createSpecificFiles = async (isEmpty: boolean, values: ICurrentFile[]): Promise<void> => {
+export const createSpecificFiles = async (isEmpty: boolean, values: ICurrentFile[]): Promise<void> => {
   const files = await checkCreatableFiles(values);
   processCreation(files, createFiles, isEmpty);
 };

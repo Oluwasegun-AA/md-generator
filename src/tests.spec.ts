@@ -1,4 +1,8 @@
+import './projectEnv/tests/projectInfo.spec';
+import './projectEnv/tests/utils.spec';
+import './templates/fileWriter/tests/index.spec';
 import './common/tests/spec';
+import './core/questions/tests/askQuestions.spec';
 import './core/actions/checkActions/tests/index.spec';
 import './core/actions/createActions/tests/index.spec';
 import './core/actions/listActions/tests/index.spec';

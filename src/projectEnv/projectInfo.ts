@@ -27,7 +27,7 @@ const getRepoUrlFromPackageJson = async (packageJson: any): Promise<any> => {
 /**
  * @description Get repository url from git
  */
-const getRepoUrlFromGit = (): any => {
+export const getRepoUrlFromGit = (): any => {
   try {
     const stdout = execSync('git config --get remote.origin.url');
     return cleanRepoUrl(stdout);
@@ -49,7 +49,7 @@ const getRepoUrl = async (packageJson?: any): Promise<string> =>
  *
  * @param packageJson package.json file
  */
-const getRepoIssuesUrl = async (packageJson: any): Promise<string> => {
+export const getRepoIssuesUrl = async (packageJson: any): Promise<string> => {
   let repoIssuesUrl = get(packageJson, 'bugs.url', undefined);
 
   if (isNil(repoIssuesUrl)) {
@@ -95,7 +95,7 @@ const getReadmeUrlFromGithubRepositoryUrl = (repositoryUrl: string): string =>
  * @param packageJson package.json file
  * @returns authorName
  */
-const getAuthorName = (packageJson: any): any => {
+export const getAuthorName = (packageJson: any): any => {
   if (has(packageJson, 'author.name')) {
     return get(packageJson, 'author.name', undefined);
   }

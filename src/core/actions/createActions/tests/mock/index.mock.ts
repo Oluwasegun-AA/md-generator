@@ -8,6 +8,13 @@ const optional = {
   optional: true
 };
 
+export const currentFile = {
+  name: 'file',
+  exists: true,
+  path: '/path/to/file',
+  templatePath: '/path/to/template'
+};
+
 const file = {
   required: false,
   optional: false,

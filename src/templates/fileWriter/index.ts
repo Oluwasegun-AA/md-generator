@@ -54,4 +54,4 @@ const buildFileContent = async (context: IProjectInfos, templatePath: string) =>
   });
 };
 
-export { writeFile, buildFileContent };
+export { writeFile, getFileTemplate, buildFileContent };

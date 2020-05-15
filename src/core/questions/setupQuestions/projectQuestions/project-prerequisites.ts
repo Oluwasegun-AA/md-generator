@@ -25,7 +25,7 @@ const buildFormattedChoices = (engines: any) => {
 const hasProjectInfosEngines = (projectInfos: IProjectInfos) =>
   !isNil(projectInfos.engines) && !isEmpty(projectInfos.engines);
 
-const prerequisites = (projectInfos: IProjectInfos): IQuestionResponse => ({
+const askProjectPrerequisites = (projectInfos: IProjectInfos): IQuestionResponse => ({
   type: 'checkbox',
   message: '  Project prerequisites',
   name: 'projectPrerequisites',
@@ -33,4 +33,7 @@ const prerequisites = (projectInfos: IProjectInfos): IQuestionResponse => ({
   when: () => hasProjectInfosEngines(projectInfos),
 });
 
-export default prerequisites;
+export {
+  askProjectPrerequisites,
+  hasProjectInfosEngines
+}

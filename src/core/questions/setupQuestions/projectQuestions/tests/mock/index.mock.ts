@@ -1,4 +1,4 @@
-import { IProjectInfos, IQuestionResponse } from "types/typeDeclarations.interface";
+import { IProjectInfos, IQuestionResponse, IProjectInfosWithMissingFields } from "types/typeDeclarations.interface";
 
 const projectInfo: IProjectInfos = {
   name: 'hello',
@@ -34,7 +34,30 @@ const questionResponse: IQuestionResponse =  {
   when: 'hello',
 };
 
+const projectInfoEmptyLicense: IProjectInfosWithMissingFields = {
+  name: 'hello',
+  description: 'hello',
+  version: 'hello',
+  author: 'hello',
+  homepage: 'hello',
+  repositoryUrl: 'hello',
+  contributingUrl: 'hello',
+  githubUsername: 'hello',
+  engines: 'hello',
+  licenseName: null,
+  licenseUrl: 'hello',
+  documentationUrl: 'hello',
+  isGithubRepo: false,
+  usage: 'hello',
+  testCommand: 'hello',
+  isGithubRepos: false,
+  projectName: 'hello',
+  projectPrerequisites: 'hello',
+  isProjectOnNpm: 'hello'
+};
+
 export {
   projectInfo,
-  questionResponse
+  questionResponse,
+  projectInfoEmptyLicense
 };
