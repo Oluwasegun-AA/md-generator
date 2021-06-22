@@ -156,8 +156,6 @@ No known [issues](https://github.com/Oluwasegun-AA/md-generator/issues) at the m
 ## Contributing
 
 > Feel free to contribute and kindly go through the Pull Request guide, and contributing.md file
-> 👯 Clone the repository using https://github.com/Oluwasegun-AA/md-generator.git .
-> Make Contributions
 
 ## Contributors
 
