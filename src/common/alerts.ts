@@ -150,11 +150,17 @@ const unrecognizedFileAlert: any = (inValidFileNamesArray: string[]): void => {
   );
 };
 
+interface consolePayload {
+  errorText: string,
+  override?: boolean;
+}
 /**
  * Alert directing users to the --help command
  */
-const useHelpAlert: any = (): void  =>
-  log('File found, please user --help to check all supported md Files\n');
+const useHelpAlert: any = ({errorText,override}: consolePayload): void => {
+  const genericText = override ? "\n" : " please use --help to check all supported md Files\n"
+  log(`${errorText} ${genericText}`);
+}
 
 export {
   log,

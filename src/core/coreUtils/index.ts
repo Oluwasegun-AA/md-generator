@@ -37,7 +37,7 @@ class ExtractOptions {
   public static list: any = (args: any): IArguments => {
     const { optional, required }: any = args;
     return { optional, required };
-  }
+  };
 
   public static create: any = (args: any): IArguments => {
     const {
@@ -54,12 +54,12 @@ class ExtractOptions {
       file,
       empty,
     };
-  }
+  };
 
   public static check = (args: any): IArguments => {
     const { optional, required }: any = args;
     return { optional, required };
-  }
+  };
 
   public static remove = (args: any): IArguments => {
     const {
@@ -74,7 +74,7 @@ class ExtractOptions {
       required,
       optional
     };
-  }
+  };
 }
 
 export { showHelpOnError, showHelp, ExtractOptions };
