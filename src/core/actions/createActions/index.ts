@@ -90,10 +90,26 @@ export const handleOverride: any = async (values: string[] | ICurrentFile[]): Pr
  */
 // tslint:disable-next-line: max-line-length
 export const createMdFiles = async (USE_DEFAULT: boolean, filesToBeCreated: string[] | ICurrentFile[], isEmpty: boolean): Promise<void> => {
-  const { validFileNames }: ISortedFiles = await handleOverride(filesToBeCreated);
-  if (validFileNames.length === 0) {
-    useHelpAlert();
+  const { validFileNames, inValidFileNames }: ISortedFiles = await handleOverride(filesToBeCreated);
+  if (validFileNames.length === 0 && inValidFileNames.length === 0) {
+    useHelpAlert({
+      errorText: 'Error:  No option selected, Press <space> to select, <a> to toggle all, <i> to invert selection',
+      override: true
+    });
     process.exit(1);
+  }
+  if (validFileNames.length === 0 && inValidFileNames.length > 0) {
+    useHelpAlert({
+      errorText:`${inValidFileNames} not supported,`,
+      override: false
+    });
+    process.exit(1);
+  }
+  if (inValidFileNames.length > 0 && validFileNames.length > 0) {
+    useHelpAlert({
+      errorText: `The following files are not supported and will not be created ${inValidFileNames}`,
+      override: true
+    });
   }
   // tslint:disable: no-parameter-reassignment
   const files: any = validFileNames;

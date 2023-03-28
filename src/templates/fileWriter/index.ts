@@ -8,17 +8,19 @@ import mkdirp from 'mkdirp';
 import { log } from '../../common/index';
 import { IProjectInfos } from '../../../types/typeDeclarations.interface';
 
+
 /**
  * @description writes file and makes parent directories if required
  *
  * @param path path to file
  * @param text content to be written
  */
-const writeFile = (text: string, path: string): void => {
+const writeFile = (text: string, path: string): Promise<any> => {
   const errMsg = () => log(`${path.split('/').pop()} creation unsuccessful`);
-  return mkdirp(dirname(path), (err: any) => {
+  // @ts-ignore
+  return mkdirp(dirname(path), (err: any): any => {
     if (err) return errMsg();
-    fs.writeFile(path, unescape(text), (e: any) => {
+    return fs.writeFile(path, unescape(text), (e: any): void => {
       if (e) errMsg();
     });
   });

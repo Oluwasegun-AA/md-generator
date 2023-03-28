@@ -204,7 +204,7 @@ const queryFilesExistence = (values: any): ISortedFiles => {
     fileNotDetectedAlert();
     process.exit(1);
   }
-  const data = args.split(' ');
+  const data = args.split(' ').filter((item: string)=> item.length > 0 );
   return checkFilesExist(data, allFiles);
 };
 

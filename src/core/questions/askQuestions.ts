@@ -46,9 +46,10 @@ const askQuestions = async (
   const answersContext: IProjectInfos = useDefaultAnswers
     ? utils.getDefaultAnswers(getQuestions(readmeQuestions))
     : await ask(question);
+  const { isGithubRepos, repositoryUrl } = projectInfos;
   return {
-    isGithubRepos: projectInfos.isGithubRepos,
-    repositoryUrl: projectInfos.repositoryUrl,
+    isGithubRepos,
+    repositoryUrl,
     projectPrerequisites: undefined,
     isProjectOnNpm: utils.isProjectAvailableOnNpm(answersContext.projectName),
     ...answersContext,

@@ -19,7 +19,7 @@ export interface IProjectInfos {
   version: string | any;
   author: string | any;
   homepage: string | any;
-  repositoryUrl: string | any;
+  repositoryUrl?: string | any;
   contributingUrl: string | any;
   githubUsername: string | any;
   engines: string | any;
