@@ -1,5 +1,4 @@
 import ejs from 'ejs';
-import { getYear } from 'date-fns';
 import fs from 'fs';
 import { unescape } from 'lodash';
 import { promisify } from 'util';
@@ -46,7 +45,7 @@ const getFileTemplate = async (templatePath: string): Promise<string> => {
  * @param templatePath path to template
  */
 const buildFileContent = async (context: IProjectInfos, templatePath: string) => {
-  const currentYear: number = getYear(new Date());
+  const currentYear: number = new Date().getFullYear();
   const template: string = await getFileTemplate(templatePath);
 
   return ejs.render(template, {
