@@ -64,4 +64,6 @@ typings/
 /dist
 /public
 
+# others
 .DS_Store
+.vscode

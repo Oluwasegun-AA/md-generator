@@ -3,7 +3,6 @@ import fs from 'fs';
 import { unescape } from 'lodash';
 import { promisify } from 'util';
 import { dirname } from 'path';
-import mkdirp from 'mkdirp';
 import { log } from '../../common/index';
 import { IProjectInfos } from '../../../types/typeDeclarations.interface';
 
@@ -17,8 +16,9 @@ import { IProjectInfos } from '../../../types/typeDeclarations.interface';
 const writeFile = (text: string, path: string): Promise<any> => {
   const errMsg = () => log(`${path.split('/').pop()} creation unsuccessful`);
   // @ts-ignore
-  return mkdirp(dirname(path), (err: any): any => {
-    if (err) return errMsg();
+  return fs.mkdir(dirname(path), (err: any): any => {
+    console.log('here', dirname(path), err.code)
+    if (err && err.code !== 'EEXIST') return errMsg();
     return fs.writeFile(path, unescape(text), (e: any): void => {
       if (e) errMsg();
     });

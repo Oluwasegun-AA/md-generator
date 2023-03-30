@@ -2,7 +2,7 @@ import boxen from 'boxen';
 import pad from 'pad';
 import chalk from 'chalk';
 import ora from 'ora';
-import {IBOX_CONFIG} from '../../types/typeDeclarations.interface';
+import { IBOX_CONFIG } from '../../types/typeDeclarations.interface';
 
 // get chalk colors for terminal
 const {
@@ -47,8 +47,7 @@ const useBox: any = (text: string): void  => {
 };
 
 /**
- * @description
- * Prints Success message after file creation
+ * @description Prints Success message after file creation
  */
 const showEndMessage: any = (): void  =>
   useBox('File(s) Created Successfully\nThank you for using md-generator');
@@ -151,16 +150,16 @@ const unrecognizedFileAlert: any = (inValidFileNamesArray: string[]): void => {
 };
 
 interface consolePayload {
-  errorText: string,
+  errorText: string;
   override?: boolean;
 }
 /**
  * Alert directing users to the --help command
  */
-const useHelpAlert: any = ({errorText,override}: consolePayload): void => {
-  const genericText = override ? "\n" : " please use --help to check all supported md Files\n"
+const useHelpAlert: any = ({ errorText, override }: consolePayload): void => {
+  const genericText = override ? '\n' : ' please use --help to check all supported md Files\n';
   log(`${errorText} ${genericText}`);
-}
+};
 
 export {
   log,
