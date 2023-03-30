@@ -126,7 +126,7 @@ export const createMdFiles = async (USE_DEFAULT: boolean, filesToBeCreated: stri
       const fileContent: string = isEmpty
         ? ''
         : await buildFileContent(projectInfos, pathToTemplate);
-      writeFile(fileContent, path);
+      await writeFile(fileContent, path);
     });
   });
   spinner().succeed('File(s) created Successfully\n');

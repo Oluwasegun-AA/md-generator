@@ -63,3 +63,7 @@ typings/
 # ignore custom files
 /dist
 /public
+
+# others
+.DS_Store
+.vscode

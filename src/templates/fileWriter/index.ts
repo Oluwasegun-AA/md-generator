@@ -1,10 +1,8 @@
 import ejs from 'ejs';
-import { getYear } from 'date-fns';
 import fs from 'fs';
 import { unescape } from 'lodash';
 import { promisify } from 'util';
 import { dirname } from 'path';
-import mkdirp from 'mkdirp';
 import { log } from '../../common/index';
 import { IProjectInfos } from '../../../types/typeDeclarations.interface';
 
@@ -18,8 +16,8 @@ import { IProjectInfos } from '../../../types/typeDeclarations.interface';
 const writeFile = (text: string, path: string): Promise<any> => {
   const errMsg = () => log(`${path.split('/').pop()} creation unsuccessful`);
   // @ts-ignore
-  return mkdirp(dirname(path), (err: any): any => {
-    if (err) return errMsg();
+  return fs.mkdir(dirname(path), (err: any): any => {
+    if (err && err.code !== 'EEXIST') return errMsg();
     return fs.writeFile(path, unescape(text), (e: any): void => {
       if (e) errMsg();
     });
@@ -46,7 +44,7 @@ const getFileTemplate = async (templatePath: string): Promise<string> => {
  * @param templatePath path to template
  */
 const buildFileContent = async (context: IProjectInfos, templatePath: string) => {
-  const currentYear: number = getYear(new Date());
+  const currentYear: number = new Date().getFullYear();
   const template: string = await getFileTemplate(templatePath);
 
   return ejs.render(template, {
