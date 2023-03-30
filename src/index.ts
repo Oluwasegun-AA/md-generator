@@ -5,7 +5,7 @@ import handleCommand from './core/validations/ValidateOptions';
 
 program
   .name('md-generator')
-  .version('0.5.2')
+  .version('0.6.1')
   .action((command: string) => wrongCommandAlert(command))
   .on('--help', () => {
     customHelp();

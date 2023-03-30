@@ -17,7 +17,6 @@ const writeFile = (text: string, path: string): Promise<any> => {
   const errMsg = () => log(`${path.split('/').pop()} creation unsuccessful`);
   // @ts-ignore
   return fs.mkdir(dirname(path), (err: any): any => {
-    console.log('here', dirname(path), err.code)
     if (err && err.code !== 'EEXIST') return errMsg();
     return fs.writeFile(path, unescape(text), (e: any): void => {
       if (e) errMsg();
