@@ -174,7 +174,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 - **[MIT license]()**
-- With ❤️ from <a href="https://twitter.com/Oluwasegun_AA" target="_blank">Olúwáségun.</a>
+- With ❤️ from <a href="https://www.linkedin.com/in/adepoju" target="_blank">Olúwáségun.</a>
 
 ---
 
